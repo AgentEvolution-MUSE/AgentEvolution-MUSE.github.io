@@ -1,0 +1,141 @@
+export type Author = {
+  name: string;
+  affiliationIds: number[];
+  corresponding?: boolean;
+};
+
+export type Resource = {
+  label: string;
+  description: string;
+  status: 'coming-soon' | 'available';
+  href?: string;
+};
+
+export type StageComparison = {
+  dimension: string;
+  limitation: string;
+  mechanism: string;
+  response: string;
+  accent: string;
+};
+
+export const site = {
+  name: 'MUSE',
+  paperTitle: 'Metacognitive Unison Self-Evolution',
+  description:
+    'MUSE is an integrative Stage-4 prototype for metacognitive, interaction-grounded, and holistically coordinated agent evolution.',
+  organization: 'AgentEvolution-MUSE',
+};
+
+export const navigation = [
+  { label: 'MUSE', href: '#overview' },
+  { label: 'Spectrum', href: '#spectrum' },
+  { label: 'Method', href: '#method' },
+  { label: 'Architecture', href: '#architecture' },
+  { label: 'Results', href: '#results' },
+  { label: 'Resources', href: '#resources' },
+];
+
+export const affiliations = [
+  { id: 1, name: 'Shanghai Jiao Tong University' },
+  { id: 2, name: 'National University of Singapore' },
+  { id: 3, name: 'University of Oxford' },
+  { id: 4, name: 'Shenzhen University' },
+];
+
+export const authors: Author[] = [
+  { name: 'Zongru Wu', affiliationIds: [1, 2] },
+  { name: 'Hongbo Qiu', affiliationIds: [4] },
+  { name: 'Bobo Li', affiliationIds: [2] },
+  { name: 'Hao Fei', affiliationIds: [3] },
+  { name: 'Tianjie Ju', affiliationIds: [2] },
+  { name: 'Kelvin J. L. Koa', affiliationIds: [2] },
+  { name: 'Wynne Hsu', affiliationIds: [2] },
+  { name: 'Mong Li Lee', affiliationIds: [2] },
+  { name: 'Zhuosheng Zhang', affiliationIds: [1], corresponding: true },
+  { name: 'Gongshen Liu', affiliationIds: [1], corresponding: true },
+  { name: 'Michael Wooldridge', affiliationIds: [3] },
+  { name: 'Shengqiong Wu', affiliationIds: [3], corresponding: true },
+];
+
+export const resources: Resource[] = [
+  {
+    label: 'Paper',
+    description: 'Read the full paper.',
+    status: 'coming-soon',
+  },
+  {
+    label: 'Code',
+    description: 'Explore the MUSE implementation.',
+    status: 'coming-soon',
+  },
+  {
+    label: 'Documentation',
+    description: 'Follow setup and extension guides.',
+    status: 'coming-soon',
+  },
+  {
+    label: 'BibTeX',
+    description: 'Cite MUSE in your research.',
+    status: 'coming-soon',
+  },
+];
+
+export const stageComparisons: StageComparison[] = [
+  {
+    dimension: 'Evolutionary Autonomy',
+    limitation:
+      'Evolution remains primarily task-, failure-, schedule-, or feedback-conditioned rather than governed across the deployment lifecycle.',
+    mechanism: 'Metacognitive Evolutionary Gating',
+    response:
+      'Monitors longitudinal capability evidence, determines when evolution is needed, diagnoses capability gaps, and routes optimization demands.',
+    accent: 'blue',
+  },
+  {
+    dimension: 'Supervision Autonomy',
+    limitation:
+      'Evolution depends on external supervision or self-generated signals that may lack independent environmental grounding.',
+    mechanism: 'Interaction-Grounded Self-Supervision',
+    response:
+      'Derives supplementary tasks and rewards from empirically validated environmental interactions.',
+    accent: 'green',
+  },
+  {
+    dimension: 'Optimization Scope',
+    limitation:
+      'Parametric, symbolic, and operational components are optimized selectively or with limited system-wide coordination.',
+    mechanism: 'Holistic Unison Evolution',
+    response:
+      'Combines component-specific refinement with cross-component knowledge circulation and synchronization.',
+    accent: 'orange',
+  },
+];
+
+export const mechanisms = [
+  {
+    index: '01',
+    title: 'Metacognitive Evolutionary Gating',
+    text: 'MUSE continuously assesses longitudinal capability evidence, activates evolution only when needed, diagnoses capability gaps, and routes optimization toward the components that require change.',
+    accent: 'blue',
+  },
+  {
+    index: '02',
+    title: 'Interaction-Grounded Self-Supervision',
+    text: 'Validated environmental interactions become supplementary tasks, rewards, and reference trajectories, reducing reliance on external labels and ungrounded self-generated supervision.',
+    accent: 'green',
+  },
+  {
+    index: '03',
+    title: 'Holistic Unison Evolution',
+    text: 'The parametric core and symbolic assets evolve through coordinated refinement, distillation, allocation, retirement, and cross-component synchronization.',
+    accent: 'orange',
+  },
+];
+
+export const lifecycleStages = [
+  'Monitor',
+  'Diagnose',
+  'Generate',
+  'Coordinate',
+  'Evaluate',
+];

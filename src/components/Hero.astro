@@ -1,0 +1,49 @@
+---
+import { affiliations, authors, resources, site } from '../data/site';
+---
+
+<section id="overview" class="hero section-band">
+  <div class="hero-visual" aria-hidden="true">
+    <img
+      src="/images/evolution-spectrum.png"
+      alt=""
+      width="2662"
+      height="1560"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+
+  <div class="hero-content container">
+    <p class="eyebrow">A Stage-4 Prototype for Agent Evolution</p>
+    <h1><span>{site.name}</span><small>{site.paperTitle}</small></h1>
+    <p class="hero-deck">
+      From task-conditioned adaptation to metacognitive, interaction-grounded,
+      and holistically coordinated self-evolution.
+    </p>
+
+    <div class="authors" aria-label="Paper authors">
+      {authors.map((author) => (
+        <span class="author">
+          {author.name}<sup>{author.affiliationIds.join(',')}{author.corresponding ? '*' : ''}</sup>
+        </span>
+      ))}
+    </div>
+
+    <ol class="affiliations" aria-label="Author affiliations">
+      {affiliations.map((affiliation) => (
+        <li><sup>{affiliation.id}</sup>{affiliation.name}</li>
+      ))}
+    </ol>
+    <p class="corresponding">* Corresponding authors</p>
+
+    <div class="hero-actions" aria-label="Project resources">
+      {resources.filter((resource) => resource.label !== 'Documentation').map((resource) => (
+        <button class="resource-button" type="button" disabled title={`${resource.label} is coming soon`}>
+          <strong>{resource.label}</strong>
+          <small>Coming Soon</small>
+        </button>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,73 @@
+---
+import { navigation, site } from '../data/site';
+---
+
+<header class="site-header" data-site-header>
+  <div class="header-inner container">
+    <a class="brand" href="#overview" aria-label={`${site.name} home`}>
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>{site.name}</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+      aria-label="Open navigation"
+      title="Menu"
+    >
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
+      {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const navigation = document.querySelector<HTMLElement>('#primary-navigation');
+
+  const closeMenu = () => {
+    toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.setAttribute('aria-label', 'Open navigation');
+    navigation?.removeAttribute('data-open');
+  };
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    navigation?.toggleAttribute('data-open', open);
+  });
+
+  navigation?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+
+  const anchors = [...document.querySelectorAll<HTMLAnchorElement>('.primary-nav a')];
+  const sections = anchors
+    .map((anchor) => document.querySelector<HTMLElement>(anchor.getAttribute('href') ?? ''))
+    .filter((section): section is HTMLElement => Boolean(section));
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      anchors.forEach((anchor) => {
+        const active = anchor.hash === `#${visible.target.id}`;
+        anchor.toggleAttribute('data-active', active);
+        if (active) anchor.setAttribute('aria-current', 'location');
+        else anchor.removeAttribute('aria-current');
+      });
+    },
+    { rootMargin: '-20% 0px -65% 0px', threshold: [0, 0.1, 0.5] },
+  );
+
+  sections.forEach((section) => observer.observe(section));
+</script>

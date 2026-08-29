@@ -1,43 +1,53 @@
-# Astro Starter Kit: Minimal
+# MUSE Project Page
 
-```sh
-npm create astro@latest -- --template minimal
+Private development repository for the official project page of **MUSE: Metacognitive Unison Self-Evolution**.
+
+The site is built with Astro as a static, single-page research publication. It is intentionally not deployed while the paper and code are still under development.
+
+## Local development
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Open `http://localhost:4321/`.
 
-## 🚀 Project Structure
+## Verification
 
-Inside of your Astro project, you'll see the following folders and files:
+```bash
+npm run check
+npm run test
+npm run build
+```
+
+## Structure
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+|-- components/   Page sections and navigation
+|-- data/         Typed paper metadata and resource states
+|-- layouts/      Document shell and SEO metadata
+|-- pages/        Route composition
+`-- styles/       Global editorial design system
+
+public/images/    Approved paper figures
+tests/            Metadata and built-page contracts
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Assets
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- `public/images/evolution-spectrum.png` is the paper's five-stage evolutionary spectrum.
+- `public/images/architecture.png` is the MUSE system architecture.
 
-Any static assets, like images, can be placed in the `public/` directory.
+Both files are copied from the paper repository without visual modification.
 
-## 🧞 Commands
+## Publication checklist
 
-All commands are run from the root of the project, from a terminal:
+Before making the site public:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. Replace all `Coming Soon` states with verified paper, code, documentation, and BibTeX resources.
+2. Add final experimental results and only claims supported by the released paper.
+3. Set Astro's production `site` URL.
+4. Add and verify the GitHub Pages deployment workflow.
+5. Change repository visibility only when the release is approved.

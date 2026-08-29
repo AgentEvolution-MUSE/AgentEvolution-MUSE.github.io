@@ -1,0 +1,35 @@
+---
+import { stageComparisons } from '../data/site';
+---
+
+<section class="section-band comparison-band" aria-labelledby="comparison-title">
+  <div class="container">
+    <div class="section-intro comparison-intro">
+      <p class="eyebrow">The Stage-3 Gap</p>
+      <h2 id="comparison-title" class="section-heading">Why Evolution 3.0 Falls Short</h2>
+      <p>
+        Transitional systems may adapt individual capabilities, but uneven maturity across
+        autonomy, supervision, and scope prevents continuous system-level evolution.
+      </p>
+    </div>
+
+    <div class="comparison-header" aria-hidden="true">
+      <span>Dimension</span><span>Stage-3 Limitation</span><span>MUSE Mechanism</span>
+    </div>
+    <div class="comparison-list">
+      {stageComparisons.map((item) => (
+        <article class={`comparison-row accent-${item.accent}`} data-stage-comparison>
+          <h3>{item.dimension}</h3>
+          <div>
+            <span class="mobile-label">Stage-3 Limitation</span>
+            <p>{item.limitation}</p>
+          </div>
+          <div>
+            <span class="mobile-label">MUSE Mechanism</span>
+            <p><strong>{item.mechanism}</strong> {item.response}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
