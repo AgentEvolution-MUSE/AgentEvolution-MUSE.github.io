@@ -29,6 +29,12 @@ test('renders the complete research narrative', () => {
   assert.match(html, /architecture\.png/);
 });
 
+test('serves paper figures from the organized asset directory', () => {
+  assert.match(html, /\/assets\/images\/figures\/evolution-spectrum\.png/);
+  assert.match(html, /\/assets\/images\/figures\/architecture\.png/);
+  assert.doesNotMatch(html, /(?:src|href)="\/images\//);
+});
+
 test('renders stable repeated structures and truthful resource states', () => {
   assert.equal((html.match(/data-stage-comparison/g) ?? []).length, 3);
   assert.equal((html.match(/data-mechanism/g) ?? []).length, 3);

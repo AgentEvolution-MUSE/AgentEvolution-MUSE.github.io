@@ -31,14 +31,19 @@ src/
 |-- pages/        Route composition
 `-- styles/       Global editorial design system
 
-public/images/    Approved paper figures
+public/assets/images/
+|-- figures/      Approved paper and framework figures
+|-- results/      Experimental plots and result visualizations
+`-- branding/     Logos and institutional marks
 tests/            Metadata and built-page contracts
 ```
 
 ## Assets
 
-- `public/images/evolution-spectrum.png` is the paper's five-stage evolutionary spectrum.
-- `public/images/architecture.png` is the MUSE system architecture.
+- `public/assets/images/figures/evolution-spectrum.png` is the paper's five-stage evolutionary spectrum.
+- `public/assets/images/figures/architecture.png` is the MUSE system architecture.
+- `public/assets/images/results/` is reserved for experimental plots and result visualizations.
+- `public/assets/images/branding/` is reserved for logos and institutional marks.
 
 Both files are copied from the paper repository without visual modification.
 
