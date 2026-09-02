@@ -11,6 +11,23 @@ export type Resource = {
   href?: string;
 };
 
+export type EvolutionStrategyComponent = {
+  symbol: string;
+  math: string;
+  name: string;
+  description: string;
+  example: string;
+  accent: string;
+};
+
+export type Affiliation = {
+  id: number;
+  name: string;
+  logo: string;
+  logoWidth: number;
+  logoHeight: number;
+};
+
 export type StageComparison = {
   dimension: string;
   limitation: string;
@@ -36,11 +53,35 @@ export const navigation = [
   { label: 'Resources', href: '#resources' },
 ];
 
-export const affiliations = [
-  { id: 1, name: 'Shanghai Jiao Tong University' },
-  { id: 2, name: 'National University of Singapore' },
-  { id: 3, name: 'University of Oxford' },
-  { id: 4, name: 'Shenzhen University' },
+export const affiliations: Affiliation[] = [
+  {
+    id: 1,
+    name: 'Shanghai Jiao Tong University',
+    logo: '/assets/images/branding/institutions/sjtu.png',
+    logoWidth: 4283,
+    logoHeight: 1408,
+  },
+  {
+    id: 2,
+    name: 'National University of Singapore',
+    logo: '/assets/images/branding/institutions/nus.png',
+    logoWidth: 2315,
+    logoHeight: 1061,
+  },
+  {
+    id: 3,
+    name: 'University of Oxford',
+    logo: '/assets/images/branding/institutions/oxford.jpeg',
+    logoWidth: 752,
+    logoHeight: 228,
+  },
+  {
+    id: 4,
+    name: 'Shenzhen University',
+    logo: '/assets/images/branding/institutions/szu.svg',
+    logoWidth: 141.7323,
+    logoHeight: 40.5354,
+  },
 ];
 
 export const authors: Author[] = [
@@ -78,6 +119,63 @@ export const resources: Resource[] = [
     label: 'BibTeX',
     description: 'Cite MUSE in your research.',
     status: 'coming-soon',
+  },
+];
+
+export const evolutionStrategy: EvolutionStrategyComponent[] = [
+  {
+    symbol: 'Δ',
+    math: '\\Delta',
+    name: 'Supervision Generator',
+    description: 'Generates supervision grounded in validated environmental interactions.',
+    example:
+      'Successful recovery interactions are converted into validated tasks, reference trajectories, and reward signals.',
+    accent: 'green',
+  },
+  {
+    symbol: 'C',
+    math: '\\mathcal{C}',
+    name: 'Optimization Scope',
+    description: 'Defines which parametric, symbolic, and operational components may evolve.',
+    example:
+      'The booking tool schema, relevant experience memory, and tool-use policy are eligible for adaptation, while unrelated capabilities remain unchanged.',
+    accent: 'blue',
+  },
+  {
+    symbol: 'M',
+    math: '\\mathcal{M}',
+    name: 'Evolutionary Optimizer',
+    description: 'Performs component refinement and cross-component synchronization.',
+    example:
+      'Using validated supervision, the optimizer refines the selected symbolic assets and synchronizes them with the model policy.',
+    accent: 'orange',
+  },
+  {
+    symbol: 'Γ',
+    math: '\\Gamma',
+    name: 'Evolutionary Gating',
+    description: 'Controls evolution activation, capability diagnosis, and optimization routing.',
+    example:
+      'Repeated workflow failures activate evolution and route adaptation to the booking-related components in the admissible scope.',
+    accent: 'yellow',
+  },
+  {
+    symbol: 'O',
+    math: '\\mathcal{O}',
+    name: 'Evolutionary Objective',
+    description: 'Measures environmental fitness and directs evolutionary progress.',
+    example:
+      'The evolved agent must correctly reschedule the trip, notify every participant, and complete the changed workflow efficiently.',
+    accent: 'coral',
+  },
+  {
+    symbol: 'B',
+    math: '\\mathcal{B}',
+    name: 'Boundary Constraint',
+    description: 'Preserves validated legacy capabilities while the agent changes.',
+    example:
+      'Previously supported booking and notification tasks are replayed to reject updates that introduce regressions.',
+    accent: 'blue',
   },
 ];
 

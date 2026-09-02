@@ -4,6 +4,7 @@ import test from 'node:test';
 import {
   affiliations,
   authors,
+  evolutionStrategy,
   lifecycleStages,
   mechanisms,
   resources,
@@ -39,6 +40,18 @@ test('publishes the finalized paper metadata', () => {
   );
 });
 
+test('defines institution logos in publication order', () => {
+  assert.deepEqual(
+    affiliations.map(({ name, logo }) => [name, logo]),
+    [
+      ['Shanghai Jiao Tong University', '/assets/images/branding/institutions/sjtu.png'],
+      ['National University of Singapore', '/assets/images/branding/institutions/nus.png'],
+      ['University of Oxford', '/assets/images/branding/institutions/oxford.jpeg'],
+      ['Shenzhen University', '/assets/images/branding/institutions/szu.svg'],
+    ],
+  );
+});
+
 test('keeps unpublished resources non-navigable', () => {
   assert.equal(resources.length, 4);
   for (const resource of resources) {
@@ -57,4 +70,30 @@ test('defines the complete method narrative', () => {
     'Coordinate',
     'Evaluate',
   ]);
+});
+
+test('defines paper-aligned math and one coherent example across the six-tuple', () => {
+  assert.deepEqual(
+    evolutionStrategy.map(({ symbol, math }) => [symbol, math]),
+    [
+      ['Δ', '\\Delta'],
+      ['C', '\\mathcal{C}'],
+      ['M', '\\mathcal{M}'],
+      ['Γ', '\\Gamma'],
+      ['O', '\\mathcal{O}'],
+      ['B', '\\mathcal{B}'],
+    ],
+  );
+  assert.equal(evolutionStrategy.length, 6);
+  const exampleEvidence = [
+    /validated tasks/,
+    /eligible for adaptation/,
+    /synchronizes them with the model policy/,
+    /activate evolution/,
+    /reschedule the trip/,
+    /replayed to reject updates/,
+  ];
+  evolutionStrategy.forEach((component, index) => {
+    assert.match(component.example, exampleEvidence[index]);
+  });
 });

@@ -1,11 +1,13 @@
 ---
-import Abstract from '../components/Abstract.astro';
 import Architecture from '../components/Architecture.astro';
 import Citation from '../components/Citation.astro';
 import CoreMechanisms from '../components/CoreMechanisms.astro';
+import EvolutionFormulation from '../components/EvolutionFormulation.astro';
 import EvolutionLifecycle from '../components/EvolutionLifecycle.astro';
 import EvolutionSpectrum from '../components/EvolutionSpectrum.astro';
 import Hero from '../components/Hero.astro';
+import InstitutionLogos from '../components/InstitutionLogos.astro';
+import PageMotion from '../components/PageMotion.astro';
 import Resources from '../components/Resources.astro';
 import ResultsPlaceholder from '../components/ResultsPlaceholder.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -16,9 +18,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout>
   <SiteHeader />
-  <main id="main-content">
+  <main id="main-content" data-page-motion>
     <Hero />
-    <Abstract />
+    <InstitutionLogos />
+    <EvolutionFormulation />
     <EvolutionSpectrum />
     <StageComparison />
     <CoreMechanisms />
@@ -29,4 +32,5 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <Citation />
   </main>
   <SiteFooter />
+  <PageMotion />
 </BaseLayout>

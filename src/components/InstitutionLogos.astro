@@ -1,0 +1,21 @@
+---
+import { affiliations } from '../data/site';
+---
+
+<section class="institution-band" aria-label="Affiliated institutions">
+  <div class="container">
+    <ul class="institution-list" role="list">
+      {affiliations.map((affiliation) => (
+        <li data-institution-logo={affiliation.id}>
+          <img
+            src={affiliation.logo}
+            alt={affiliation.name}
+            width={affiliation.logoWidth}
+            height={affiliation.logoHeight}
+            loading="eager"
+          />
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

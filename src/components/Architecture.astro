@@ -1,46 +1,102 @@
-<section id="architecture" class="section-band architecture-band" aria-labelledby="architecture-title">
+<section
+  id="architecture"
+  class="section-band architecture-band"
+  aria-labelledby="architecture-title"
+  data-motion-group="architecture"
+>
   <div class="container section-intro">
     <p class="eyebrow">Coordinated Evolution</p>
     <h2 id="architecture-title" class="section-heading">System Architecture</h2>
     <p>
-      MUSE organizes evolution as a governed system: capability evidence activates and
-      routes change, grounded supervision supplies learning signals, and coordinated
-      optimization updates the selected parametric and symbolic components.
+      MUSE turns continuous interaction into a governed evolution loop that diagnoses
+      capability gaps, coordinates grounded updates, and admits only validated progress.
     </p>
   </div>
 
-  <figure class="architecture-figure container-wide">
-    <a href="/assets/images/figures/architecture.png" target="_blank" rel="noreferrer" aria-label="Open the MUSE architecture figure at full resolution">
-      <img
-        src="/assets/images/figures/architecture.png"
-        alt="MUSE architecture connecting evolutionary gating, supervision generation, optimization scope, evolutionary objective, boundary constraints, and the evolutionary optimizer."
-        width="2514"
-        height="1743"
-        loading="lazy"
-      />
-    </a>
-    <figcaption>
-      <strong>Figure 2.</strong> MUSE coordinates evolutionary gating, grounded supervision,
-      component refinement, synchronization, and boundary-preserving evaluation.
-    </figcaption>
-  </figure>
+  <div class="architecture-system container-wide" data-architecture-flow>
+    <div class="architecture-context" aria-label="Evolution context">
+      <span data-architecture-context="environment">
+        <strong aria-hidden="true">E<sub>t</sub></strong>
+        <small>Environment</small>
+      </span>
+      <span data-architecture-context="agent">
+        <strong aria-hidden="true">A<sub>t</sub></strong>
+        <small>Agent</small>
+      </span>
+      <span data-architecture-context="history">
+        <strong aria-hidden="true">H<sub>t</sub></strong>
+        <small>Interaction History</small>
+      </span>
+    </div>
 
-  <div class="container architecture-levels">
-    <article>
-      <span>Level 01</span>
-      <h3>Inner-Component Refinement</h3>
-      <p>
-        Interaction trajectories refine experiences, reusable tools, and the model policy
-        through component-specific objectives and validation.
-      </p>
-    </article>
-    <article>
-      <span>Level 02</span>
-      <h3>Inter-Component Synchronization</h3>
-      <p>
-        Knowledge circulates across symbolic assets and the parametric core through
-        principle distillation, conflict-aware allocation, and retirement of stale assets.
-      </p>
-    </article>
+    <span class="architecture-input-line" aria-hidden="true"></span>
+
+    <div class="architecture-flow" role="list" aria-label="MUSE evolution stages">
+      <article
+        class="architecture-stage architecture-stage-diagnose"
+        data-architecture-stage="diagnose"
+        data-motion-item
+        role="listitem"
+        tabindex="0"
+      >
+        <div class="architecture-stage-meta">
+          <span>01</span>
+          <strong aria-hidden="true">Γ</strong>
+        </div>
+        <h3>Diagnose &amp; Route</h3>
+        <p>Detect capability gaps from longitudinal evidence and route the required scope of change.</p>
+      </article>
+
+      <span class="architecture-connector" aria-hidden="true"><i></i></span>
+
+      <article
+        class="architecture-stage architecture-stage-coordinate"
+        data-architecture-stage="coordinate"
+        data-motion-item
+        role="listitem"
+        tabindex="0"
+      >
+        <div class="architecture-stage-meta">
+          <span>02</span>
+          <strong aria-hidden="true">Δ · M(C)</strong>
+        </div>
+        <h3>Generate &amp; Coordinate</h3>
+        <p>Ground supervision in validated interactions and jointly refine the selected components.</p>
+      </article>
+
+      <span class="architecture-connector" aria-hidden="true"><i></i></span>
+
+      <article
+        class="architecture-stage architecture-stage-verify"
+        data-architecture-stage="verify"
+        data-motion-item
+        role="listitem"
+        tabindex="0"
+      >
+        <div class="architecture-stage-meta">
+          <span>03</span>
+          <strong aria-hidden="true">O · B</strong>
+        </div>
+        <h3>Evaluate &amp; Preserve</h3>
+        <p>Measure environmental fitness, protect validated capabilities, and accept beneficial updates.</p>
+      </article>
+    </div>
+
+    <div class="architecture-outcome" data-architecture-outcome>
+      <span>Accepted evolution</span>
+      <strong>Evolved Agent <i>A<sub>t+1</sub></i></strong>
+      <small><span aria-hidden="true">↻</span> Returns to continuous interaction</small>
+    </div>
+  </div>
+
+  <div class="container architecture-detail-link">
+    <a
+      href="/assets/images/figures/architecture.png"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Open the full MUSE technical architecture at full resolution"
+    >
+      View full technical architecture <span aria-hidden="true">↗</span>
+    </a>
   </div>
 </section>

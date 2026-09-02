@@ -2,7 +2,12 @@
 import { mechanisms } from '../data/site';
 ---
 
-<section id="method" class="section-band method-band" aria-labelledby="method-title">
+<section
+  id="method"
+  class="section-band method-band"
+  aria-labelledby="method-title"
+  data-motion-group="mechanisms"
+>
   <div class="container section-intro">
     <p class="eyebrow">Method</p>
     <h2 id="method-title" class="section-heading">Three Mechanisms for Stage-4 Evolution</h2>
@@ -14,7 +19,11 @@ import { mechanisms } from '../data/site';
 
   <div class="container mechanism-grid">
     {mechanisms.map((mechanism) => (
-      <article class={`mechanism accent-${mechanism.accent}`} data-mechanism>
+      <article
+        class={`mechanism accent-${mechanism.accent}`}
+        data-mechanism
+        data-motion-item
+      >
         <span class="mechanism-index">{mechanism.index}</span>
         <h3>{mechanism.title}</h3>
         <p>{mechanism.text}</p>

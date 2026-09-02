@@ -1,0 +1,48 @@
+<script>
+  const root = document.querySelector<HTMLElement>('[data-page-motion]');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (root && !reduceMotion && 'IntersectionObserver' in window) {
+    const groups = [...root.querySelectorAll<HTMLElement>('[data-motion-group]')];
+
+    groups.forEach((group) => {
+      group.querySelectorAll<HTMLElement>('[data-motion-item]').forEach((item, index) => {
+        item.style.setProperty('--motion-index', String(index));
+      });
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const group = entry.target as HTMLElement;
+          const items = [...group.querySelectorAll<HTMLElement>('[data-motion-item]')];
+          const finalItem = items.at(-1);
+
+          const markSettled = () => {
+            group.setAttribute('data-motion-settled', '');
+          };
+
+          if (finalItem) {
+            const handleTransitionEnd = (event: TransitionEvent) => {
+              if (event.propertyName !== 'transform') return;
+              finalItem.removeEventListener('transitionend', handleTransitionEnd);
+              markSettled();
+            };
+
+            finalItem.addEventListener('transitionend', handleTransitionEnd);
+          }
+
+          entry.target.setAttribute('data-motion-visible', '');
+          if (!finalItem) markSettled();
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: '0px 0px -12% 0px', threshold: 0.12 },
+    );
+
+    groups.forEach((group) => observer.observe(group));
+    document.documentElement.classList.add('motion-ready');
+  }
+</script>

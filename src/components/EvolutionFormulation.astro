@@ -1,0 +1,181 @@
+---
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+
+import { evolutionStrategy } from '../data/site';
+
+const formulaSource = String.raw`\mathcal{S}=\left\langle\Delta,\mathcal{C},\mathcal{M},\Gamma,\mathcal{O},\mathcal{B}\right\rangle`;
+const roundSource = String.raw`A_{t+1}=\mathcal{S}\!\left(A_t,E_t,H_t\right)`;
+const trajectorySource = String.raw`A_0\xrightarrow{\mathcal{S}(\cdot,E_0,H_0)}A_1\xrightarrow{\mathcal{S}(\cdot,E_1,H_1)}\cdots\xrightarrow{\mathcal{S}(\cdot,E_{T-1},H_{T-1})}A_T`;
+const mobileTrajectorySource = String.raw`A_0\xrightarrow{\mathcal{S}_0}A_1\xrightarrow{\mathcal{S}_1}\cdots\xrightarrow{\mathcal{S}_{T-1}}A_T`;
+const renderMath = (source: string) =>
+  katex.renderToString(source, {
+    throwOnError: true,
+    output: 'htmlAndMathml',
+  });
+const renderedStrategy = evolutionStrategy.map((component) => ({
+  ...component,
+  mathHtml: renderMath(component.math),
+}));
+const initialComponent = renderedStrategy[0];
+const formulaHtml = renderMath(formulaSource);
+const roundHtml = renderMath(roundSource);
+const trajectoryHtml = renderMath(trajectorySource);
+const mobileTrajectoryHtml = renderMath(mobileTrajectorySource);
+---
+
+<section
+  class="section-band formulation-band"
+  aria-labelledby="formulation-title"
+  data-evolution-formulation
+  data-motion-group="formulation"
+>
+  <div class="container formulation-intro">
+    <div>
+      <p class="eyebrow">Theoretical Foundation</p>
+      <h2 id="formulation-title" class="section-heading">
+        A Unified Formulation of Agent Evolution
+      </h2>
+    </div>
+    <p class="formulation-lede">
+      MUSE defines an evolutionary strategy through six components that determine when evolution
+      begins, what may change, how change is supervised and optimized, and how progress remains
+      guided and bounded across successive evolution rounds.
+    </p>
+  </div>
+
+  <p
+    class="formulation-equation container"
+    data-formulation-equation
+    aria-label="Evolutionary strategy S equals Delta, C, M, Gamma, O, and B"
+  >
+    <span aria-hidden="true" set:html={formulaHtml}></span>
+  </p>
+
+  <ol class="container formulation-grid">
+    {renderedStrategy.map((component, index) => (
+      <li
+        class={`formulation-item accent-${component.accent}`}
+        data-evolution-component={component.symbol}
+        data-motion-item
+      >
+        <button
+          class="formulation-component"
+          type="button"
+          data-example-control
+          data-example-name={component.name}
+          data-example-text={component.example}
+          data-accent={component.accent}
+          aria-controls="formulation-example"
+          aria-pressed={index === 0 ? 'true' : 'false'}
+        >
+          <span
+            class="formulation-symbol"
+            data-component-math
+            aria-hidden="true"
+            set:html={component.mathHtml}
+          ></span>
+          <h3>{component.name}</h3>
+          <p>{component.description}</p>
+        </button>
+      </li>
+    ))}
+  </ol>
+
+  <div
+    id="formulation-example"
+    class="container formulation-example"
+    data-formulation-example
+    data-accent={initialComponent.accent}
+    aria-live="polite"
+    aria-atomic="true"
+  >
+    <div class="formulation-example-context">
+      <span>Running Example</span>
+      <strong>Changed Service Workflow</strong>
+    </div>
+    <div class="formulation-example-content">
+      <span
+        class="formulation-example-symbol"
+        data-example-symbol
+        aria-hidden="true"
+        set:html={initialComponent.mathHtml}
+      ></span>
+      <div>
+        <h3 data-example-name>{initialComponent.name}</h3>
+        <p data-example-text>{initialComponent.example}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container evolution-process" data-evolution-process>
+    <div class="evolution-process-row">
+      <div class="evolution-process-label">
+        <span>Process 01</span>
+        <strong>One Evolution Round</strong>
+      </div>
+      <div
+        class="evolution-process-equation evolution-process-round"
+        aria-label="A sub t plus 1 equals evolutionary strategy S applied to agent A sub t, environment E sub t, and history H sub t"
+      >
+        <span aria-hidden="true" set:html={roundHtml}></span>
+      </div>
+    </div>
+    <div class="evolution-process-row evolution-process-row-trajectory">
+      <div class="evolution-process-label">
+        <span>Process 02</span>
+        <strong>Continuous Evolutionary Trajectory</strong>
+      </div>
+      <div
+        class="evolution-process-equation evolution-process-trajectory"
+        aria-label="A continuous trajectory from agent A zero through successive evolutionary strategy updates to agent A sub T"
+      >
+        <span class="trajectory-desktop" aria-hidden="true" set:html={trajectoryHtml}></span>
+        <span class="trajectory-mobile" aria-hidden="true" set:html={mobileTrajectoryHtml}></span>
+      </div>
+    </div>
+  </div>
+
+  <p class="container formulation-bridge">
+    Repeated interaction and adaptation form a continuous evolutionary trajectory. The maturity
+    of the governing strategy determines where an agent lies on the spectrum below.
+  </p>
+</section>
+
+<script>
+  const formulation = document.querySelector<HTMLElement>('[data-evolution-formulation]');
+
+  if (formulation) {
+    const controls = [...formulation.querySelectorAll<HTMLButtonElement>('[data-example-control]')];
+    const panel = formulation.querySelector<HTMLElement>('[data-formulation-example]');
+    const panelSymbol = panel?.querySelector<HTMLElement>('[data-example-symbol]');
+    const panelName = panel?.querySelector<HTMLElement>('[data-example-name]');
+    const panelText = panel?.querySelector<HTMLElement>('[data-example-text]');
+
+    const selectExample = (control: HTMLButtonElement) => {
+      if (control.getAttribute('aria-pressed') === 'true' || !panel) return;
+
+      controls.forEach((candidate) => {
+        candidate.setAttribute('aria-pressed', String(candidate === control));
+      });
+
+      const sourceSymbol = control.querySelector<HTMLElement>('[data-component-math]');
+      if (sourceSymbol && panelSymbol) {
+        panelSymbol.replaceChildren(...[...sourceSymbol.childNodes].map((node) => node.cloneNode(true)));
+      }
+      if (panelName) panelName.textContent = control.dataset.exampleName ?? '';
+      if (panelText) panelText.textContent = control.dataset.exampleText ?? '';
+      panel.dataset.accent = control.dataset.accent ?? 'green';
+
+      panel.removeAttribute('data-example-updating');
+      void panel.offsetWidth;
+      panel.setAttribute('data-example-updating', '');
+    };
+
+    controls.forEach((control) => {
+      control.addEventListener('pointerenter', () => selectExample(control));
+      control.addEventListener('focus', () => selectExample(control));
+      control.addEventListener('click', () => selectExample(control));
+    });
+  }
+</script>
