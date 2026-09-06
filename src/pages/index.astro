@@ -3,30 +3,32 @@ import Architecture from '../components/Architecture.astro';
 import Citation from '../components/Citation.astro';
 import CoreMechanisms from '../components/CoreMechanisms.astro';
 import EvolutionFormulation from '../components/EvolutionFormulation.astro';
-import EvolutionLifecycle from '../components/EvolutionLifecycle.astro';
 import EvolutionSpectrum from '../components/EvolutionSpectrum.astro';
 import Hero from '../components/Hero.astro';
 import InstitutionLogos from '../components/InstitutionLogos.astro';
 import PageMotion from '../components/PageMotion.astro';
 import Resources from '../components/Resources.astro';
 import ResultsPlaceholder from '../components/ResultsPlaceholder.astro';
+import SectionRail from '../components/SectionRail.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import StageComparison from '../components/StageComparison.astro';
+import WhyEvolve from '../components/WhyEvolve.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout>
   <SiteHeader />
+  <SectionRail />
   <main id="main-content" data-page-motion>
     <Hero />
     <InstitutionLogos />
+    <WhyEvolve />
     <EvolutionFormulation />
     <EvolutionSpectrum />
     <StageComparison />
     <CoreMechanisms />
     <Architecture />
-    <EvolutionLifecycle />
     <ResultsPlaceholder />
     <Resources />
     <Citation />

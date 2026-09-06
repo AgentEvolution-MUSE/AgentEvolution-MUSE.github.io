@@ -1,0 +1,62 @@
+---
+import { navigation } from '../data/site';
+
+const links = [
+  { label: 'Why Evolve', href: '#why-evolve' },
+  { label: 'Formulation', href: '#formulation' },
+  ...navigation.filter((item) => !['#overview', '#why-evolve'].includes(item.href)),
+];
+---
+
+<aside class="section-rail" aria-label="Page index" data-section-index>
+  <span class="section-rail-title" aria-hidden="true">Index</span>
+  <ol>
+    {links.map((link) => (
+      <li>
+        <a href={link.href} data-section-index-link>
+          <span class="section-rail-dot" aria-hidden="true"></span>
+          <span class="section-rail-label">{link.label}</span>
+        </a>
+      </li>
+    ))}
+  </ol>
+</aside>
+
+<script>
+  const rail = document.querySelector<HTMLElement>('[data-section-index]');
+  const railLinks = [...document.querySelectorAll<HTMLAnchorElement>('[data-section-index-link]')];
+  const targets = railLinks
+    .map((link) => document.querySelector<HTMLElement>(link.hash))
+    .filter((target): target is HTMLElement => Boolean(target));
+  const hero = document.querySelector<HTMLElement>('#overview');
+  let frame = 0;
+
+  const updateRail = () => {
+    frame = 0;
+    const marker = window.scrollY + window.innerHeight * 0.42;
+    const activeTarget = targets.reduce<HTMLElement | undefined>((active, target) => {
+      return target.offsetTop <= marker ? target : active;
+    }, targets[0]);
+
+    rail?.toggleAttribute(
+      'data-visible',
+      Boolean(hero && window.scrollY > hero.offsetTop + hero.offsetHeight - 120),
+    );
+
+    railLinks.forEach((link) => {
+      const active = Boolean(activeTarget && link.hash === `#${activeTarget.id}`);
+      link.toggleAttribute('data-active', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  const requestUpdate = () => {
+    if (frame) return;
+    frame = window.requestAnimationFrame(updateRail);
+  };
+
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate);
+  updateRail();
+</script>

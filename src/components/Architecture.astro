@@ -1,3 +1,39 @@
+---
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+import {
+  ClipboardCheck,
+  GitBranch,
+  Layers,
+  RefreshCw,
+  ShieldCheck,
+  Sparkles,
+  Target,
+} from '@lucide/astro';
+
+const renderMath = (source: string) =>
+  katex.renderToString(source, {
+    throwOnError: true,
+    output: 'htmlAndMathml',
+  });
+
+const math = {
+  environment: renderMath(String.raw`E_t\in\mathcal{E}`),
+  agent: renderMath(String.raw`A_t\in\mathcal{A}`),
+  history: renderMath(String.raw`H_t\in\mathcal{H}`),
+  gamma: renderMath(String.raw`\Gamma`),
+  delta: renderMath(String.raw`\Delta`),
+  scope: renderMath(String.raw`\mathcal{C}`),
+  optimizer: renderMath(String.raw`\mathcal{M}`),
+  objective: renderMath(String.raw`\mathcal{O}`),
+  boundary: renderMath(String.raw`\mathcal{B}`),
+  output: renderMath(String.raw`A_{t+1}`),
+  down: renderMath(String.raw`\Downarrow`),
+  forward: renderMath(String.raw`\longrightarrow`),
+  feedback: renderMath(String.raw`\longleftrightarrow`),
+};
+---
+
 <section
   id="architecture"
   class="section-band architecture-band"
@@ -8,84 +44,165 @@
     <p class="eyebrow">Coordinated Evolution</p>
     <h2 id="architecture-title" class="section-heading">System Architecture</h2>
     <p>
-      MUSE turns continuous interaction into a governed evolution loop that diagnoses
-      capability gaps, coordinates grounded updates, and admits only validated progress.
+      MUSE preserves the complete evolutionary topology: interaction evidence activates and
+      supervises coordinated optimization, while objectives and boundaries continuously govern
+      the resulting update.
     </p>
   </div>
 
-  <div class="architecture-system container-wide" data-architecture-flow>
-    <div class="architecture-context" aria-label="Evolution context">
-      <span data-architecture-context="environment">
-        <strong aria-hidden="true">E<sub>t</sub></strong>
-        <small>Environment</small>
-      </span>
-      <span data-architecture-context="agent">
-        <strong aria-hidden="true">A<sub>t</sub></strong>
-        <small>Agent</small>
-      </span>
-      <span data-architecture-context="history">
-        <strong aria-hidden="true">H<sub>t</sub></strong>
-        <small>Interaction History</small>
-      </span>
-    </div>
-
-    <span class="architecture-input-line" aria-hidden="true"></span>
-
-    <div class="architecture-flow" role="list" aria-label="MUSE evolution stages">
-      <article
-        class="architecture-stage architecture-stage-diagnose"
-        data-architecture-stage="diagnose"
-        data-motion-item
-        role="listitem"
-        tabindex="0"
-      >
-        <div class="architecture-stage-meta">
-          <span>01</span>
-          <strong aria-hidden="true">Γ</strong>
-        </div>
-        <h3>Diagnose &amp; Route</h3>
-        <p>Detect capability gaps from longitudinal evidence and route the required scope of change.</p>
+  <div class="architecture-map container-wide" data-architecture-map>
+    <div
+      class="architecture-context-rail"
+      data-architecture-layer="context"
+      data-motion-item
+      aria-label="Evolution context"
+    >
+      <article data-architecture-context="environment">
+        <span class="architecture-context-index">01</span>
+        <span class="architecture-context-copy">
+          <strong aria-label="Environment E sub t belongs to script E" set:html={math.environment}></strong>
+          <small>Environment</small>
+        </span>
       </article>
-
-      <span class="architecture-connector" aria-hidden="true"><i></i></span>
-
-      <article
-        class="architecture-stage architecture-stage-coordinate"
-        data-architecture-stage="coordinate"
-        data-motion-item
-        role="listitem"
-        tabindex="0"
-      >
-        <div class="architecture-stage-meta">
-          <span>02</span>
-          <strong aria-hidden="true">Δ · M(C)</strong>
-        </div>
-        <h3>Generate &amp; Coordinate</h3>
-        <p>Ground supervision in validated interactions and jointly refine the selected components.</p>
+      <article data-architecture-context="agent">
+        <span class="architecture-context-index">02</span>
+        <span class="architecture-context-copy">
+          <strong aria-label="Agent A sub t belongs to script A" set:html={math.agent}></strong>
+          <small>Agent</small>
+        </span>
       </article>
-
-      <span class="architecture-connector" aria-hidden="true"><i></i></span>
-
-      <article
-        class="architecture-stage architecture-stage-verify"
-        data-architecture-stage="verify"
-        data-motion-item
-        role="listitem"
-        tabindex="0"
-      >
-        <div class="architecture-stage-meta">
-          <span>03</span>
-          <strong aria-hidden="true">O · B</strong>
-        </div>
-        <h3>Evaluate &amp; Preserve</h3>
-        <p>Measure environmental fitness, protect validated capabilities, and accept beneficial updates.</p>
+      <article data-architecture-context="history">
+        <span class="architecture-context-index">03</span>
+        <span class="architecture-context-copy">
+          <strong aria-label="Interaction history H sub t belongs to script H" set:html={math.history}></strong>
+          <small>Interaction History</small>
+        </span>
       </article>
     </div>
 
-    <div class="architecture-outcome" data-architecture-outcome>
-      <span>Accepted evolution</span>
-      <strong>Evolved Agent <i>A<sub>t+1</sub></i></strong>
-      <small><span aria-hidden="true">↻</span> Returns to continuous interaction</small>
+    <div class="architecture-vertical-link" aria-hidden="true">
+      <span set:html={math.down}></span>
+      <small>Longitudinal evidence</small>
+    </div>
+
+    <article
+      class="architecture-module architecture-gating"
+      data-architecture-layer="gating"
+      data-architecture-component="Γ"
+      data-motion-item
+      tabindex="0"
+    >
+      <div class="architecture-module-head">
+        <span class="architecture-module-title"><GitBranch size={17} aria-hidden="true" />Evolutionary Gating</span>
+        <strong aria-hidden="true" set:html={math.gamma}></strong>
+      </div>
+      <h3>Assess, Activate &amp; Route</h3>
+      <p>
+        Diagnose capability gaps, decide whether evolution is required, and select the targeted
+        component subset from the admissible scope.
+      </p>
+    </article>
+
+    <div class="architecture-vertical-link architecture-vertical-link-blue" aria-hidden="true">
+      <span set:html={math.down}></span>
+      <small>Evolution trigger and routing vector</small>
+    </div>
+
+    <article
+      class="architecture-module architecture-supervision"
+      data-architecture-layer="supervision"
+      data-architecture-component="Δ"
+      data-motion-item
+      tabindex="0"
+    >
+      <div class="architecture-module-head">
+        <span class="architecture-module-title"><ClipboardCheck size={17} aria-hidden="true" />Supervision Generator</span>
+        <strong aria-hidden="true" set:html={math.delta}></strong>
+      </div>
+      <h3>Explore, Validate &amp; Synthesize</h3>
+      <p>
+        Transform empirically validated interactions into candidate tasks, reference
+        trajectories, evaluative feedback, and reward signals.
+      </p>
+    </article>
+
+    <div class="architecture-vertical-link architecture-vertical-link-green" aria-hidden="true">
+      <span set:html={math.down}></span>
+      <small>Grounded supervision signals</small>
+    </div>
+
+    <div class="architecture-core" data-architecture-layer="optimization" data-motion-item>
+      <article class="architecture-module architecture-scope" data-architecture-component="C" tabindex="0">
+        <div class="architecture-module-head">
+          <span class="architecture-module-title"><Layers size={17} aria-hidden="true" />Optimization Scope</span>
+          <strong aria-hidden="true" set:html={math.scope}></strong>
+        </div>
+        <h3>Admissible Components</h3>
+        <p>Parametric, symbolic, and operational components that may evolve.</p>
+      </article>
+
+      <div class="architecture-relation architecture-relation-scope" aria-hidden="true">
+        <span set:html={math.feedback}></span>
+        <small>Selected scope</small>
+      </div>
+
+      <article class="architecture-module architecture-optimizer" data-architecture-component="M" tabindex="0">
+        <div class="architecture-module-head">
+          <span class="architecture-module-title"><RefreshCw size={17} aria-hidden="true" />Evolutionary Optimizer</span>
+          <strong aria-hidden="true" set:html={math.optimizer}></strong>
+        </div>
+        <h3>Refine &amp; Synchronize</h3>
+        <p>
+          Update selected components from grounded supervision, coordinate knowledge circulation,
+          and synchronize changes across the agent system.
+        </p>
+        <div class="architecture-optimizer-modes" aria-label="Optimizer modes">
+          <span>Inner-component refinement</span>
+          <span>Inter-component synchronization</span>
+        </div>
+      </article>
+
+      <div class="architecture-relation architecture-relation-output" aria-hidden="true">
+        <span set:html={math.forward}></span>
+        <small>Accepted update</small>
+      </div>
+
+      <article class="architecture-module architecture-evolved-agent">
+        <div class="architecture-module-head">
+          <span class="architecture-module-title"><Sparkles size={17} aria-hidden="true" />Evolved Agent</span>
+          <strong aria-label="Agent A sub t plus 1" set:html={math.output}></strong>
+        </div>
+        <h3>Resume Interaction</h3>
+        <p>The validated agent returns to deployment and accumulates new evidence.</p>
+      </article>
+
+      <article class="architecture-module architecture-objective" data-architecture-component="O" tabindex="0">
+        <div class="architecture-module-head">
+          <span class="architecture-module-title"><Target size={17} aria-hidden="true" />Evolutionary Objective</span>
+          <strong aria-hidden="true" set:html={math.objective}></strong>
+        </div>
+        <h3>Guide Progress</h3>
+        <p>Measure environmental fitness, task success, and operational efficiency.</p>
+      </article>
+
+      <div class="architecture-relation architecture-relation-objective" aria-hidden="true">
+        <span set:html={math.feedback}></span>
+        <small>Goal feedback</small>
+      </div>
+
+      <div class="architecture-relation architecture-relation-boundary" aria-hidden="true">
+        <span set:html={math.feedback}></span>
+        <small>Constraint feedback</small>
+      </div>
+
+      <article class="architecture-module architecture-boundary" data-architecture-component="B" tabindex="0">
+        <div class="architecture-module-head">
+          <span class="architecture-module-title"><ShieldCheck size={17} aria-hidden="true" />Boundary Constraint</span>
+          <strong aria-hidden="true" set:html={math.boundary}></strong>
+        </div>
+        <h3>Preserve Capabilities</h3>
+        <p>Enforce safety, alignment, and retention through task-specific replay.</p>
+      </article>
     </div>
   </div>
 
@@ -96,7 +213,7 @@
       rel="noreferrer"
       aria-label="Open the full MUSE technical architecture at full resolution"
     >
-      View full technical architecture <span aria-hidden="true">↗</span>
+      View paper figure <span aria-hidden="true">↗</span>
     </a>
   </div>
 </section>

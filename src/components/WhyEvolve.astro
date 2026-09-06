@@ -1,0 +1,98 @@
+---
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+
+const deploymentSignals = [
+  { index: '01', label: 'Changing environments', detail: 'Embodied robots' },
+  { index: '02', label: 'Zero-day attacks', detail: 'Safeguard agents' },
+  { index: '03', label: 'Growing users', detail: 'Lifelong mentors' },
+  { index: '04', label: 'API updates', detail: 'Coding agents' },
+  { index: '05', label: 'Policy changes', detail: 'Conversational agents' },
+  { index: '06', label: 'Novel strategies', detail: 'Game agents' },
+];
+
+const agentLayers = [
+  { symbol: '\\Psi', label: 'Explicit Symbolic Assets', details: ['Knowledge bank', 'Functional tools'] },
+  { symbol: '\\Theta', label: 'Parametric Cognitive Core', details: ['LLM weights', 'Collaborative networks'] },
+  { symbol: '\\Phi', label: 'Operational Hyperparameters', details: ['Retrieval top-k', 'Decoding temperature'] },
+];
+
+const renderedAgentLayers = agentLayers.map((layer) => ({
+  ...layer,
+  mathHtml: katex.renderToString(layer.symbol, {
+    throwOnError: true,
+    output: 'htmlAndMathml',
+  }),
+}));
+---
+
+<section
+  id="why-evolve"
+  class="section-band why-evolve-band"
+  aria-labelledby="why-evolve-title"
+  data-why-evolve
+  data-motion-group="why-evolve"
+>
+  <div class="container section-intro why-evolve-intro">
+    <p class="eyebrow">Deployment Reality</p>
+    <h2 id="why-evolve-title" class="section-heading">Why Should Agents Evolve?</h2>
+    <p>
+      Deployment does not stand still. Environments, interfaces, goals, and risks continue to
+      change, while a conventionally deployed agent remains fixed after release.
+    </p>
+  </div>
+
+  <div class="container why-evolve-contrast" aria-label="Dynamic deployment conditions create an adaptation gap for static agents">
+    <div class="why-evolve-side why-evolve-world" data-motion-item>
+      <div class="why-evolve-side-heading">
+        <span>Dynamic</span>
+        <h3>Open-Ended Deployment</h3>
+      </div>
+      <ol>
+        {deploymentSignals.map((signal) => (
+          <li data-deployment-signal>
+            <span>{signal.index}</span>
+            <div>
+              <strong>{signal.label}</strong>
+              <small>{signal.detail}</small>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <div class="why-evolve-gap" data-motion-item aria-hidden="true">
+      <span class="why-evolve-gap-arrow"></span>
+      <strong>Fail to<br />Adapt</strong>
+      <span class="why-evolve-gap-arrow"></span>
+    </div>
+
+    <div class="why-evolve-side why-evolve-agent" data-motion-item>
+      <div class="why-evolve-side-heading">
+        <span>Static</span>
+        <h3>Post-Deployment Agent</h3>
+      </div>
+      <ol>
+        {renderedAgentLayers.map((layer) => (
+          <li data-agent-layer>
+            <span data-agent-symbol aria-hidden="true" set:html={layer.mathHtml}></span>
+            <div>
+              <strong>{layer.label}</strong>
+              <small>
+                {layer.details.map((detail) => <span data-agent-detail>{detail}</span>)}
+              </small>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+
+  <div class="container why-evolve-answer" data-motion-item>
+    <span>Agent Evolution</span>
+    <p>
+      Continuous post-deployment adaptation turns accumulated interaction evidence into improved
+      environmental fitness and sustained capability growth.
+    </p>
+  </div>
+</section>

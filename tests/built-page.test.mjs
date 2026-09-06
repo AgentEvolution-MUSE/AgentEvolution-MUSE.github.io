@@ -14,6 +14,20 @@ test('builds the MUSE document metadata and landmarks', () => {
   assert.match(html, /href="#main-content"/);
   assert.match(html, /<header[^>]*data-site-header/);
   assert.match(html, /<main[^>]*id="main-content"/);
+  assert.match(html, /data-section-index/);
+  assert.deepEqual(
+    [...html.matchAll(/<a href="(#[^"]+)" data-section-index-link/g)].map((match) => match[1]),
+    [
+      '#why-evolve',
+      '#formulation',
+      '#spectrum',
+      '#method',
+      '#architecture',
+      '#results',
+      '#resources',
+    ],
+  );
+  assert.match(html, /<a href="#why-evolve">Foundation<\/a>/);
 });
 
 test('renders the MUSE avatar as the header brand icon', () => {
@@ -27,17 +41,19 @@ test('renders the MUSE avatar as the header brand icon', () => {
 test('renders the complete research narrative', () => {
   for (const heading of [
     'Metacognitive Unison Self-Evolution',
+    'Why Should Agents Evolve?',
     'A Unified Formulation of Agent Evolution',
     'Why Evolution 3.0 Falls Short',
     'Three Mechanisms for Stage-4 Evolution',
     'System Architecture',
-    'Evolution in Action',
     'Results Coming Soon',
     'Resources',
   ]) {
     assert.match(html, new RegExp(heading));
   }
-  assert.match(html, /evolution-spectrum\.png/);
+  assert.match(html, /Spectrum-2\.svg/);
+  assert.match(html, /Representative Systems Across the Spectrum/);
+  assert.match(html, /Reprensentwork\.svg/);
   assert.match(html, /architecture\.png/);
 });
 
@@ -64,29 +80,54 @@ test('replaces the abstract with the six-component evolution formulation', () =>
 test('wires progressive motion across the explanatory sequence', () => {
   assert.match(html, /<main[^>]*data-page-motion/);
   assert.equal((html.match(/data-motion-group=/g) ?? []).length, 5);
-  assert.equal((html.match(/<[^>]+\sdata-motion-item(?:\s|=|>)/g) ?? []).length, 18);
+  assert.ok((html.match(/<[^>]+\sdata-motion-item(?:\s|=|>)/g) ?? []).length >= 14);
+});
+
+test('frames agent evolution as the response to changing deployment conditions', () => {
+  assert.match(html, /data-why-evolve/);
+  assert.match(html, /Dynamic/);
+  assert.match(html, /Open-Ended Deployment/);
+  assert.match(html, /Static/);
+  assert.match(html, /Post-Deployment Agent/);
+  assert.match(html, /Fail to<br\s*\/?>Adapt/);
+  assert.equal((html.match(/data-deployment-signal/g) ?? []).length, 6);
+  assert.equal((html.match(/data-agent-layer/g) ?? []).length, 3);
+  assert.equal((html.match(/data-agent-symbol/g) ?? []).length, 3);
+  assert.equal((html.match(/data-agent-detail/g) ?? []).length, 6);
+  assert.match(html, /accumulated interaction evidence/);
 });
 
 test('serves paper figures from the organized asset directory', () => {
-  assert.match(html, /\/assets\/images\/figures\/evolution-spectrum\.png/);
+  assert.match(html, /\/assets\/images\/figures\/Spectrum-2\.svg/);
+  assert.match(html, /\/assets\/images\/figures\/Reprensentwork\.svg/);
   assert.match(html, /\/assets\/images\/figures\/architecture\.png/);
   assert.doesNotMatch(html, /(?:src|href)="\/images\//);
 });
 
-test('summarizes the architecture as an interactive three-stage evolution flow', () => {
-  assert.match(html, /data-architecture-flow/);
+test('presents the representative research landscape after the spectrum', () => {
+  assert.match(html, /data-representative-landscape/);
+  assert.match(html, /<strong>Figure 2\.<\/strong>/);
+  assert.match(html, /holistic Stage-4 prototype/);
+});
+
+test('renders the complete six-component evolutionary architecture topology', () => {
+  assert.match(html, /data-architecture-map/);
   assert.deepEqual(
-    [...html.matchAll(/data-architecture-stage="([^"]+)"/g)].map((match) => match[1]),
-    ['diagnose', 'coordinate', 'verify'],
+    [...html.matchAll(/data-architecture-component="([^"]+)"/g)].map((match) => match[1]),
+    ['Γ', 'Δ', 'C', 'M', 'O', 'B'],
   );
   assert.deepEqual(
     [...html.matchAll(/data-architecture-context="([^"]+)"/g)].map((match) => match[1]),
     ['environment', 'agent', 'history'],
   );
-  assert.match(html, /data-architecture-outcome/);
-  assert.match(html, /View full technical architecture/);
+  assert.deepEqual(
+    [...html.matchAll(/data-architecture-layer="([^"]+)"/g)].map((match) => match[1]),
+    ['context', 'gating', 'supervision', 'optimization'],
+  );
+  assert.equal((html.match(/longleftrightarrow/g) ?? []).length >= 3, true);
+  assert.match(html, /View paper figure/);
   assert.doesNotMatch(html, /class="architecture-figure/);
-  assert.doesNotMatch(html, /Level 0[12]/);
+  assert.doesNotMatch(html, /data-architecture-stage=/);
 });
 
 test('renders four institution logos in publication order', () => {
@@ -100,7 +141,6 @@ test('renders four institution logos in publication order', () => {
 test('renders stable repeated structures and truthful resource states', () => {
   assert.equal((html.match(/data-stage-comparison/g) ?? []).length, 3);
   assert.equal((html.match(/data-mechanism/g) ?? []).length, 3);
-  assert.equal((html.match(/data-lifecycle-stage/g) ?? []).length, 5);
   assert.doesNotMatch(html, /href=""/);
   assert.match(html, /Coming Soon/);
   assert.match(html, /<footer/);

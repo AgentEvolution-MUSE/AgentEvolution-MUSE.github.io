@@ -46,6 +46,7 @@ export const site = {
 
 export const navigation = [
   { label: 'MUSE', href: '#overview' },
+  { label: 'Foundation', href: '#why-evolve' },
   { label: 'Spectrum', href: '#spectrum' },
   { label: 'Method', href: '#method' },
   { label: 'Architecture', href: '#architecture' },
@@ -228,12 +229,4 @@ export const mechanisms = [
     text: 'The parametric core and symbolic assets evolve through coordinated refinement, distillation, allocation, retirement, and cross-component synchronization.',
     accent: 'orange',
   },
-];
-
-export const lifecycleStages = [
-  'Monitor',
-  'Diagnose',
-  'Generate',
-  'Coordinate',
-  'Evaluate',
 ];

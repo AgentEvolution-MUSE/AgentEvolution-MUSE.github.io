@@ -5,8 +5,8 @@ import {
   affiliations,
   authors,
   evolutionStrategy,
-  lifecycleStages,
   mechanisms,
+  navigation,
   resources,
   site,
   stageComparisons,
@@ -40,6 +40,21 @@ test('publishes the finalized paper metadata', () => {
   );
 });
 
+test('covers the theoretical foundation in primary navigation', () => {
+  assert.deepEqual(
+    navigation.map(({ label, href }) => [label, href]),
+    [
+      ['MUSE', '#overview'],
+      ['Foundation', '#why-evolve'],
+      ['Spectrum', '#spectrum'],
+      ['Method', '#method'],
+      ['Architecture', '#architecture'],
+      ['Results', '#results'],
+      ['Resources', '#resources'],
+    ],
+  );
+});
+
 test('defines institution logos in publication order', () => {
   assert.deepEqual(
     affiliations.map(({ name, logo }) => [name, logo]),
@@ -63,13 +78,6 @@ test('keeps unpublished resources non-navigable', () => {
 test('defines the complete method narrative', () => {
   assert.equal(stageComparisons.length, 3);
   assert.equal(mechanisms.length, 3);
-  assert.deepEqual(lifecycleStages, [
-    'Monitor',
-    'Diagnose',
-    'Generate',
-    'Coordinate',
-    'Evaluate',
-  ]);
 });
 
 test('defines paper-aligned math and one coherent example across the six-tuple', () => {
