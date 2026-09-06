@@ -53,7 +53,7 @@ test('renders the complete research narrative', () => {
   }
   assert.match(html, /Spectrum-2\.svg/);
   assert.match(html, /Representative Systems Across the Spectrum/);
-  assert.match(html, /Reprensentwork\.svg/);
+  assert.match(html, /RepresentWorks\.svg/);
   assert.match(html, /architecture\.png/);
 });
 
@@ -99,7 +99,7 @@ test('frames agent evolution as the response to changing deployment conditions',
 
 test('serves paper figures from the organized asset directory', () => {
   assert.match(html, /\/assets\/images\/figures\/Spectrum-2\.svg/);
-  assert.match(html, /\/assets\/images\/figures\/Reprensentwork\.svg/);
+  assert.match(html, /\/assets\/images\/figures\/RepresentWorks\.svg/);
   assert.match(html, /\/assets\/images\/figures\/architecture\.png/);
   assert.doesNotMatch(html, /(?:src|href)="\/images\//);
 });
