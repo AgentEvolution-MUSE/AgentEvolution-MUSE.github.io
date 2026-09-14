@@ -24,7 +24,7 @@ test('publishes the finalized paper metadata', () => {
       ['Hongbo Qiu', [4]],
       ['Bobo Li', [2]],
       ['Hao Fei', [3]],
-      ['Tianjie Ju', [2]],
+      ['Tianjie Ju', [2, 1]],
       ['Kelvin J. L. Koa', [2]],
       ['Wynne Hsu', [2]],
       ['Mong Li Lee', [2]],

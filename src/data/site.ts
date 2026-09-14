@@ -90,7 +90,7 @@ export const authors: Author[] = [
   { name: 'Hongbo Qiu', affiliationIds: [4] },
   { name: 'Bobo Li', affiliationIds: [2] },
   { name: 'Hao Fei', affiliationIds: [3] },
-  { name: 'Tianjie Ju', affiliationIds: [2] },
+  { name: 'Tianjie Ju', affiliationIds: [2, 1] },
   { name: 'Kelvin J. L. Koa', affiliationIds: [2] },
   { name: 'Wynne Hsu', affiliationIds: [2] },
   { name: 'Mong Li Lee', affiliationIds: [2] },

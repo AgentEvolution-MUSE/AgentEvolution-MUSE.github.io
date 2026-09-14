@@ -1,6 +1,5 @@
 ---
-import katex from 'katex';
-import 'katex/dist/katex.min.css';
+import { BrainCircuit, LibraryBig, SlidersHorizontal } from '@lucide/astro';
 
 const deploymentSignals = [
   { index: '01', label: 'Changing environments', detail: 'Embodied robots' },
@@ -12,18 +11,25 @@ const deploymentSignals = [
 ];
 
 const agentLayers = [
-  { symbol: '\\Psi', label: 'Explicit Symbolic Assets', details: ['Knowledge bank', 'Functional tools'] },
-  { symbol: '\\Theta', label: 'Parametric Cognitive Core', details: ['LLM weights', 'Collaborative networks'] },
-  { symbol: '\\Phi', label: 'Operational Hyperparameters', details: ['Retrieval top-k', 'Decoding temperature'] },
+  {
+    icon: LibraryBig,
+    iconName: 'library',
+    label: 'Explicit Symbolic Assets',
+    details: ['Knowledge bank', 'Functional tools'],
+  },
+  {
+    icon: BrainCircuit,
+    iconName: 'brain-circuit',
+    label: 'Parametric Cognitive Core',
+    details: ['LLM weights', 'Collaborative networks'],
+  },
+  {
+    icon: SlidersHorizontal,
+    iconName: 'sliders-horizontal',
+    label: 'Operational Hyperparameters',
+    details: ['Retrieval top-k', 'Decoding temperature'],
+  },
 ];
-
-const renderedAgentLayers = agentLayers.map((layer) => ({
-  ...layer,
-  mathHtml: katex.renderToString(layer.symbol, {
-    throwOnError: true,
-    output: 'htmlAndMathml',
-  }),
-}));
 ---
 
 <section
@@ -73,9 +79,11 @@ const renderedAgentLayers = agentLayers.map((layer) => ({
         <h3>Post-Deployment Agent</h3>
       </div>
       <ol>
-        {renderedAgentLayers.map((layer) => (
+        {agentLayers.map(({ icon: Icon, ...layer }) => (
           <li data-agent-layer>
-            <span data-agent-symbol aria-hidden="true" set:html={layer.mathHtml}></span>
+            <span data-agent-symbol data-agent-icon={layer.iconName} aria-hidden="true">
+              <Icon size={36} strokeWidth={1.6} />
+            </span>
             <div>
               <strong>{layer.label}</strong>
               <small>

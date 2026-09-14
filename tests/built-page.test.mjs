@@ -93,6 +93,10 @@ test('frames agent evolution as the response to changing deployment conditions',
   assert.equal((html.match(/data-deployment-signal/g) ?? []).length, 6);
   assert.equal((html.match(/data-agent-layer/g) ?? []).length, 3);
   assert.equal((html.match(/data-agent-symbol/g) ?? []).length, 3);
+  assert.deepEqual(
+    [...html.matchAll(/data-agent-icon="([^"]+)"/g)].map((match) => match[1]),
+    ['library', 'brain-circuit', 'sliders-horizontal'],
+  );
   assert.equal((html.match(/data-agent-detail/g) ?? []).length, 6);
   assert.match(html, /accumulated interaction evidence/);
 });
