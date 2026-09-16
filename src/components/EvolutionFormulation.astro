@@ -1,6 +1,7 @@
 ---
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
+import { ArrowRight, CircleCheckBig, CircleX, RefreshCw, Target } from '@lucide/astro';
 
 import { evolutionStrategy } from '../data/site';
 
@@ -18,6 +19,158 @@ const renderedStrategy = evolutionStrategy.map((component) => ({
   mathHtml: renderMath(component.math),
 }));
 const initialComponent = renderedStrategy[0];
+const exampleOrder = ['Γ', 'Δ', 'C', 'M', 'O', 'B'];
+type ExampleCopy = {
+  label: string;
+  text: string;
+  input: string;
+  action: string;
+  output: string;
+};
+type ExampleScenario = {
+  id: string;
+  tab: string;
+  title: string;
+  before: { title: string; text: string; code: string; status: string };
+  after: { title: string; text: string; code: string; status: string };
+  components: Record<string, ExampleCopy>;
+};
+const exampleScenarios: ExampleScenario[] = [
+  {
+    id: 'api-update',
+    tab: 'API Schema Update',
+    title: 'API Update for a Coding Agent',
+    before: {
+      title: 'Tool Calls Break',
+      text: "An external API changes its schema, so the deployed agent's legacy calls fail.",
+      code: 'search(query)',
+      status: '400',
+    },
+    after: {
+      title: 'Task Resumes',
+      text: 'The evolved agent uses the new schema and continues accumulating evidence.',
+      code: 'search({ query, limit })',
+      status: '200',
+    },
+    components: {
+      Γ: {
+        label: 'Detect & Route',
+        text: 'Repeated API failures activate evolution.',
+        input: 'Recurring 400 responses',
+        action: 'Activate evolution and route the failure',
+        output: 'Tool schema + planner selected',
+      },
+      Δ: {
+        label: 'Ground Signals',
+        text: 'Recovery traces become supervision.',
+        input: 'Recovery traces + API evidence',
+        action: 'Synthesize tasks and reference calls',
+        output: 'Grounded supervision signals',
+      },
+      C: {
+        label: 'Select Scope',
+        text: 'Tool schema and planner may change.',
+        input: 'Diagnosed tool-use failure',
+        action: 'Open only affected components',
+        output: 'Schema + docs + planner eligible',
+      },
+      M: {
+        label: 'Repair & Sync',
+        text: 'Updates propagate across components.',
+        input: 'Selected components + supervision',
+        action: 'Rewrite mapping and synchronize instructions',
+        output: 'query → { query, limit }',
+      },
+      O: {
+        label: 'Verify Recovery',
+        text: 'Success and efficiency guide progress.',
+        input: 'Updated agent behavior',
+        action: 'Score success, recovery, and efficiency',
+        output: 'Successful calls with fewer retries',
+      },
+      B: {
+        label: 'Guard Behavior',
+        text: 'Safety and legacy tasks are retained.',
+        input: 'Candidate update + legacy tests',
+        action: 'Replay tool tasks and safety checks',
+        output: 'No legacy capability regression',
+      },
+    },
+  },
+  {
+    id: 'policy-change',
+    tab: 'Safety Policy Change',
+    title: 'Policy Update for a Conversational Agent',
+    before: {
+      title: 'Policy Check Fails',
+      text: 'A newly introduced policy makes the existing response strategy non-compliant.',
+      code: 'policy_check(response)',
+      status: 'FAIL',
+    },
+    after: {
+      title: 'Responses Comply',
+      text: 'The evolved agent follows the new policy while retaining useful conversational behavior.',
+      code: 'policy_check(response)',
+      status: 'PASS',
+    },
+    components: {
+      Γ: {
+        label: 'Detect & Route',
+        text: 'Compliance failures activate evolution.',
+        input: 'Repeated compliance failures',
+        action: 'Activate evolution and route the gap',
+        output: 'Policy-facing components selected',
+      },
+      Δ: {
+        label: 'Ground Signals',
+        text: 'Policy evidence becomes supervision.',
+        input: 'New policy + evaluator feedback',
+        action: 'Build cases and reference responses',
+        output: 'Grounded policy supervision',
+      },
+      C: {
+        label: 'Select Scope',
+        text: 'Policy-facing assets may change.',
+        input: 'Diagnosed compliance gap',
+        action: 'Open only policy-facing assets',
+        output: 'Prompt + memory + filter eligible',
+      },
+      M: {
+        label: 'Repair & Sync',
+        text: 'Policy updates stay coordinated.',
+        input: 'Selected assets + policy cases',
+        action: 'Update and synchronize policy knowledge',
+        output: 'One consistent policy representation',
+      },
+      O: {
+        label: 'Verify Recovery',
+        text: 'Compliance and helpfulness guide progress.',
+        input: 'Updated response behavior',
+        action: 'Score compliance and helpfulness',
+        output: 'Compliant and useful responses',
+      },
+      B: {
+        label: 'Guard Behavior',
+        text: 'Existing safety and utility are retained.',
+        input: 'Candidate update + safety tests',
+        action: 'Check safety and benign task coverage',
+        output: 'Safety and utility preserved',
+      },
+    },
+  },
+];
+const renderedScenarios = exampleScenarios.map((scenario) => ({
+  ...scenario,
+  components: exampleOrder.map((symbol) => {
+    const component = renderedStrategy.find((candidate) => candidate.symbol === symbol);
+    if (!component) throw new Error(`Missing evolution strategy component: ${symbol}`);
+    return { ...component, ...scenario.components[symbol] };
+  }),
+}));
+const initialScenario = renderedScenarios[0];
+const initialDetail = initialScenario.components.find(
+  (component) => component.symbol === initialComponent.symbol,
+)!;
 const formulaHtml = renderMath(formulaSource);
 const roundHtml = renderMath(roundSource);
 const trajectoryHtml = renderMath(trajectorySource);
@@ -85,28 +238,151 @@ const mobileTrajectoryHtml = renderMath(mobileTrajectorySource);
 
   <div
     id="formulation-example"
-    class="container formulation-example"
+    class="container formulation-scenario"
     data-formulation-example
-    data-accent={initialComponent.accent}
-    aria-live="polite"
-    aria-atomic="true"
+    data-active-component={initialComponent.symbol}
   >
-    <div class="formulation-example-context">
-      <span>Running Example</span>
-      <strong>Changed Service Workflow</strong>
-    </div>
-    <div class="formulation-example-content">
-      <span
-        class="formulation-example-symbol"
-        data-example-symbol
-        aria-hidden="true"
-        set:html={initialComponent.mathHtml}
-      ></span>
-      <div>
-        <h3 data-example-name>{initialComponent.name}</h3>
-        <p data-example-text>{initialComponent.example}</p>
+    <div class="formulation-scenario-heading">
+      <span>Running Examples</span>
+      <div class="formulation-scenario-tabs" role="tablist" aria-label="Example scenarios">
+        {renderedScenarios.map((scenario, index) => (
+          <button
+            id={`scenario-tab-${scenario.id}`}
+            type="button"
+            role="tab"
+            data-scenario-control={scenario.id}
+            aria-controls={`scenario-panel-${scenario.id}`}
+            aria-selected={index === 0 ? 'true' : 'false'}
+          >
+            <small>{String(index + 1).padStart(2, '0')}</small>
+            {scenario.tab}
+          </button>
+        ))}
       </div>
     </div>
+
+    <article
+      class={`formulation-component-detail accent-${initialDetail.accent}`}
+      data-component-detail
+      data-accent={initialDetail.accent}
+      aria-live="polite"
+    >
+      <div class="formulation-detail-identity">
+        <span
+          class="formulation-detail-symbol"
+          data-detail-symbol
+          aria-hidden="true"
+          set:html={initialDetail.mathHtml}
+        ></span>
+        <div>
+          <span>Selected Component</span>
+          <h3 data-detail-name>{initialDetail.name}</h3>
+          <p data-detail-role>{initialDetail.description}</p>
+        </div>
+      </div>
+      <div class="formulation-detail-flow">
+        <div class="formulation-detail-stage formulation-detail-input">
+          <Target aria-hidden="true" size={22} stroke-width={1.7} />
+          <span>Input</span>
+          <strong data-detail-input>{initialDetail.input}</strong>
+        </div>
+        <ArrowRight class="formulation-detail-arrow" aria-hidden="true" size={20} stroke-width={1.5} />
+        <div class="formulation-detail-stage formulation-detail-action">
+          <RefreshCw aria-hidden="true" size={22} stroke-width={1.7} />
+          <span>Component Action</span>
+          <strong data-detail-action>{initialDetail.action}</strong>
+        </div>
+        <ArrowRight class="formulation-detail-arrow" aria-hidden="true" size={20} stroke-width={1.5} />
+        <div class="formulation-detail-stage formulation-detail-output">
+          <CircleCheckBig aria-hidden="true" size={22} stroke-width={1.7} />
+          <span>Result</span>
+          <strong data-detail-output>{initialDetail.output}</strong>
+        </div>
+      </div>
+    </article>
+
+    {renderedScenarios.map((scenario, scenarioIndex) => (
+      <section
+        id={`scenario-panel-${scenario.id}`}
+        class="formulation-scenario-panel"
+        role="tabpanel"
+        data-scenario-panel={scenario.id}
+        aria-labelledby={`scenario-tab-${scenario.id}`}
+        hidden={scenarioIndex !== 0}
+      >
+        <p class="formulation-scenario-title">{scenario.title}</p>
+        <div class="formulation-scenario-body">
+          <article class="formulation-scenario-state formulation-scenario-before">
+            <CircleX aria-hidden="true" size={34} stroke-width={1.8} />
+            <div>
+              <span>Before</span>
+              <h3>{scenario.before.title}</h3>
+              <p>{scenario.before.text}</p>
+            </div>
+            <code>{scenario.before.code} <b>{scenario.before.status}</b></code>
+          </article>
+
+          <div class="formulation-scenario-transition" aria-hidden="true">
+            <ArrowRight size={22} stroke-width={1.5} />
+          </div>
+
+          <div class="formulation-scenario-cycle">
+            <div class="formulation-cycle-heading">
+              <span>Evolution Cycle</span>
+              <strong>Diagnose, adapt, and validate</strong>
+            </div>
+            <ol>
+              {scenario.components.map((component, index) => (
+                <li
+                  class={`formulation-example-node accent-${component.accent}`}
+                  data-example-node={component.symbol}
+                  data-detail-name={component.name}
+                  data-detail-role={component.description}
+                  data-detail-input={component.input}
+                  data-detail-action={component.action}
+                  data-detail-output={component.output}
+                  data-detail-accent={component.accent}
+                >
+                  <span class="formulation-example-step">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span
+                    class="formulation-example-node-symbol"
+                    aria-hidden="true"
+                    set:html={component.mathHtml}
+                  ></span>
+                  <strong>{component.label}</strong>
+                  <p>{component.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div class="formulation-scenario-transition" aria-hidden="true">
+            <ArrowRight size={22} stroke-width={1.5} />
+          </div>
+
+          <article class="formulation-scenario-state formulation-scenario-after">
+            <CircleCheckBig aria-hidden="true" size={34} stroke-width={1.8} />
+            <div>
+              <span>After</span>
+              <h3>{scenario.after.title}</h3>
+              <p>{scenario.after.text}</p>
+            </div>
+            <code>{scenario.after.code} <b>{scenario.after.status}</b></code>
+          </article>
+        </div>
+        <div class="formulation-scenario-caption">
+          <span>Failure trigger</span>
+          <div>
+            <i></i>
+            <strong>Evolutionary strategy</strong>
+            <i></i>
+          </div>
+          <span>Recovered agent</span>
+        </div>
+      </section>
+    ))}
   </div>
 
   <div class="container evolution-process" data-evolution-process>
@@ -148,35 +424,90 @@ const mobileTrajectoryHtml = renderMath(mobileTrajectorySource);
 
   if (formulation) {
     const controls = [...formulation.querySelectorAll<HTMLButtonElement>('[data-example-control]')];
-    const panel = formulation.querySelector<HTMLElement>('[data-formulation-example]');
-    const panelSymbol = panel?.querySelector<HTMLElement>('[data-example-symbol]');
-    const panelName = panel?.querySelector<HTMLElement>('[data-example-name]');
-    const panelText = panel?.querySelector<HTMLElement>('[data-example-text]');
+    const scenario = formulation.querySelector<HTMLElement>('[data-formulation-example]');
+    const scenarioControls = [
+      ...formulation.querySelectorAll<HTMLButtonElement>('[data-scenario-control]'),
+    ];
+    const scenarioPanels = [
+      ...formulation.querySelectorAll<HTMLElement>('[data-scenario-panel]'),
+    ];
+    const detail = formulation.querySelector<HTMLElement>('[data-component-detail]');
+    const detailSymbol = detail?.querySelector<HTMLElement>('[data-detail-symbol]');
+    const detailName = detail?.querySelector<HTMLElement>('[data-detail-name]');
+    const detailRole = detail?.querySelector<HTMLElement>('[data-detail-role]');
+    const detailInput = detail?.querySelector<HTMLElement>('[data-detail-input]');
+    const detailAction = detail?.querySelector<HTMLElement>('[data-detail-action]');
+    const detailOutput = detail?.querySelector<HTMLElement>('[data-detail-output]');
+    let lockedControl = controls.find((control) => control.getAttribute('aria-pressed') === 'true');
 
-    const selectExample = (control: HTMLButtonElement) => {
-      if (control.getAttribute('aria-pressed') === 'true' || !panel) return;
+    const getActivePanel = () => scenarioPanels.find((panel) => !panel.hidden);
 
-      controls.forEach((candidate) => {
-        candidate.setAttribute('aria-pressed', String(candidate === control));
-      });
+    const updateDetail = (symbol: string) => {
+      const node = getActivePanel()?.querySelector<HTMLElement>(`[data-example-node="${symbol}"]`);
+      if (!node || !detail) return;
 
-      const sourceSymbol = control.querySelector<HTMLElement>('[data-component-math]');
-      if (sourceSymbol && panelSymbol) {
-        panelSymbol.replaceChildren(...[...sourceSymbol.childNodes].map((node) => node.cloneNode(true)));
+      const sourceSymbol = node.querySelector<HTMLElement>('.formulation-example-node-symbol');
+      if (sourceSymbol && detailSymbol) {
+        detailSymbol.replaceChildren(
+          ...[...sourceSymbol.childNodes].map((child) => child.cloneNode(true)),
+        );
       }
-      if (panelName) panelName.textContent = control.dataset.exampleName ?? '';
-      if (panelText) panelText.textContent = control.dataset.exampleText ?? '';
-      panel.dataset.accent = control.dataset.accent ?? 'green';
 
-      panel.removeAttribute('data-example-updating');
-      void panel.offsetWidth;
-      panel.setAttribute('data-example-updating', '');
+      if (detailName) detailName.textContent = node.dataset.detailName ?? '';
+      if (detailRole) detailRole.textContent = node.dataset.detailRole ?? '';
+      if (detailInput) detailInput.textContent = node.dataset.detailInput ?? '';
+      if (detailAction) detailAction.textContent = node.dataset.detailAction ?? '';
+      if (detailOutput) detailOutput.textContent = node.dataset.detailOutput ?? '';
+      detail.dataset.accent = node.dataset.detailAccent ?? 'green';
+    };
+
+    const selectExample = (control: HTMLButtonElement, commit = false) => {
+      if (!scenario) return;
+
+      const symbol =
+        control.closest<HTMLElement>('[data-evolution-component]')?.dataset.evolutionComponent ?? 'Δ';
+
+      controls.forEach((candidate) => candidate.removeAttribute('data-preview'));
+
+      if (commit) {
+        lockedControl = control;
+        controls.forEach((candidate) => {
+          candidate.setAttribute('aria-pressed', String(candidate === control));
+        });
+      } else if (control !== lockedControl) {
+        control.setAttribute('data-preview', '');
+      }
+
+      scenario.dataset.activeComponent = symbol;
+      updateDetail(symbol);
+    };
+
+    const restoreLockedExample = () => {
+      if (lockedControl) selectExample(lockedControl);
     };
 
     controls.forEach((control) => {
       control.addEventListener('pointerenter', () => selectExample(control));
       control.addEventListener('focus', () => selectExample(control));
-      control.addEventListener('click', () => selectExample(control));
+      control.addEventListener('pointerleave', restoreLockedExample);
+      control.addEventListener('blur', restoreLockedExample);
+      control.addEventListener('click', () => selectExample(control, true));
+    });
+
+    scenarioControls.forEach((control) => {
+      control.addEventListener('click', () => {
+        const scenarioId = control.dataset.scenarioControl;
+
+        scenarioControls.forEach((candidate) => {
+          candidate.setAttribute('aria-selected', String(candidate === control));
+        });
+        scenarioPanels.forEach((panel) => {
+          panel.hidden = panel.dataset.scenarioPanel !== scenarioId;
+        });
+
+        const activeSymbol = scenario?.dataset.activeComponent ?? 'Δ';
+        updateDetail(activeSymbol);
+      });
     });
   }
 </script>

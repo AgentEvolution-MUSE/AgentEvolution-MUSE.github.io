@@ -1,6 +1,4 @@
 ---
-import { BrainCircuit, LibraryBig, SlidersHorizontal } from '@lucide/astro';
-
 const deploymentSignals = [
   { index: '01', label: 'Changing environments', detail: 'Embodied robots' },
   { index: '02', label: 'Zero-day attacks', detail: 'Safeguard agents' },
@@ -12,24 +10,34 @@ const deploymentSignals = [
 
 const agentLayers = [
   {
-    icon: LibraryBig,
-    iconName: 'library',
     label: 'Explicit Symbolic Assets',
-    details: ['Knowledge bank', 'Functional tools'],
+    details: [
+      { label: 'Knowledge bank', icon: 'Experience.svg', width: 45, height: 46 },
+      { label: 'Functional tools', icon: 'Tool.svg', width: 45, height: 45 },
+    ],
   },
   {
-    icon: BrainCircuit,
-    iconName: 'brain-circuit',
     label: 'Parametric Cognitive Core',
-    details: ['LLM weights', 'Collaborative networks'],
+    details: [
+      { label: 'LLM weights', icon: 'ModelWeight.svg', width: 363, height: 363 },
+      {
+        label: 'Collaborative networks',
+        icon: 'CollaborativeNetwork.svg',
+        width: 75,
+        height: 76,
+      },
+    ],
   },
   {
-    icon: SlidersHorizontal,
-    iconName: 'sliders-horizontal',
     label: 'Operational Hyperparameters',
-    details: ['Retrieval top-k', 'Decoding temperature'],
+    details: [
+      { label: 'Retrieval top-k', icon: 'RetrieveTopk.svg', width: 71, height: 71 },
+      { label: 'Decoding temperature', icon: 'Temperature.svg', width: 89, height: 113 },
+    ],
   },
 ];
+
+const iconBase = '/assets/images/figures/icons';
 ---
 
 <section
@@ -79,15 +87,25 @@ const agentLayers = [
         <h3>Post-Deployment Agent</h3>
       </div>
       <ol>
-        {agentLayers.map(({ icon: Icon, ...layer }) => (
+        {agentLayers.map((layer) => (
           <li data-agent-layer>
-            <span data-agent-symbol data-agent-icon={layer.iconName} aria-hidden="true">
-              <Icon size={36} strokeWidth={1.6} />
+            <span class="agent-layer-icons" data-agent-symbol aria-hidden="true">
+              {layer.details.map((detail) => (
+                <span class="agent-layer-icon" data-agent-icon={detail.icon}>
+                  <img
+                    src={`${iconBase}/${detail.icon}`}
+                    alt=""
+                    width={detail.width}
+                    height={detail.height}
+                    loading="lazy"
+                  />
+                </span>
+              ))}
             </span>
             <div>
               <strong>{layer.label}</strong>
               <small>
-                {layer.details.map((detail) => <span data-agent-detail>{detail}</span>)}
+                {layer.details.map((detail) => <span data-agent-detail>{detail.label}</span>)}
               </small>
             </div>
           </li>

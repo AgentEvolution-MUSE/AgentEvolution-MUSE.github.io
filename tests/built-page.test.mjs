@@ -73,7 +73,19 @@ test('replaces the abstract with the six-component evolution formulation', () =>
     6,
   );
   assert.match(html, /data-formulation-example/);
-  assert.match(html, /Changed Service Workflow/);
+  assert.match(html, /API Update for a Coding Agent/);
+  assert.match(html, /Policy Update for a Conversational Agent/);
+  assert.match(html, /Tool Calls Break/);
+  assert.match(html, /Task Resumes/);
+  assert.match(html, /data-component-detail/);
+  assert.equal(
+    (html.match(/<[^>]+\sdata-scenario-control(?:\s|=|>)/g) ?? []).length,
+    2,
+  );
+  assert.deepEqual(
+    [...html.matchAll(/<li[^>]+data-example-node="([^"]+)"/g)].map((match) => match[1]),
+    ['Γ', 'Δ', 'C', 'M', 'O', 'B', 'Γ', 'Δ', 'C', 'M', 'O', 'B'],
+  );
   assert.doesNotMatch(html, />Abstract<\/h2>/);
 });
 
@@ -95,8 +107,16 @@ test('frames agent evolution as the response to changing deployment conditions',
   assert.equal((html.match(/data-agent-symbol/g) ?? []).length, 3);
   assert.deepEqual(
     [...html.matchAll(/data-agent-icon="([^"]+)"/g)].map((match) => match[1]),
-    ['library', 'brain-circuit', 'sliders-horizontal'],
+    [
+      'Experience.svg',
+      'Tool.svg',
+      'ModelWeight.svg',
+      'CollaborativeNetwork.svg',
+      'RetrieveTopk.svg',
+      'Temperature.svg',
+    ],
   );
+  assert.equal((html.match(/\/assets\/images\/figures\/icons\//g) ?? []).length, 6);
   assert.equal((html.match(/data-agent-detail/g) ?? []).length, 6);
   assert.match(html, /accumulated interaction evidence/);
 });
@@ -129,6 +149,19 @@ test('renders the complete six-component evolutionary architecture topology', ()
     ['context', 'gating', 'supervision', 'optimization'],
   );
   assert.equal((html.match(/longleftrightarrow/g) ?? []).length >= 3, true);
+  assert.deepEqual(
+    [...html.matchAll(/data-flow-link="([^"]+)"/g)].map((match) => match[1]),
+    [
+      'context-gating',
+      'gating-supervision',
+      'supervision-optimizer',
+      'scope-optimizer',
+      'optimizer-output',
+      'objective-optimizer',
+      'optimizer-boundary',
+    ],
+  );
+  assert.equal((html.match(/architecture-flow-pulse/g) ?? []).length >= 7, true);
   assert.match(html, /View paper figure/);
   assert.doesNotMatch(html, /class="architecture-figure/);
   assert.doesNotMatch(html, /data-architecture-stage=/);

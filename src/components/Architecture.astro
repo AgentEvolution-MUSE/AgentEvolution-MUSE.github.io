@@ -80,7 +80,8 @@ const math = {
       </article>
     </div>
 
-    <div class="architecture-vertical-link" aria-hidden="true">
+    <div class="architecture-vertical-link" data-flow-link="context-gating" aria-hidden="true">
+      <i class="architecture-flow-pulse"></i>
       <span set:html={math.down}></span>
       <small>Longitudinal evidence</small>
     </div>
@@ -103,7 +104,8 @@ const math = {
       </p>
     </article>
 
-    <div class="architecture-vertical-link architecture-vertical-link-blue" aria-hidden="true">
+    <div class="architecture-vertical-link architecture-vertical-link-blue" data-flow-link="gating-supervision" aria-hidden="true">
+      <i class="architecture-flow-pulse"></i>
       <span set:html={math.down}></span>
       <small>Evolution trigger and routing vector</small>
     </div>
@@ -126,7 +128,8 @@ const math = {
       </p>
     </article>
 
-    <div class="architecture-vertical-link architecture-vertical-link-green" aria-hidden="true">
+    <div class="architecture-vertical-link architecture-vertical-link-green" data-flow-link="supervision-optimizer" aria-hidden="true">
+      <i class="architecture-flow-pulse"></i>
       <span set:html={math.down}></span>
       <small>Grounded supervision signals</small>
     </div>
@@ -141,7 +144,8 @@ const math = {
         <p>Parametric, symbolic, and operational components that may evolve.</p>
       </article>
 
-      <div class="architecture-relation architecture-relation-scope" aria-hidden="true">
+      <div class="architecture-relation architecture-relation-scope" data-flow-link="scope-optimizer" aria-hidden="true">
+        <i class="architecture-flow-pulse"></i>
         <span set:html={math.feedback}></span>
         <small>Selected scope</small>
       </div>
@@ -162,7 +166,8 @@ const math = {
         </div>
       </article>
 
-      <div class="architecture-relation architecture-relation-output" aria-hidden="true">
+      <div class="architecture-relation architecture-relation-output" data-flow-link="optimizer-output" aria-hidden="true">
+        <i class="architecture-flow-pulse"></i>
         <span set:html={math.forward}></span>
         <small>Accepted update</small>
       </div>
@@ -185,12 +190,14 @@ const math = {
         <p>Measure environmental fitness, task success, and operational efficiency.</p>
       </article>
 
-      <div class="architecture-relation architecture-relation-objective" aria-hidden="true">
+      <div class="architecture-relation architecture-relation-objective" data-flow-link="objective-optimizer" aria-hidden="true">
+        <i class="architecture-flow-pulse"></i>
         <span set:html={math.feedback}></span>
         <small>Goal feedback</small>
       </div>
 
-      <div class="architecture-relation architecture-relation-boundary" aria-hidden="true">
+      <div class="architecture-relation architecture-relation-boundary" data-flow-link="optimizer-boundary" aria-hidden="true">
+        <i class="architecture-flow-pulse"></i>
         <span set:html={math.feedback}></span>
         <small>Constraint feedback</small>
       </div>
@@ -217,3 +224,19 @@ const math = {
     </a>
   </div>
 </section>
+
+<script>
+  const architectureMap = document.querySelector<HTMLElement>('[data-architecture-map]');
+  const reduceArchitectureMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (architectureMap && !reduceArchitectureMotion && 'IntersectionObserver' in window) {
+    const architectureObserver = new IntersectionObserver(
+      ([entry]) => {
+        architectureMap.toggleAttribute('data-flow-active', entry.isIntersecting);
+      },
+      { rootMargin: '-8% 0px -8% 0px', threshold: 0.12 },
+    );
+
+    architectureObserver.observe(architectureMap);
+  }
+</script>
