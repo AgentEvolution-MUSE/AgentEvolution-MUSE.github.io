@@ -43,18 +43,62 @@ test('renders the complete research narrative', () => {
     'Metacognitive Unison Self-Evolution',
     'Why Should Agents Evolve?',
     'A Unified Formulation of Agent Evolution',
-    'Why Evolution 3.0 Falls Short',
+    'From Stage 3 to Stage 4',
     'Three Mechanisms for Stage-4 Evolution',
     'System Architecture',
-    'Results Coming Soon',
+    'Experimental Results',
     'Resources',
   ]) {
     assert.match(html, new RegExp(heading));
   }
-  assert.match(html, /Spectrum-2\.svg/);
+  assert.match(html, /The Five-Stage Evolutionary Spectrum/);
   assert.match(html, /Representative Systems Across the Spectrum/);
-  assert.match(html, /RepresentWorks\.svg/);
   assert.match(html, /architecture\.png/);
+});
+
+test('shows the trajectory alongside baseline, peak, and final success rates', async () => {
+  const results = html.match(/<section id="results"[^>]*>[\s\S]*?<\/section>/)?.[0];
+  assert.ok(results);
+  assert.match(results, /APPWorld.*Qwen3\.5-9B.*8 evolution rounds/);
+  assert.match(results, /src="\/assets\/images\/results\/evolution-trajectory\.svg"/);
+  assert.match(results, /30\.35%[\s\S]*54\.76%[\s\S]*46\.42%/);
+  assert.match(results, /<th scope="row">MUSE \(Joint\)<\/th>\s*<td>52\.38%<\/td>\s*<td>51\.78%<\/td>/);
+  assert.match(results, /<th scope="row">MUSE \(Parametric\)<\/th>\s*<td>54\.76%<\/td>\s*<td>42\.26%<\/td>/);
+  const figure = await readFile(new URL('../dist/assets/images/results/evolution-trajectory.svg', import.meta.url), 'utf8');
+  assert.match(figure, /<svg\b/);
+});
+
+test('compares rollout totals for all three gating strategies and links the paper chart', async () => {
+  assert.match(html, /Always-on<\/span>[\s\S]*?<strong>31,208<\/strong>/);
+  assert.match(html, /Random<\/span>[\s\S]*?<strong>21,960<\/strong>/);
+  assert.match(html, /Metacognitive<\/span>[\s\S]*?<strong>22,112<\/strong>/);
+  assert.match(html, /29\.15% fewer rollouts/);
+  assert.match(html, /href="\/assets\/images\/results\/gating-rollouts-per-round\.svg"/);
+  const figure = await readFile(new URL('../dist/assets/images/results/gating-rollouts-per-round.svg', import.meta.url), 'utf8');
+  assert.match(figure, /<svg\b/);
+});
+
+test('publishes the original main and ablation tables and detailed gating figures', async () => {
+  const assets = [
+    'table-3-overall-adaptivity.png',
+    'table-4-symbolic-components.png',
+    'table-5-joint-adaptation.png',
+    'table-6-supervision.png',
+    'gating-best-observed-sr.svg',
+    'metacognitive-gating-case-study.svg',
+  ];
+  assert.doesNotMatch(html, /href="#gating-analysis"/);
+  assert.match(html, /<section id="gating-analysis"/);
+  assert.equal((html.match(/<details name="results-ablations"/g) ?? []).length, 3);
+  for (const asset of assets) {
+    assert.ok(html.includes(`src="/assets/images/results/${asset}"`));
+    const image = await readFile(new URL(`../dist/assets/images/results/${asset}`, import.meta.url));
+    if (asset.endsWith('.png')) {
+      assert.equal(image.readUInt32BE(16), 2772);
+    } else {
+      assert.match(image.toString('utf8'), /<svg\b/);
+    }
+  }
 });
 
 test('replaces the abstract with the six-component evolution formulation', () => {
@@ -123,15 +167,18 @@ test('frames agent evolution as the response to changing deployment conditions',
 
 test('serves paper figures from the organized asset directory', () => {
   assert.match(html, /\/assets\/images\/figures\/Spectrum-2\.svg/);
-  assert.match(html, /\/assets\/images\/figures\/RepresentWorks\.svg/);
+  assert.match(html, /src="\/assets\/images\/figures\/spectrum-capability-requirements\.svg"/);
+  assert.match(html, /src="\/assets\/images\/figures\/spectrum-representative-works\.svg"/);
   assert.match(html, /\/assets\/images\/figures\/architecture\.png/);
   assert.doesNotMatch(html, /(?:src|href)="\/images\//);
 });
 
-test('presents the representative research landscape after the spectrum', () => {
+test('explains cumulative stage requirements and positions MUSE as a prototype', () => {
+  assert.match(html, /optimization scope and coordination \(SC\)/);
+  assert.match(html, /Each stage builds on the requirements of\s+earlier stages/);
   assert.match(html, /data-representative-landscape/);
   assert.match(html, /<strong>Figure 2\.<\/strong>/);
-  assert.match(html, /holistic Stage-4 prototype/);
+  assert.match(html, /MUSE is a prototype targeting Stage-4 capabilities/);
 });
 
 test('renders the complete six-component evolutionary architecture topology', () => {

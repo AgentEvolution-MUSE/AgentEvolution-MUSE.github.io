@@ -128,7 +128,7 @@ export const evolutionStrategy: EvolutionStrategyComponent[] = [
     symbol: 'Δ',
     math: '\\Delta',
     name: 'Supervision Generator',
-    description: 'Generates supervision grounded in validated environmental interactions.',
+    description: 'Acquires external supervision or constructs it from interactions.',
     example:
       'Successful recovery interactions are converted into validated tasks, reference trajectories, and reward signals.',
     accent: 'green',
@@ -137,7 +137,7 @@ export const evolutionStrategy: EvolutionStrategyComponent[] = [
     symbol: 'C',
     math: '\\mathcal{C}',
     name: 'Optimization Scope',
-    description: 'Defines which parametric, symbolic, and operational components may evolve.',
+    description: 'Defines which agent components are eligible for updates.',
     example:
       'The booking tool schema, relevant experience memory, and tool-use policy are eligible for adaptation, while unrelated capabilities remain unchanged.',
     accent: 'blue',
@@ -155,7 +155,7 @@ export const evolutionStrategy: EvolutionStrategyComponent[] = [
     symbol: 'Γ',
     math: '\\Gamma',
     name: 'Evolutionary Gating',
-    description: 'Controls evolution activation, capability diagnosis, and optimization routing.',
+    description: 'Decides whether to evolve and which eligible components to update this round.',
     example:
       'Repeated workflow failures activate evolution and route adaptation to the booking-related components in the admissible scope.',
     accent: 'yellow',
@@ -200,7 +200,7 @@ export const stageComparisons: StageComparison[] = [
     accent: 'green',
   },
   {
-    dimension: 'Optimization Scope',
+    dimension: 'Optimization Scope and Coordination',
     limitation:
       'Parametric, symbolic, and operational components are optimized selectively or with limited system-wide coordination.',
     mechanism: 'Holistic Unison Evolution',

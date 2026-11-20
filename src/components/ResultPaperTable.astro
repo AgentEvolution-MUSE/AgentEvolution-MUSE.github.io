@@ -1,0 +1,16 @@
+---
+interface Props {
+  src: string;
+  height: number;
+  alt: string;
+  label: string;
+}
+
+const { src, height, alt, label } = Astro.props;
+---
+
+<div class="results-paper-viewport" role="region" aria-label={label} tabindex="0">
+  <a href={src} target="_blank" rel="noreferrer" aria-label={`Open ${label} at full resolution`}>
+    <img src={src} width="2772" height={height} alt={alt} loading="lazy" />
+  </a>
+</div>

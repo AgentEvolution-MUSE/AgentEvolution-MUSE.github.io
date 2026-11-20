@@ -6,8 +6,8 @@ import { ArrowRight, CircleCheckBig, CircleX, RefreshCw, Target } from '@lucide/
 import { evolutionStrategy } from '../data/site';
 
 const formulaSource = String.raw`\mathcal{S}=\left\langle\Delta,\mathcal{C},\mathcal{M},\Gamma,\mathcal{O},\mathcal{B}\right\rangle`;
-const roundSource = String.raw`A_{t+1}=\mathcal{S}\!\left(A_t,E_t,H_t\right)`;
-const trajectorySource = String.raw`A_0\xrightarrow{\mathcal{S}(\cdot,E_0,H_0)}A_1\xrightarrow{\mathcal{S}(\cdot,E_1,H_1)}\cdots\xrightarrow{\mathcal{S}(\cdot,E_{T-1},H_{T-1})}A_T`;
+const roundSource = String.raw`A_{t+1}=\mathcal{S}_t\!\left(A_t,E_t,H_t\right)`;
+const trajectorySource = String.raw`A_0\xrightarrow{\mathcal{S}_0(\cdot,E_0,H_0)}A_1\xrightarrow{\mathcal{S}_1(\cdot,E_1,H_1)}\cdots\xrightarrow{\mathcal{S}_{T-1}(\cdot,E_{T-1},H_{T-1})}A_T`;
 const mobileTrajectorySource = String.raw`A_0\xrightarrow{\mathcal{S}_0}A_1\xrightarrow{\mathcal{S}_1}\cdots\xrightarrow{\mathcal{S}_{T-1}}A_T`;
 const renderMath = (source: string) =>
   katex.renderToString(source, {
@@ -55,24 +55,24 @@ const exampleScenarios: ExampleScenario[] = [
     components: {
       Γ: {
         label: 'Detect & Route',
-        text: 'Repeated API failures activate evolution.',
-        input: 'Recurring 400 responses',
-        action: 'Activate evolution and route the failure',
-        output: 'Tool schema + planner selected',
+        text: 'Repeated failures trigger updates to the schema and docs.',
+        input: 'Repeated 400 responses',
+        action: 'Diagnose a schema mismatch and trigger an update',
+        output: 'Tool schema + API docs selected',
       },
       Δ: {
         label: 'Ground Signals',
-        text: 'Recovery traces become supervision.',
-        input: 'Recovery traces + API evidence',
-        action: 'Synthesize tasks and reference calls',
-        output: 'Grounded supervision signals',
+        text: 'Recovery traces yield tasks and rewards that supplement oracle supervision.',
+        input: 'Successful API recovery traces',
+        action: 'Construct synthetic tasks and rewards',
+        output: 'Supplement to oracle supervision',
       },
       C: {
-        label: 'Select Scope',
-        text: 'Tool schema and planner may change.',
-        input: 'Diagnosed tool-use failure',
-        action: 'Open only affected components',
-        output: 'Schema + docs + planner eligible',
+        label: 'Define Scope',
+        text: 'The tool schema, API docs, and planner are eligible.',
+        input: 'Coding agent components',
+        action: 'Define what may be updated',
+        output: 'Tool schema + API docs + planner eligible',
       },
       M: {
         label: 'Repair & Sync',
@@ -116,10 +116,10 @@ const exampleScenarios: ExampleScenario[] = [
     components: {
       Γ: {
         label: 'Detect & Route',
-        text: 'Compliance failures activate evolution.',
+        text: 'Repeated failures trigger updates to the prompt and memory.',
         input: 'Repeated compliance failures',
-        action: 'Activate evolution and route the gap',
-        output: 'Policy-facing components selected',
+        action: 'Diagnose outdated guidance and trigger an update',
+        output: 'Prompt + memory selected',
       },
       Δ: {
         label: 'Ground Signals',
@@ -129,10 +129,10 @@ const exampleScenarios: ExampleScenario[] = [
         output: 'Grounded policy supervision',
       },
       C: {
-        label: 'Select Scope',
-        text: 'Policy-facing assets may change.',
-        input: 'Diagnosed compliance gap',
-        action: 'Open only policy-facing assets',
+        label: 'Define Scope',
+        text: 'The prompt, memory, and filter are eligible.',
+        input: 'Conversational agent components',
+        action: 'Define what may be updated',
         output: 'Prompt + memory + filter eligible',
       },
       M: {

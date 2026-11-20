@@ -1,0 +1,201 @@
+---
+import { ChevronDown } from '@lucide/astro';
+import ResultPaperTable from './ResultPaperTable.astro';
+
+const trajectoryFigure = '/assets/images/results/evolution-trajectory.svg';
+const rolloutFigure = '/assets/images/results/gating-rollouts-per-round.svg';
+const peakFigure = '/assets/images/results/gating-best-observed-sr.svg';
+const caseStudyFigure = '/assets/images/results/metacognitive-gating-case-study.svg';
+const ablationTables = [
+  {
+    number: 4,
+    title: 'Symbolic Component Contributions',
+    src: '/assets/images/results/table-4-symbolic-components.png',
+    height: 1098,
+    alt: 'Table 4. Symbolic refinement comparisons with fixed Qwen3.5-9B and Qwen3.5-27B weights. Rows cover experiences, tools, experiences and principles, and all three symbolic components.',
+  },
+  {
+    number: 5,
+    title: 'Separate and Joint Adaptation',
+    src: '/assets/images/results/table-5-joint-adaptation.png',
+    height: 1086,
+    alt: 'Table 5. On oracle tasks, joint symbolic and parametric adaptation reaches 54.76% best success and 51.19% final success without metacognitive gating.',
+  },
+  {
+    number: 6,
+    title: 'Task Sources and Prefix-Potential Supervision',
+    src: '/assets/images/results/table-6-supervision.png',
+    height: 1584,
+    alt: 'Table 6. Comparisons of oracle and synthetic tasks and prefix-potential supervision, with full and 25% oracle-task availability, for parametric and joint adaptation.',
+  },
+];
+const trajectorySummary = [
+  { name: 'MUSE', peak: '54.76%', final: '46.42%' },
+  { name: 'MUSE (Joint)', peak: '52.38%', final: '51.78%' },
+  { name: 'MUSE (Parametric)', peak: '54.76%', final: '42.26%' },
+];
+const [fullMuse] = trajectorySummary;
+const baselineSuccess = '30.35%';
+const gatingRollouts = [
+  { name: 'Always-on', count: 31208, accent: 'always-on' },
+  { name: 'Random', count: 21960, accent: 'random' },
+  { name: 'Metacognitive', count: 22112, accent: 'metacognitive' },
+];
+const [alwaysOn, , metacognitive] = gatingRollouts;
+const maxRollouts = Math.max(...gatingRollouts.map(({ count }) => count));
+const rolloutReduction = (100 * (1 - metacognitive.count / alwaysOn.count)).toFixed(2);
+const rolloutFormat = new Intl.NumberFormat('en-US');
+---
+
+<section id="results" class="section-band results-band" aria-labelledby="results-title">
+  <div class="container">
+    <div class="section-intro results-intro">
+      <p class="eyebrow">Evaluation</p>
+      <h2 id="results-title" class="section-heading">Experimental Results</h2>
+      <p class="results-context">APPWorld &middot; Qwen3.5-9B &middot; 8 evolution rounds</p>
+      <p class="results-takeaway">
+        MUSE task success rose from {baselineSuccess} to <strong>{fullMuse.peak}</strong> (round 4), ending at <strong>{fullMuse.final}</strong> (round 8).
+      </p>
+    </div>
+
+    <div class="results-trajectory">
+      <figure class="results-figure">
+        <h3>Task Success Across Evolution Rounds</h3>
+        <a href={trajectoryFigure} target="_blank" rel="noreferrer">
+          <img
+            src={trajectoryFigure}
+            width="864"
+            height="516"
+            loading="lazy"
+            alt="Task success rate by evolution round for MUSE, MUSE (Joint), and MUSE (Parametric). The dashed line marks the shared pre-evolution baseline and the star marks the full MUSE peak."
+          />
+        </a>
+        <figcaption>
+          All three configurations use oracle and synthetic tasks. The dashed line marks their
+          shared baseline of <strong>{baselineSuccess}</strong>. The star marks the full MUSE peak at round 4.
+        </figcaption>
+      </figure>
+
+      <div class="results-support">
+        <div class="results-summary">
+          <table aria-describedby="results-trajectory-finding">
+            <caption>Peak vs. Final Success</caption>
+            <thead>
+              <tr>
+                <th scope="col">Configuration</th>
+                <th scope="col">Peak</th>
+                <th scope="col">Round 8</th>
+              </tr>
+            </thead>
+            <tbody>
+              {trajectorySummary.map(({ name, peak, final }) => (
+                <tr>
+                  <th scope="row">{name}</th>
+                  <td>{peak}</td>
+                  <td>{final}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p id="results-trajectory-finding">
+            Full MUSE ties the parametric variant at peak. The joint variant leads in round 8.
+          </p>
+        </div>
+
+        <section class="results-gating" aria-labelledby="results-gating-title">
+          <h3 id="results-gating-title">Exploration Cost by Gating</h3>
+          <p class="results-gating-unit">Fresh rollouts over eight rounds</p>
+          <ul class="results-rollouts" aria-label="Total exploration rollouts by gating strategy">
+            {gatingRollouts.map(({ name, count, accent }) => (
+              <li class:list={['results-rollout', accent]}>
+                <span>{name}</span>
+                <span class="results-rollout-track" aria-hidden="true">
+                  <span style={`width: ${(100 * count / maxRollouts).toFixed(2)}%`}></span>
+                </span>
+                <strong>{rolloutFormat.format(count)}</strong>
+              </li>
+            ))}
+          </ul>
+          <p class="results-gating-note">
+            Metacognitive gating uses <strong>{rolloutReduction}% fewer rollouts</strong> than Always-on.
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <section class="results-evidence" aria-labelledby="results-main-table-title">
+      <h3 id="results-main-table-title" class="results-evidence-heading">Overall Adaptivity</h3>
+      <ResultPaperTable
+        src="/assets/images/results/table-3-overall-adaptivity.png"
+        height={1272}
+        label="Table 3"
+        alt="Table 3. MUSE and five baselines on APPWorld with Qwen3.5-9B. MUSE attains 54.76% best task success, up 24.41 percentage points from the base model, and averages 16.91 interaction steps."
+      />
+    </section>
+
+    <section class="results-evidence" aria-labelledby="results-ablations-title">
+      <h3 id="results-ablations-title" class="results-evidence-heading">Ablation Studies</h3>
+      <div class="results-ablations">
+        {ablationTables.map(({ number, title, src, height, alt }, index) => (
+          <details name="results-ablations" open={index === 0}>
+            <summary>
+              <span>Table {number}</span>
+              <strong>{title}</strong>
+              <ChevronDown size={19} aria-hidden="true" />
+            </summary>
+            <ResultPaperTable {src} {height} {alt} label={`Table ${number}`} />
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section id="gating-analysis" class="results-evidence" aria-labelledby="results-gating-analysis-title">
+      <h3 id="results-gating-analysis-title" class="results-evidence-heading">Metacognitive Gating Analysis</h3>
+      <div class="results-paper-figures">
+        <figure class="results-figure">
+          <a href={rolloutFigure} target="_blank" rel="noreferrer">
+            <img
+              src={rolloutFigure}
+              width="864"
+              height="516"
+              loading="lazy"
+              alt="Grouped bars comparing the fresh exploration rollouts of Always-on, Random, and Metacognitive gating in each of eight rounds."
+            />
+          </a>
+          <figcaption><strong>Figure 9(a).</strong> Exploration rollouts per round.</figcaption>
+        </figure>
+        <figure class="results-figure">
+          <a href={peakFigure} target="_blank" rel="noreferrer">
+            <img
+              src={peakFigure}
+              width="864"
+              height="516"
+              loading="lazy"
+              alt="Success rates against cumulative exploration rollouts for three gating settings. Points show observed performance, step lines show the best observed so far, and the star marks the earliest metacognitive peak."
+            />
+          </a>
+          <figcaption><strong>Figure 9(b).</strong> Observed performance and peak attainment.</figcaption>
+        </figure>
+      </div>
+
+      <figure class="results-figure results-case-study">
+        <h4>Eight-Round Gating Case Study</h4>
+        <div class="results-paper-viewport" role="region" aria-label="Figure 10" tabindex="0">
+          <a href={caseStudyFigure} target="_blank" rel="noreferrer">
+            <img
+              src={caseStudyFigure}
+              width="1096"
+              height="730"
+              loading="lazy"
+              alt="Eight rounds of interaction evidence, capability diagnoses, and selected updates in a full MUSE run. The lower matrix shows when experiences, principles, tools, and model weights are selected."
+            />
+          </a>
+        </div>
+        <figcaption>
+          <strong>Figure 10.</strong> Recorded capability diagnoses and retrospective interpretations
+          of interaction traces. Colored cells mark the components selected in each round.
+        </figcaption>
+      </figure>
+    </section>
+  </div>
+</section>
