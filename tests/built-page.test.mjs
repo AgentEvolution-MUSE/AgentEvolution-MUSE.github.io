@@ -167,7 +167,9 @@ test('frames agent evolution as the response to changing deployment conditions',
 
 test('serves paper figures from the organized asset directory', () => {
   assert.match(html, /\/assets\/images\/figures\/Spectrum-2\.svg/);
-  assert.match(html, /src="\/assets\/images\/figures\/spectrum-capability-requirements\.svg"/);
+  const spectrum = html.match(/<section id="spectrum"[\s\S]*?<\/section>/)?.[0] ?? '';
+  assert.match(spectrum, /href="\/assets\/images\/figures\/Spectrum-2\.svg"/);
+  assert.match(spectrum, /src="\/assets\/images\/figures\/Spectrum-2\.svg"/);
   assert.match(html, /src="\/assets\/images\/figures\/spectrum-representative-works\.svg"/);
   assert.match(html, /\/assets\/images\/figures\/architecture\.png/);
   assert.doesNotMatch(html, /(?:src|href)="\/images\//);
