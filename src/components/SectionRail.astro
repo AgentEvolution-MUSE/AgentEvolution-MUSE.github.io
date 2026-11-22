@@ -1,6 +1,11 @@
 ---
 import { navigation } from '../data/site';
 
+const researchLinks = [
+  ['rq1', 'RQ1', 'Adaptivity'], ['rq2', 'RQ2', 'Components'],
+  ['rq3', 'RQ3', 'Supervision'], ['rq4', 'RQ4', 'Gating'],
+  ['rq5', 'RQ5', 'Stability'], ['result-cases', 'Cases', ''],
+];
 const links = [
   { label: 'Why Evolve', href: '#why-evolve' },
   { label: 'Formulation', href: '#formulation' },
@@ -17,6 +22,9 @@ const links = [
           <span class="section-rail-dot" aria-hidden="true"></span>
           <span class="section-rail-label">{link.label}</span>
         </a>
+        {link.href === '#results' && <ol class="section-rail-research" aria-label="Results index" hidden>
+          {researchLinks.map(([id, number, label]) => <li><a href={`#${id}`} data-rq-link><span>{number}</span><span class="section-rail-research-label">{label}</span></a></li>)}
+        </ol>}
       </li>
     ))}
   </ol>
@@ -28,6 +36,9 @@ const links = [
   const targets = railLinks
     .map((link) => document.querySelector<HTMLElement>(link.hash))
     .filter((target): target is HTMLElement => Boolean(target));
+  const researchIndex = rail?.querySelector<HTMLOListElement>('.section-rail-research');
+  const researchLinks = [...document.querySelectorAll<HTMLAnchorElement>('[data-rq-link]')];
+  const researchTargets = [...document.querySelectorAll<HTMLElement>('#results > .container > .rq-section')];
   const hero = document.querySelector<HTMLElement>('#overview');
   let frame = 0;
 
@@ -35,13 +46,26 @@ const links = [
     frame = 0;
     const marker = window.scrollY + window.innerHeight * 0.42;
     const activeTarget = targets.reduce<HTMLElement | undefined>((active, target) => {
-      return target.offsetTop <= marker ? target : active;
+      return target.getBoundingClientRect().top + window.scrollY <= marker ? target : active;
     }, targets[0]);
 
     rail?.toggleAttribute(
       'data-visible',
       Boolean(hero && window.scrollY > hero.offsetTop + hero.offsetHeight - 120),
     );
+
+    const resultsActive = activeTarget?.id === 'results';
+    if (researchIndex) researchIndex.hidden = !resultsActive;
+    const researchMarker = window.scrollY + 200;
+    const currentQuestion = researchTargets.reduce<HTMLElement | undefined>((active, target) => {
+      return target.getBoundingClientRect().top + window.scrollY <= researchMarker ? target : active;
+    }, undefined);
+    researchLinks.forEach((link) => {
+      const active = resultsActive && Boolean(currentQuestion && link.hash === `#${currentQuestion.id}`);
+      link.toggleAttribute('data-active', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
 
     railLinks.forEach((link) => {
       const active = Boolean(activeTarget && link.hash === `#${activeTarget.id}`);
@@ -58,5 +82,6 @@ const links = [
 
   window.addEventListener('scroll', requestUpdate, { passive: true });
   window.addEventListener('resize', requestUpdate);
+  document.querySelectorAll('#results details').forEach((detail) => detail.addEventListener('toggle', requestUpdate));
   updateRail();
 </script>

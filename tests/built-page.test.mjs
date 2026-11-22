@@ -56,49 +56,53 @@ test('renders the complete research narrative', () => {
   assert.match(html, /architecture\.png/);
 });
 
-test('shows the trajectory alongside baseline, peak, and final success rates', async () => {
-  const results = html.match(/<section id="results"[^>]*>[\s\S]*?<\/section>/)?.[0];
-  assert.ok(results);
-  assert.match(results, /APPWorld.*Qwen3\.5-9B.*8 evolution rounds/);
-  assert.match(results, /src="\/assets\/images\/results\/evolution-trajectory\.svg"/);
-  assert.match(results, /30\.35%[\s\S]*54\.76%[\s\S]*46\.42%/);
-  assert.match(results, /<th scope="row">MUSE \(Joint\)<\/th>\s*<td>52\.38%<\/td>\s*<td>51\.78%<\/td>/);
-  assert.match(results, /<th scope="row">MUSE \(Parametric\)<\/th>\s*<td>54\.76%<\/td>\s*<td>42\.26%<\/td>/);
-  const figure = await readFile(new URL('../dist/assets/images/results/evolution-trajectory.svg', import.meta.url), 'utf8');
-  assert.match(figure, /<svg\b/);
-});
-
-test('compares rollout totals for all three gating strategies and links the paper chart', async () => {
-  assert.match(html, /Always-on<\/span>[\s\S]*?<strong>31,208<\/strong>/);
-  assert.match(html, /Random<\/span>[\s\S]*?<strong>21,960<\/strong>/);
-  assert.match(html, /Metacognitive<\/span>[\s\S]*?<strong>22,112<\/strong>/);
-  assert.match(html, /29\.15% fewer rollouts/);
-  assert.match(html, /href="\/assets\/images\/results\/gating-rollouts-per-round\.svg"/);
-  const figure = await readFile(new URL('../dist/assets/images/results/gating-rollouts-per-round.svg', import.meta.url), 'utf8');
-  assert.match(figure, /<svg\b/);
-});
-
-test('publishes the original main and ablation tables and detailed gating figures', async () => {
-  const assets = [
-    'table-3-overall-adaptivity.png',
-    'table-4-symbolic-components.png',
-    'table-5-joint-adaptation.png',
-    'table-6-supervision.png',
-    'gating-best-observed-sr.svg',
-    'metacognitive-gating-case-study.svg',
-  ];
-  assert.doesNotMatch(html, /href="#gating-analysis"/);
-  assert.match(html, /<section id="gating-analysis"/);
-  assert.equal((html.match(/<details name="results-ablations"/g) ?? []).length, 3);
-  for (const asset of assets) {
-    assert.ok(html.includes(`src="/assets/images/results/${asset}"`));
-    const image = await readFile(new URL(`../dist/assets/images/results/${asset}`, import.meta.url));
-    if (asset.endsWith('.png')) {
-      assert.equal(image.readUInt32BE(16), 2772);
-    } else {
-      assert.match(image.toString('utf8'), /<svg\b/);
-    }
+test('organizes the results around the five paper research questions in order', () => {
+  const ids = [...html.matchAll(/<section id="(rq[1-5])"/g)].map(match => match[1]);
+  assert.deepEqual(ids, ['rq1', 'rq2', 'rq3', 'rq4', 'rq5']);
+  const evidence = {
+    rq1: ['table-3-overall-adaptivity.svg', '24.41'],
+    rq2: ['table-4-symbolic-components.svg', 'table-5-joint-adaptation.svg', '51.19%'],
+    rq3: ['table-6-supervision.svg', 'table-7-task-quality.svg', 'table-8-reward-reliability.svg', '28.57%'],
+    rq4: ['table-9-gating.svg', 'gating-rollouts-per-round.svg', 'gating-best-observed-sr.svg', '29.15%'],
+    rq5: ['continuous-evolution-oracle.svg', 'continuous-evolution-synthetic.svg', '42.26%'],
+  };
+  for (const [id, values] of Object.entries(evidence)) {
+    assert.ok(html.includes(`href="#${id}"`));
+    const section = html.split(`<section id="${id}"`)[1].split('</section>')[0];
+    for (const value of values) assert.ok(section.includes(value), `${id} is missing ${value}`);
   }
+  assert.match(html, /class="rq-retention"/);
+  assert.match(html, /Human audit · One complete MUSE run/);
+});
+
+test('provides the four appendix cases with accurate evidence and accessible disclosure controls', () => {
+  for (const id of ['case-supervision', 'case-prefix', 'case-experience', 'case-tool']) {
+    assert.match(html, new RegExp(`<details id="${id}"[^>]*>[\\s\\S]*?<summary>`));
+  }
+  for (const asset of ['synthetic-task-case-study.svg', 'table-26-prefix-potential.svg', 'exp-principle-case-study.svg', 'tool-invocation-case-study.svg']) {
+    assert.ok(html.includes(`src="/assets/images/results/${asset}"`));
+  }
+  assert.ok(html.includes('reward 0.20'));
+  assert.ok(html.includes('26.25 to 22.00'));
+  assert.ok(html.includes('candidate principle'));
+});
+
+test('ships vector evidence inline without redundant image-page links', async () => {
+  const assets = JSON.parse(await readFile(new URL('../src/data/result-assets.json', import.meta.url), 'utf8'));
+  for (const [asset, size] of Object.entries(assets)) {
+    assert.ok(size.every(value => value > 0));
+    assert.ok(html.includes(`src="/assets/images/results/${asset}"`));
+    assert.ok(!html.includes(`href="/assets/images/results/${asset}"`));
+    const svg = await readFile(new URL(`../dist/assets/images/results/${asset}`, import.meta.url), 'utf8');
+    assert.match(svg, /<svg\b/);
+  }
+});
+
+test('retains the floating index and limits in-page enlargement to complex figures', () => {
+  assert.match(html, /class="section-rail-research"/);
+  assert.equal((html.match(/<button[^>]*data-enlarge-figure/g) ?? []).length, 4);
+  assert.doesNotMatch(html, /View full size/);
+  assert.match(html, /<dialog[^>]*aria-labelledby="result-lightbox-title"/);
 });
 
 test('replaces the abstract with the six-component evolution formulation', () => {

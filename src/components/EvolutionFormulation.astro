@@ -319,7 +319,7 @@ const mobileTrajectoryHtml = renderMath(mobileTrajectorySource);
               <h3>{scenario.before.title}</h3>
               <p>{scenario.before.text}</p>
             </div>
-            <code>{scenario.before.code} <b>{scenario.before.status}</b></code>
+            <div class="formulation-scenario-call"><code>{scenario.before.code.split('(')[0]}<wbr />({scenario.before.code.split('(').slice(1).join('(')}</code><span class="formulation-scenario-status">{scenario.before.status}</span></div>
           </article>
 
           <div class="formulation-scenario-transition" aria-hidden="true">
@@ -369,7 +369,7 @@ const mobileTrajectoryHtml = renderMath(mobileTrajectorySource);
               <h3>{scenario.after.title}</h3>
               <p>{scenario.after.text}</p>
             </div>
-            <code>{scenario.after.code} <b>{scenario.after.status}</b></code>
+            <div class="formulation-scenario-call"><code>{scenario.after.code.split('(')[0]}<wbr />({scenario.after.code.split('(').slice(1).join('(')}</code><span class="formulation-scenario-status">{scenario.after.status}</span></div>
           </article>
         </div>
         <div class="formulation-scenario-caption">

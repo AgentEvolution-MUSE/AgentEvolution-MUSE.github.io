@@ -1,0 +1,82 @@
+{
+  "continuous-evolution-oracle.svg": [
+    518.4,
+    309.6
+  ],
+  "continuous-evolution-synthetic.svg": [
+    518.4,
+    309.6
+  ],
+  "gating-rollouts-per-round.svg": [
+    518.4,
+    309.6
+  ],
+  "gating-best-observed-sr.svg": [
+    518.4,
+    309.6
+  ],
+  "metacognitive-gating-case-study.svg": [
+    1096.44,
+    729.98
+  ],
+  "synthetic-task-coverage.svg": [
+    417.6,
+    338.4
+  ],
+  "synthetic-application-composition.svg": [
+    417.6,
+    338.4
+  ],
+  "synthetic-capability-matching.svg": [
+    417.6,
+    338.4
+  ],
+  "synthetic-task-pool-adaptation.svg": [
+    417.6,
+    338.4
+  ],
+  "synthetic-task-case-study.svg": [
+    1191.28,
+    1524.31
+  ],
+  "exp-principle-case-study.svg": [
+    1195.63,
+    1415.13
+  ],
+  "tool-invocation-case-study.svg": [
+    1199.57,
+    1165.08
+  ],
+  "table-3-overall-adaptivity.svg": [
+    462,
+    150
+  ],
+  "table-4-symbolic-components.svg": [
+    462,
+    135
+  ],
+  "table-5-joint-adaptation.svg": [
+    462,
+    135
+  ],
+  "table-6-supervision.svg": [
+    462,
+    191
+  ],
+  "table-7-task-quality.svg": [
+    462,
+    74
+  ],
+  "table-8-reward-reliability.svg": [
+    462,
+    86
+  ],
+  "table-9-gating.svg": [
+    462,
+    88
+  ],
+  "table-26-prefix-potential.svg": [
+    462,
+    339
+  ]
+}

@@ -1,201 +1,179 @@
 ---
-import { ChevronDown } from '@lucide/astro';
-import ResultPaperTable from './ResultPaperTable.astro';
-
-const trajectoryFigure = '/assets/images/results/evolution-trajectory.svg';
-const rolloutFigure = '/assets/images/results/gating-rollouts-per-round.svg';
-const peakFigure = '/assets/images/results/gating-best-observed-sr.svg';
-const caseStudyFigure = '/assets/images/results/metacognitive-gating-case-study.svg';
-const ablationTables = [
-  {
-    number: 4,
-    title: 'Symbolic Component Contributions',
-    src: '/assets/images/results/table-4-symbolic-components.png',
-    height: 1098,
-    alt: 'Table 4. Symbolic refinement comparisons with fixed Qwen3.5-9B and Qwen3.5-27B weights. Rows cover experiences, tools, experiences and principles, and all three symbolic components.',
-  },
-  {
-    number: 5,
-    title: 'Separate and Joint Adaptation',
-    src: '/assets/images/results/table-5-joint-adaptation.png',
-    height: 1086,
-    alt: 'Table 5. On oracle tasks, joint symbolic and parametric adaptation reaches 54.76% best success and 51.19% final success without metacognitive gating.',
-  },
-  {
-    number: 6,
-    title: 'Task Sources and Prefix-Potential Supervision',
-    src: '/assets/images/results/table-6-supervision.png',
-    height: 1584,
-    alt: 'Table 6. Comparisons of oracle and synthetic tasks and prefix-potential supervision, with full and 25% oracle-task availability, for parametric and joint adaptation.',
-  },
+import ResultFigure from './ResultFigure.astro';
+import '../styles/results.css';
+const questions = [
+  ['rq1', 'RQ1', 'Adaptivity'], ['rq2', 'RQ2', 'Components'],
+  ['rq3', 'RQ3', 'Supervision'], ['rq4', 'RQ4', 'Gating'],
+  ['rq5', 'RQ5', 'Stability'], ['result-cases', 'Appendix', 'Case studies'],
 ];
-const trajectorySummary = [
-  { name: 'MUSE', peak: '54.76%', final: '46.42%' },
-  { name: 'MUSE (Joint)', peak: '52.38%', final: '51.78%' },
-  { name: 'MUSE (Parametric)', peak: '54.76%', final: '42.26%' },
+const cases = [
+  { id: 'case-supervision', label: 'Self-supervision', title: 'One task, two execution paths', ref: 'Appendix D.2 · Figure 19', asset: 'synthetic-task-case-study.svg' as const,
+    summary: 'Retrieve, filter, summarize, and email: guided versus free execution.',
+    finding: 'With reference guidance, the agent retrieves all 58 transactions above $50 and emails the summary (reward 1.00). Free execution uses an incomplete set of 50 records, includes a transaction of exactly $50, and never sends the email (reward 0.20).',
+    alt: 'Guided and free executions across Venmo, Simple Note, and Gmail, with assigned outcome rewards of 1.00 and 0.20.' },
+  { id: 'case-prefix', label: 'Step-level feedback', title: 'Learning from an error and its repair', ref: 'Appendix D.2 · Table 26', asset: 'table-26-prefix-potential.svg' as const,
+    summary: 'Step-level rewards distinguish API errors from successful corrections.',
+    finding: 'A login call using email instead of username reduces potential from 0.514 to 0.313 (step reward −0.495). Inspecting the API and correcting the parameter receive positive rewards; the execution ultimately deletes the 10 matching text messages and 12 voice messages.',
+    alt: 'Fifteen-step phone-message deletion trace, with prefix potentials and positive or negative step rewards.' },
+  { id: 'case-experience', label: 'Experience & principles', title: 'From a verified experience to reusable guidance', ref: 'Appendix D.3.1 · Figure 20', asset: 'exp-principle-case-study.svg' as const,
+    summary: 'Spotify experience → guided execution → candidate principle.',
+    finding: 'Retrieved guidance supports song-detail lookup at step 5 and playback-interface discovery at step 7, followed by playback at step 8. The candidate principle generalizes the need to collect detailed records and deduplicate across sources before filtering.',
+    alt: 'Verified Spotify experience, a candidate trigger-action-guard principle, and a nine-step experience-guided execution.' },
+  { id: 'case-tool', label: 'Tool refinement', title: 'A retrieval routine becomes a callable tool', ref: 'Appendix D.3.2 · Figure 21', asset: 'tool-invocation-case-study.svg' as const,
+    summary: 'Repeated retrieval → reusable tool → offline album playback.',
+    finding: 'Paired verification reduces mean interaction steps from 26.25 to 22.00. In the illustrated execution, the tool returns 19 song records; the agent identifies an album with 952 seconds of downloaded music, exceeding the requested 15 minutes, and completes playback with reward 1.00.',
+    alt: 'Tool refinement and paired verification followed by seven execution steps selecting and playing an offline album.' },
 ];
-const [fullMuse] = trajectorySummary;
-const baselineSuccess = '30.35%';
-const gatingRollouts = [
-  { name: 'Always-on', count: 31208, accent: 'always-on' },
-  { name: 'Random', count: 21960, accent: 'random' },
-  { name: 'Metacognitive', count: 22112, accent: 'metacognitive' },
-];
-const [alwaysOn, , metacognitive] = gatingRollouts;
-const maxRollouts = Math.max(...gatingRollouts.map(({ count }) => count));
-const rolloutReduction = (100 * (1 - metacognitive.count / alwaysOn.count)).toFixed(2);
-const rolloutFormat = new Intl.NumberFormat('en-US');
 ---
-
 <section id="results" class="section-band results-band" aria-labelledby="results-title">
   <div class="container">
     <div class="section-intro results-intro">
       <p class="eyebrow">Evaluation</p>
       <h2 id="results-title" class="section-heading">Experimental Results</h2>
-      <p class="results-context">APPWorld &middot; Qwen3.5-9B &middot; 8 evolution rounds</p>
-      <p class="results-takeaway">
-        MUSE task success rose from {baselineSuccess} to <strong>{fullMuse.peak}</strong> (round 4), ending at <strong>{fullMuse.final}</strong> (round 8).
-      </p>
+      <p class="results-context">APPWorld · Qwen3.5-9B · Up to 8 evolution rounds</p>
     </div>
+    <nav class="rq-nav" aria-label="Research questions and case studies">
+      {questions.map(([id, number, label], index) => <a href={`#${id}`} data-rq-link style={`--rq-accent: var(--rq-color-${index + 1})`}><span class="rq-nav-number">{number}</span><strong>{label}</strong><span class="rq-nav-line" aria-hidden="true"></span></a>)}
+    </nav>
 
-    <div class="results-trajectory">
-      <figure class="results-figure">
-        <h3>Task Success Across Evolution Rounds</h3>
-        <a href={trajectoryFigure} target="_blank" rel="noreferrer">
-          <img
-            src={trajectoryFigure}
-            width="864"
-            height="516"
-            loading="lazy"
-            alt="Task success rate by evolution round for MUSE, MUSE (Joint), and MUSE (Parametric). The dashed line marks the shared pre-evolution baseline and the star marks the full MUSE peak."
-          />
-        </a>
-        <figcaption>
-          All three configurations use oracle and synthetic tasks. The dashed line marks their
-          shared baseline of <strong>{baselineSuccess}</strong>. The star marks the full MUSE peak at round 4.
-        </figcaption>
-      </figure>
-
-      <div class="results-support">
-        <div class="results-summary">
-          <table aria-describedby="results-trajectory-finding">
-            <caption>Peak vs. Final Success</caption>
-            <thead>
-              <tr>
-                <th scope="col">Configuration</th>
-                <th scope="col">Peak</th>
-                <th scope="col">Round 8</th>
-              </tr>
-            </thead>
-            <tbody>
-              {trajectorySummary.map(({ name, peak, final }) => (
-                <tr>
-                  <th scope="row">{name}</th>
-                  <td>{peak}</td>
-                  <td>{final}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <p id="results-trajectory-finding">
-            Full MUSE ties the parametric variant at peak. The joint variant leads in round 8.
-          </p>
-        </div>
-
-        <section class="results-gating" aria-labelledby="results-gating-title">
-          <h3 id="results-gating-title">Exploration Cost by Gating</h3>
-          <p class="results-gating-unit">Fresh rollouts over eight rounds</p>
-          <ul class="results-rollouts" aria-label="Total exploration rollouts by gating strategy">
-            {gatingRollouts.map(({ name, count, accent }) => (
-              <li class:list={['results-rollout', accent]}>
-                <span>{name}</span>
-                <span class="results-rollout-track" aria-hidden="true">
-                  <span style={`width: ${(100 * count / maxRollouts).toFixed(2)}%`}></span>
-                </span>
-                <strong>{rolloutFormat.format(count)}</strong>
-              </li>
-            ))}
-          </ul>
-          <p class="results-gating-note">
-            Metacognitive gating uses <strong>{rolloutReduction}% fewer rollouts</strong> than Always-on.
-          </p>
-        </section>
+    <section id="rq1" class="rq-section" aria-labelledby="rq1-title">
+      <header class="rq-header"><p class="rq-label">RQ1 <span>§ 6.2 · Overall Adaptivity</span></p>
+        <h3 id="rq1-title">How effectively does MUSE improve task performance through continuous evolution?</h3>
+      </header>
+      <div class="rq-metrics">
+        <div><span>Best SR</span><strong>30.35% → 54.76%</strong><small>Pre-evolution reference → MUSE</small></div>
+        <div><span>ΔSR</span><strong>+24.41 <em>pp</em></strong><small>Improvement over the pre-evolution reference</small></div>
+        <div><span>Avg. Steps</span><strong>20.66 → 16.91</strong><small>Across all evaluated tasks at the best-SR round</small></div>
       </div>
-    </div>
-
-    <section class="results-evidence" aria-labelledby="results-main-table-title">
-      <h3 id="results-main-table-title" class="results-evidence-heading">Overall Adaptivity</h3>
-      <ResultPaperTable
-        src="/assets/images/results/table-3-overall-adaptivity.png"
-        height={1272}
-        label="Table 3"
-        alt="Table 3. MUSE and five baselines on APPWorld with Qwen3.5-9B. MUSE attains 54.76% best task success, up 24.41 percentage points from the base model, and averages 16.91 interaction steps."
-      />
+      <ResultFigure asset="table-3-overall-adaptivity.svg" dense alt="Overall adaptivity of MUSE and baselines on APPWorld with Qwen3.5-9B." caption="Table 3 · Overall adaptivity on APPWorld with Qwen3.5-9B within 8 evolution rounds." />
     </section>
 
-    <section class="results-evidence" aria-labelledby="results-ablations-title">
-      <h3 id="results-ablations-title" class="results-evidence-heading">Ablation Studies</h3>
-      <div class="results-ablations">
-        {ablationTables.map(({ number, title, src, height, alt }, index) => (
-          <details name="results-ablations" open={index === 0}>
-            <summary>
-              <span>Table {number}</span>
-              <strong>{title}</strong>
-              <ChevronDown size={19} aria-hidden="true" />
-            </summary>
-            <ResultPaperTable {src} {height} {alt} label={`Table ${number}`} />
-          </details>
-        ))}
+    <section id="rq2" class="rq-section" aria-labelledby="rq2-title">
+      <header class="rq-header"><p class="rq-label">RQ2 <span>§ 6.3 · Component Contributions and Joint Adaptation</span></p>
+        <h3 id="rq2-title">How do individual and joint component updates contribute to adaptation?</h3>
+      </header>
+      <p class="rq-condition">Oracle tasks only · No synthetic tasks or metacognitive gating</p>
+      <div class="rq-findings">
+        <div><h4>Joint adaptation improves peak and final performance at 9B</h4><p>MUSE (Parametric) → MUSE (Joint): Best SR <strong>48.21% → 54.76%</strong>; Final SR <strong>47.61% → 51.19%</strong>.</p></div>
+        <div><h4>MUSE (Symbolic) achieves a larger improvement at 27B</h4><p>Combined symbolic adaptation gains <strong>6.55 pp at 9B</strong> and <strong>10.71 pp at 27B</strong>. At 9B, the peak improvement from toolset refinement is not sustained across rounds (Evo-AUC −2.64).</p></div>
+      </div>
+      <ResultFigure asset="table-5-joint-adaptation.svg" dense alt="Separate symbolic, parametric, and joint adaptation on oracle tasks with Qwen3.5-9B." caption="Table 5 · Separate and joint symbolic and parametric adaptation on oracle tasks." />
+      <details class="rq-details"><summary>Symbolic component contributions at 9B and 27B <span>Table 4</span></summary>
+        <ResultFigure asset="table-4-symbolic-components.svg" dense alt="Symbolic refinement comparisons across fixed Qwen3.5-9B and Qwen3.5-27B backbones." caption="Table 4 · Symbolic component contributions with fixed model weights over 8 evolution rounds." />
+      </details>
+    </section>
+
+    <section id="rq3" class="rq-section" aria-labelledby="rq3-title">
+      <header class="rq-header"><p class="rq-label">RQ3 <span>§ 6.4 · Supervision Effectiveness and Validity</span></p>
+        <h3 id="rq3-title">How effective and reliable is the constructed supplementary supervision?</h3>
+        <p>Parametric evolution with prefix-potential supervision improves task performance on oracle tasks.</p>
+      </header>
+      <div class="rq-findings">
+        <div><h4>Benefits of supplementary tasks depend on the component configuration</h4><p>With full oracle supervision, supplementary synthetic tasks raise MUSE (Parametric) Best SR from <strong>48.21% to 54.76%</strong>, but reduce MUSE (Joint) Best SR from <strong>54.76% to 52.38%</strong>.</p></div>
+        <div><h4>Supplementary tasks support evolution when oracle supervision is limited</h4><p>With 25% oracle task availability, supplementary synthetic tasks raise Best SR from <strong>45.83% to 47.61%</strong> for MUSE (Parametric), and to <strong>49.40%</strong> for MUSE (Joint).</p></div>
+      </div>
+      <ResultFigure asset="table-6-supervision.svg" dense alt="Task sources and prefix-potential supervision under full and 25 percent oracle availability, without metacognitive gating." caption="Table 6 · Task sources and prefix-potential supervision, without metacognitive gating. With 25% oracle tasks, MUSE (Joint) Final SR remains 45.23%." />
+      <div class="rq-audit">
+        <div><p class="eyebrow">Human audit · One complete MUSE run</p><h4>Interaction-grounded task synthesis supports task quality</h4><p><strong>36 / 36</strong> admitted tasks pass all three quality criteria. Overall validity is 53.85% among 39 assessable generated candidates (40 sampled).</p></div>
+        <div><p class="eyebrow">31 guided + 31 free executions</p><h4>Interaction-grounded outcome rewards</h4><p>Completion agreement is <strong>93.55% guided</strong> and <strong>80.65% free</strong>. Free-execution full-completion recall is 28.57%, alongside a 4.17% false-positive rate.</p></div>
+      </div>
+      <details class="rq-details"><summary>Human audits of synthetic task quality and outcome rewards <span>Tables 7–8</span></summary>
+        <ResultFigure asset="table-7-task-quality.svg" dense alt="Human task-quality audit: 39 assessable generated candidates and all 36 admitted tasks." caption="Table 7 · Overall validity requires goal clarity, environmental feasibility, and reference alignment to all pass." />
+        <ResultFigure asset="table-8-reward-reliability.svg" dense alt="Human audit of synthetic-task outcome rewards for 31 guided and 31 free executions." caption="Table 8 · Guided false-positive rate is undefined because all audited guided executions were judged complete." />
+      </details>
+      <details class="rq-details"><summary>Synthetic task coverage and capability matching <span>Appendix D.1</span></summary>
+        <p>36 admitted tasks · 4 additional applications · 35 multi-application tasks</p>
+        <div class="rq-plot-grid">
+          <ResultFigure asset="synthetic-task-coverage.svg" alt="Application coverage of synthetic tasks and oracle tasks." caption="Application coverage · Tasks can involve multiple applications." />
+          <ResultFigure asset="synthetic-application-composition.svg" alt="Number of applications per synthetic, oracle, and test task." caption="Application combinations · 35 of 36 synthetic tasks span multiple applications." />
+          <ResultFigure asset="synthetic-capability-matching.svg" alt="Paired guided and free execution rewards across 31 synthetic tasks." caption="Capability matching · Mean rewards: 0.978 guided versus 0.334 free, over 248 executions." />
+          <ResultFigure asset="synthetic-task-pool-adaptation.svg" alt="Cumulative admitted, active, and retired synthetic tasks across task-pool updates." caption="Pool adaptation · 36 tasks admitted, 26 active at the final update." />
+        </div>
+      </details>
+      <a class="rq-case-link" href="#case-supervision">Explore the self-supervision case study</a>
+    </section>
+
+    <section id="rq4" class="rq-section" aria-labelledby="rq4-title">
+      <header class="rq-header"><p class="rq-label">RQ4 <span>§ 6.5 · Metacognitive Gating and Evolutionary Efficiency</span></p>
+        <h3 id="rq4-title">How does metacognitive gating affect task performance and exploration rollout cost?</h3>
+      </header>
+      <div class="rq-metrics">
+        <div><span>Exploration Rollouts</span><strong>22,112</strong><small>Fresh rollouts versus 31,208 for Always-on</small></div>
+        <div><span>Reduction relative to Always-on</span><strong>29.15% <em>fewer rollouts</em></strong><small>Across 8 evolution rounds</small></div>
+        <div><span>Best SR</span><strong>54.76%</strong><small>Always-on: 52.38% · Random: 51.79%</small></div>
+      </div>
+      <p class="rq-condition">Supplementary supervision + model weight adaptation in every round · Random matches Metacognitive’s symbolic-component counts.</p>
+      <div class="rq-plot-grid">
+        <ResultFigure asset="gating-rollouts-per-round.svg" alt="Fresh exploration rollouts per round for Always-on, Random, and Metacognitive gating." caption="Figure 9(a) · Exploration rollouts per round." />
+        <ResultFigure asset="gating-best-observed-sr.svg" alt="Observed and best-so-far task success against cumulative exploration rollouts for three gating settings." caption="Figure 9(b) · Observed performance and peak attainment versus cumulative rollouts." />
+      </div>
+      <p class="rq-retention"><strong>Final SR</strong><span>Metacognitive <b>46.42%</b></span><span>Always-on <b>51.78%</b></span><span>Random <b>51.19%</b></span></p>
+      <details class="rq-details"><summary>Gating mechanisms: evolutionary performance and exploration cost <span>Table 9</span></summary>
+        <ResultFigure asset="table-9-gating.svg" dense alt="Gating comparison including best and final SR, Evo-AUC, and rollout totals of 31,208, 21,960, and 22,112." caption="Table 9 · Fresh trajectories collected for symbolic and model weight refinement over 8 rounds." />
+      </details>
+      <details id="gating-analysis" class="rq-details"><summary>Interaction evidence, capability diagnoses, and component selections <span>Figure 10</span></summary>
+        <ResultFigure asset="metacognitive-gating-case-study.svg" dense enlarge alt="Eight rounds of interaction evidence, capability diagnoses, and component selection in the full MUSE run." caption="Figure 10 · Recorded diagnoses and retrospective interpretations connect interaction evidence to selected updates." />
+      </details>
+    </section>
+
+    <section id="rq5" class="rq-section" aria-labelledby="rq5-title">
+      <header class="rq-header"><p class="rq-label">RQ5 <span>§ 6.6 · Continuous Evolution and Performance Stability</span></p>
+        <h3 id="rq5-title">How do performance and stability change across successive evolution rounds?</h3>
+        <p>Successive evolution rounds extend task-performance improvements beyond initial adaptation.</p>
+      </header>
+      <div class="rq-plot-grid">
+        <ResultFigure asset="continuous-evolution-oracle.svg" alt="Success-rate trajectories over eight rounds with oracle tasks only." caption="Figure 11(a) · Oracle tasks only. Joint adaptation stays between 51.19% and 54.76% from rounds 2–8." />
+        <ResultFigure asset="continuous-evolution-synthetic.svg" alt="Success-rate trajectories over eight rounds with oracle and supplementary synthetic tasks." caption="Figure 11(b) · Oracle + synthetic tasks. Full MUSE peaks at 54.76% and ends at 46.42%." />
+      </div>
+      <div class="rq-findings">
+        <div><h4>Similar peaks, different levels of performance retention</h4><p>With oracle and synthetic tasks, MUSE and MUSE (Parametric) both attain <strong>54.76%</strong> Best SR, with Final SR of <strong>46.42%</strong> and <strong>42.26%</strong>, respectively.</p></div>
+        <div><h4>Joint adaptation maintains elevated performance</h4><p>With oracle tasks, MUSE (Joint) maintains SR between <strong>51.19% and 54.76%</strong> across rounds 2–8, with <strong>20.28 Evo-AUC</strong>.</p></div>
       </div>
     </section>
 
-    <section id="gating-analysis" class="results-evidence" aria-labelledby="results-gating-analysis-title">
-      <h3 id="results-gating-analysis-title" class="results-evidence-heading">Metacognitive Gating Analysis</h3>
-      <div class="results-paper-figures">
-        <figure class="results-figure">
-          <a href={rolloutFigure} target="_blank" rel="noreferrer">
-            <img
-              src={rolloutFigure}
-              width="864"
-              height="516"
-              loading="lazy"
-              alt="Grouped bars comparing the fresh exploration rollouts of Always-on, Random, and Metacognitive gating in each of eight rounds."
-            />
-          </a>
-          <figcaption><strong>Figure 9(a).</strong> Exploration rollouts per round.</figcaption>
-        </figure>
-        <figure class="results-figure">
-          <a href={peakFigure} target="_blank" rel="noreferrer">
-            <img
-              src={peakFigure}
-              width="864"
-              height="516"
-              loading="lazy"
-              alt="Success rates against cumulative exploration rollouts for three gating settings. Points show observed performance, step lines show the best observed so far, and the star marks the earliest metacognitive peak."
-            />
-          </a>
-          <figcaption><strong>Figure 9(b).</strong> Observed performance and peak attainment.</figcaption>
-        </figure>
-      </div>
-
-      <figure class="results-figure results-case-study">
-        <h4>Eight-Round Gating Case Study</h4>
-        <div class="results-paper-viewport" role="region" aria-label="Figure 10" tabindex="0">
-          <a href={caseStudyFigure} target="_blank" rel="noreferrer">
-            <img
-              src={caseStudyFigure}
-              width="1096"
-              height="730"
-              loading="lazy"
-              alt="Eight rounds of interaction evidence, capability diagnoses, and selected updates in a full MUSE run. The lower matrix shows when experiences, principles, tools, and model weights are selected."
-            />
-          </a>
-        </div>
-        <figcaption>
-          <strong>Figure 10.</strong> Recorded capability diagnoses and retrospective interpretations
-          of interaction traces. Colored cells mark the components selected in each round.
-        </figcaption>
-      </figure>
+    <section id="result-cases" class="rq-section rq-cases" aria-labelledby="result-cases-title">
+      <header class="rq-header"><p class="rq-label">Case Studies <span>Appendix D.2–D.3</span></p>
+        <h3 id="result-cases-title">Evolution in action</h3>
+      </header>
+      {cases.map((item, index) => <details id={item.id} class="rq-case" open={index === 0}>
+        <summary><span class="rq-case-category">{item.label}</span><span><strong>{item.title}</strong><small>{item.summary}</small></span><span class="rq-expand" aria-hidden="true">+</span></summary>
+        <div class="rq-case-body"><p class="rq-case-finding">{item.finding}</p><ResultFigure asset={item.asset} dense enlarge={item.id !== 'case-prefix'} alt={item.alt} caption={item.ref} /></div>
+      </details>)}
     </section>
   </div>
 </section>
+<dialog class="result-lightbox" aria-labelledby="result-lightbox-title">
+  <div class="result-lightbox-header"><p id="result-lightbox-title"></p><button type="button" data-close-figure aria-label="Close enlarged figure">Close <span aria-hidden="true">×</span></button></div>
+  <div class="result-lightbox-scroll" tabindex="0" role="region" aria-label="Enlarged figure; scroll to inspect"><img alt="" /></div>
+</dialog>
+<script>
+  // Open a linked case before scrolling, including direct visits to its hash.
+  function revealResultTarget() {
+    const target = document.getElementById(window.location.hash.slice(1));
+    if (target instanceof HTMLDetailsElement && target.closest('#results')) target.open = true;
+  }
+  window.addEventListener('hashchange', revealResultTarget);
+  revealResultTarget();
+
+  const dialog = document.querySelector<HTMLDialogElement>('.result-lightbox');
+  const enlarged = dialog?.querySelector<HTMLImageElement>('img');
+  const title = dialog?.querySelector<HTMLElement>('#result-lightbox-title');
+  document.querySelectorAll<HTMLButtonElement>('[data-enlarge-figure]').forEach((button) => {
+    button.addEventListener('click', () => {
+      if (!dialog || !enlarged || !title) return;
+      enlarged.src = button.dataset.figureSrc ?? '';
+      enlarged.alt = button.dataset.figureAlt ?? '';
+      title.textContent = button.dataset.figureCaption ?? 'Figure detail';
+      dialog.showModal();
+      document.documentElement.classList.add('result-zoom-open');
+      dialog.querySelector('.result-lightbox-scroll')?.scrollTo(0, 0);
+    });
+  });
+  dialog?.querySelector('[data-close-figure]')?.addEventListener('click', () => dialog.close());
+  dialog?.addEventListener('close', () => document.documentElement.classList.remove('result-zoom-open'));
+  dialog?.addEventListener('click', (event) => {
+    if (event.target !== dialog) return;
+    const bounds = dialog.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+  });
+</script>
