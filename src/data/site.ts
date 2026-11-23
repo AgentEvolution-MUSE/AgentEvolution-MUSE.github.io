@@ -88,16 +88,16 @@ export const affiliations: Affiliation[] = [
 
 export const authors: Author[] = [
   { name: 'Zongru Wu', href: 'https://zrw00.github.io', affiliationIds: [1, 2] },
-  { name: 'Hongbo Qiu', affiliationIds: [4] },
+  { name: 'Hongbo Qiu', href: 'https://scholar.google.com/citations?hl=zh-CN&user=BjryUhAAAAAJ', affiliationIds: [4] },
   { name: 'Bobo Li', href: 'https://www.libobo.site', affiliationIds: [2] },
   { name: 'Hao Fei', href: 'https://haofei.vip', affiliationIds: [3] },
   { name: 'Tianjie Ju', href: 'https://jometeorie.github.io', affiliationIds: [2, 1] },
-  { name: 'Kelvin J. L. Koa', affiliationIds: [2] },
+  { name: 'Kelvin J. L. Koa', href: 'https://scholar.google.com/citations?user=0XSajFoAAAAJ&hl=en', affiliationIds: [2] },
   { name: 'Wynne Hsu', href: 'https://www.comp.nus.edu.sg/~whsu/', affiliationIds: [2] },
   { name: 'Mong Li Lee', href: 'https://www.comp.nus.edu.sg/~leeml/', affiliationIds: [2] },
   { name: 'Zhuosheng Zhang', href: 'https://bcmi.sjtu.edu.cn/home/zhangzs/', affiliationIds: [1], corresponding: true },
   { name: 'Gongshen Liu', href: 'https://www.cs.sjtu.edu.cn/jiaoshiml/liugongshen.html', affiliationIds: [1], corresponding: true },
-  { name: 'Michael Wooldridge', href: 'https://scholar.google.com/citations?user=JD8v9fkAAAAJ&hl=en', affiliationIds: [3] },
+  { name: 'Michael Wooldridge', href: 'https://www.cs.ox.ac.uk/people/michael.wooldridge/', affiliationIds: [3] },
   { name: 'Shengqiong Wu', href: 'https://sqwu.top', affiliationIds: [3], corresponding: true },
 ];
 
