@@ -25,7 +25,9 @@ import { affiliations, authors, resources, site } from '../data/site';
     <div class="authors" aria-label="Paper authors">
       {authors.map((author) => (
         <span class="author">
-          {author.name}<sup>{author.affiliationIds.join(',')}{author.corresponding ? '*' : ''}</sup>
+          {author.href ? (
+            <a class="author-link" href={author.href} target="_blank" rel="noopener noreferrer">{author.name}</a>
+          ) : author.name}<sup>{author.affiliationIds.join(',')}{author.corresponding ? '*' : ''}</sup>
         </span>
       ))}
     </div>
