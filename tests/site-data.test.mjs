@@ -15,7 +15,7 @@ import {
 test('publishes the finalized paper metadata', () => {
   assert.equal(site.name, 'MUSE');
   assert.equal(site.paperTitle, 'Metacognitive Unison Self-Evolution');
-  assert.equal(authors.length, 12);
+  assert.equal(authors.length, 13);
   assert.equal(affiliations.length, 4);
   assert.deepEqual(
     authors.map((author) => [author.name, author.affiliationIds]),
@@ -25,6 +25,7 @@ test('publishes the finalized paper metadata', () => {
       ['Bobo Li', [2]],
       ['Hao Fei', [3]],
       ['Tianjie Ju', [2, 1]],
+      ['Yi Ren', [3]],
       ['Kelvin J. L. Koa', [2]],
       ['Wynne Hsu', [2]],
       ['Mong Li Lee', [2]],

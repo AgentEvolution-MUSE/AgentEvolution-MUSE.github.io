@@ -9,7 +9,7 @@ test('builds the MUSE document metadata and landmarks', () => {
   assert.match(html, /<meta name="description" content="[^"]+"/);
   assert.match(
     html,
-    /<link rel="icon" type="image\/png" href="\/assets\/images\/branding\/MUSE_avatar\.png"/,
+    /<link rel="icon" type="image\/png" href="\/assets\/images\/branding\/muse-favicon-transparent\.png"/,
   );
   assert.match(html, /href="#main-content"/);
   assert.match(html, /<header[^>]*data-site-header/);

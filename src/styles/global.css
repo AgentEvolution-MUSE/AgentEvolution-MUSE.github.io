@@ -12,7 +12,6 @@
   --coral: #e97173;
   --focus: #a84f00;
   --content: 1180px;
-  --wide: 1400px;
   --narrow: 760px;
   --header-height: 66px;
   color-scheme: light;
@@ -131,14 +130,9 @@ button {
   transform: translateY(0);
 }
 
-.container,
-.container-wide {
+.container {
   width: min(calc(100% - 48px), var(--content));
   margin-inline: auto;
-}
-
-.container-wide {
-  width: min(calc(100% - 48px), var(--wide));
 }
 
 .section-band {
@@ -265,7 +259,7 @@ button {
   position: fixed;
   z-index: 30;
   top: 50%;
-  left: max(20px, calc((100vw - var(--wide)) / 2 - 132px));
+  left: max(20px, calc((100vw - var(--content)) / 2 - 132px));
   width: 124px;
   opacity: 0;
   pointer-events: none;
@@ -390,15 +384,8 @@ button {
   .section-rail-research-label { display: inline; }
   .section-rail-research a[data-active]::before { left: -9px; }
 }
-/* Leave a reading gutter for the index beside wide paper figures. */
-@media (min-width: 1280px) and (max-width: 1439px) {
-  .container-wide { width: min(calc(100% - 100px), var(--wide)); }
-}
-@media (min-width: 1440px) and (max-width: 1679px) {
-  .container-wide { width: min(calc(100% - 260px), var(--wide)); }
-}
 @media (min-width: 1680px) {
-  .section-rail { left: max(20px, calc((100vw - var(--wide)) / 2 - 132px)); width: 124px; }
+  .section-rail { left: max(20px, calc((100vw - var(--content)) / 2 - 132px)); width: 124px; }
   .section-rail .section-rail-research { margin-left: 19px; padding-left: 9px; }
   .section-rail-research a[data-active]::before { left: -11px; }
 }
@@ -3155,8 +3142,7 @@ figcaption {
     flex-basis: 38px;
   }
 
-  .container,
-  .container-wide {
+  .container {
     width: min(calc(100% - 32px), var(--content));
   }
 
