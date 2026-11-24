@@ -447,10 +447,14 @@ button {
 }
 
 .hero-deck {
-  max-width: 620px;
+  max-width: 760px;
   margin-bottom: 24px;
   color: #323943;
-  font-size: clamp(1rem, 1.7vw, 1.22rem);
+  font-family: 'Source Serif 4 Variable', Georgia, serif;
+  font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 .authors {
@@ -3366,7 +3370,7 @@ figcaption {
 
   .hero-deck {
     margin-bottom: 17px;
-    font-size: 0.88rem;
+    font-size: 1rem;
   }
 
   .authors {
