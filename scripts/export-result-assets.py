@@ -1,4 +1,4 @@
-"""Export figures and table crops from the November 22, 2026 paper revision.
+"""Export figures and table crops from the MUSE_Arxiv.pdf revision audited on November 24, 2026.
 
 Requires PyMuPDF. Table coordinates refer to the supplied 133-page PDF;
 review and adjust them before using a different paper revision.
@@ -31,8 +31,8 @@ TABLES = [
     ('table-6-supervision', 31, 128, 319),
     ('table-7-task-quality', 31, 372, 446),
     ('table-8-reward-reliability', 31, 522, 608),
-    ('table-9-gating', 32, 128, 216),
-    ('table-26-prefix-potential', 91, 103, 442),
+    ('table-9-gating', 33, 128, 216),
+    ('table-30-prefix-potential', 89, 103, 442),
 ]
 
 
@@ -56,6 +56,13 @@ def main():
             export(document[0], Path(figure).name.replace('_', '-') + '.svg')
 
     with fitz.open(args.paper) as paper:
+        # Figure 4 from the audited PDF, preserving its vector paths and glyphs.
+        with fitz.open() as diagram:
+            page = diagram.new_page(width=457, height=315)
+            page.show_pdf_page(page.rect, paper, 16, clip=fitz.Rect(69, 60, 526, 375))
+            (repo / 'public/assets/images/figures/architecture.svg').write_text(
+                page.get_svg_image(text_as_path=True)
+            )
         for name, page_number, top, bottom in TABLES:
             with fitz.open() as crop:
                 page = crop.new_page(width=462, height=bottom - top)

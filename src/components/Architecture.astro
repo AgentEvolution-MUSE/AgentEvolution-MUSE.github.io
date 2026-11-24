@@ -44,9 +44,9 @@ const math = {
     <p class="eyebrow">Coordinated Evolution</p>
     <h2 id="architecture-title" class="section-heading">System Architecture</h2>
     <p>
-      MUSE preserves the complete evolutionary topology: interaction evidence activates and
-      supervises coordinated optimization, while objectives and boundaries continuously govern
-      the resulting update.
+      MUSE connects evolutionary gating, supervision generation, and coordinated component
+      updates. Task performance guides evolution, while historical trajectory replay supports
+      capability retention.
     </p>
   </div>
 
@@ -123,8 +123,8 @@ const math = {
       </div>
       <h3>Explore, Validate &amp; Synthesize</h3>
       <p>
-        Transform empirically validated interactions into candidate tasks, reference
-        trajectories, evaluative feedback, and reward signals.
+        Supplement oracle supervision with validated synthetic tasks, reference-grounded
+        outcome rewards, and prefix-potential supervision for parametric refinement.
       </p>
     </article>
 
@@ -141,7 +141,7 @@ const math = {
           <strong aria-hidden="true" set:html={math.scope}></strong>
         </div>
         <h3>Admissible Components</h3>
-        <p>Parametric, symbolic, and operational components that may evolve.</p>
+        <p>Model weights, the experience bank, general operational principles, and the functional toolset.</p>
       </article>
 
       <div class="architecture-relation architecture-relation-scope" data-flow-link="scope-optimizer" aria-hidden="true">
@@ -187,7 +187,7 @@ const math = {
           <strong aria-hidden="true" set:html={math.objective}></strong>
         </div>
         <h3>Guide Progress</h3>
-        <p>Measure environmental fitness, task success, and operational efficiency.</p>
+        <p>Evaluate empirical task performance to guide component updates.</p>
       </article>
 
       <div class="architecture-relation architecture-relation-objective" data-flow-link="objective-optimizer" aria-hidden="true">
@@ -207,15 +207,15 @@ const math = {
           <span class="architecture-module-title"><ShieldCheck size={17} aria-hidden="true" />Boundary Constraint</span>
           <strong aria-hidden="true" set:html={math.boundary}></strong>
         </div>
-        <h3>Preserve Capabilities</h3>
-        <p>Enforce safety, alignment, and retention through task-specific replay.</p>
+        <h3>Support Capability Retention</h3>
+        <p>Reintroduce eligible historical trajectories during parametric refinement through task-specific replay.</p>
       </article>
     </div>
   </div>
 
   <div class="container architecture-detail-link">
     <a
-      href="/assets/images/figures/architecture.png"
+      href="/assets/images/figures/architecture.svg"
       target="_blank"
       rel="noreferrer"
       aria-label="Open the full MUSE technical architecture at full resolution"

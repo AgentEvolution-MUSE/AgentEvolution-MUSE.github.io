@@ -11,7 +11,7 @@ const cases = [
     summary: 'Retrieve, filter, summarize, and email: guided versus free execution.',
     finding: 'With reference guidance, the agent retrieves all 58 transactions above $50 and emails the summary (reward 1.00). Free execution uses an incomplete set of 50 records, includes a transaction of exactly $50, and never sends the email (reward 0.20).',
     alt: 'Guided and free executions across Venmo, Simple Note, and Gmail, with assigned outcome rewards of 1.00 and 0.20.' },
-  { id: 'case-prefix', label: 'Step-level feedback', title: 'Learning from an error and its repair', ref: 'Appendix D.2 · Table 26', asset: 'table-26-prefix-potential.svg' as const,
+  { id: 'case-prefix', label: 'Step-level feedback', title: 'Learning from an error and its repair', ref: 'Appendix D.2 · Table 30', asset: 'table-30-prefix-potential.svg' as const,
     summary: 'Step-level rewards distinguish API errors from successful corrections.',
     finding: 'A login call using email instead of username reduces potential from 0.514 to 0.313 (step reward −0.495). Inspecting the API and correcting the parameter receive positive rewards; the execution ultimately deletes the 10 matching text messages and 12 voice messages.',
     alt: 'Fifteen-step phone-message deletion trace, with prefix potentials and positive or negative step rewards.' },

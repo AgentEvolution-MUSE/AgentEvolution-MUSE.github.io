@@ -41,7 +41,7 @@ export const site = {
   name: 'MUSE',
   paperTitle: 'Metacognitive Unison Self-Evolution',
   description:
-    'MUSE is an integrative Stage-4 prototype for metacognitive, interaction-grounded, and holistically coordinated agent evolution.',
+    'MUSE is a prototype targeting Stage-4 capabilities through metacognitive gating, interaction-grounded self-supervision, and coordinated component evolution.',
   organization: 'AgentEvolution-MUSE',
 };
 
@@ -148,7 +148,7 @@ export const evolutionStrategy: EvolutionStrategyComponent[] = [
     symbol: 'M',
     math: '\\mathcal{M}',
     name: 'Evolutionary Optimizer',
-    description: 'Performs component refinement and cross-component synchronization.',
+    description: 'Refines selected components using the available supervision.',
     example:
       'Using validated supervision, the optimizer refines the selected symbolic assets and synchronizes them with the model policy.',
     accent: 'orange',
@@ -175,7 +175,7 @@ export const evolutionStrategy: EvolutionStrategyComponent[] = [
     symbol: 'B',
     math: '\\mathcal{B}',
     name: 'Boundary Constraint',
-    description: 'Preserves validated legacy capabilities while the agent changes.',
+    description: 'Specifies deployment requirements such as safety, alignment, and capability retention.',
     example:
       'Previously supported booking and notification tasks are replayed to reject updates that introduce regressions.',
     accent: 'blue',
@@ -187,7 +187,7 @@ export const stageComparisons: StageComparison[] = [
     dimension: 'Evolutionary Autonomy',
     limitation:
       'Evolution remains primarily task-, failure-, schedule-, or feedback-conditioned rather than governed across the deployment lifecycle.',
-    mechanism: 'Metacognitive Evolutionary Gating',
+    mechanism: 'Metacognitive Gating',
     response:
       'Monitors longitudinal capability evidence, determines when evolution is needed, diagnoses capability gaps, and routes optimization demands.',
     accent: 'blue',
@@ -205,9 +205,9 @@ export const stageComparisons: StageComparison[] = [
     dimension: 'Optimization Scope and Coordination',
     limitation:
       'Parametric, symbolic, and operational components are optimized selectively or with limited system-wide coordination.',
-    mechanism: 'Holistic Unison Evolution',
+    mechanism: 'Coordinated Component Evolution',
     response:
-      'Combines component-specific refinement with cross-component knowledge circulation and synchronization.',
+      'Combines inner-component refinement with inter-component synchronization across the parametric core and symbolic assets.',
     accent: 'orange',
   },
 ];
@@ -215,20 +215,20 @@ export const stageComparisons: StageComparison[] = [
 export const mechanisms = [
   {
     index: '01',
-    title: 'Metacognitive Evolutionary Gating',
-    text: 'MUSE continuously assesses longitudinal capability evidence, activates evolution only when needed, diagnoses capability gaps, and routes optimization toward the components that require change.',
+    title: 'Metacognitive Gating',
+    text: 'MUSE monitors recent task performance and interaction accumulation to determine when to evolve, diagnoses capability gaps, and routes optimization demands.',
     accent: 'blue',
   },
   {
     index: '02',
     title: 'Interaction-Grounded Self-Supervision',
-    text: 'Validated environmental interactions become supplementary tasks, rewards, and reference trajectories, reducing reliance on external labels and ungrounded self-generated supervision.',
+    text: 'MUSE constructs supplementary tasks and rewards from environmental interaction evidence to complement available oracle supervision during evolution.',
     accent: 'green',
   },
   {
     index: '03',
-    title: 'Holistic Unison Evolution',
-    text: 'The parametric core and symbolic assets evolve through coordinated refinement, distillation, allocation, retirement, and cross-component synchronization.',
+    title: 'Coordinated Component Evolution',
+    text: 'MUSE combines inner-component refinement with inter-component synchronization across the parametric core and symbolic assets.',
     accent: 'orange',
   },
 ];

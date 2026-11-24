@@ -42,7 +42,7 @@ test('renders the complete research narrative', () => {
   for (const heading of [
     'Metacognitive Unison Self-Evolution',
     'Why Should Agents Evolve?',
-    'A Unified Formulation of Agent Evolution',
+    'A Unified Formalization of Agent Evolution',
     'From Stage 3 to Stage 4',
     'Three Mechanisms for Stage-4 Evolution',
     'System Architecture',
@@ -53,7 +53,7 @@ test('renders the complete research narrative', () => {
   }
   assert.match(html, /The Five-Stage Evolutionary Spectrum/);
   assert.match(html, /Representative Systems Across the Spectrum/);
-  assert.match(html, /architecture\.png/);
+  assert.match(html, /architecture\.svg/);
 });
 
 test('organizes the results around the five paper research questions in order', () => {
@@ -79,7 +79,7 @@ test('provides the four appendix cases with accurate evidence and accessible dis
   for (const id of ['case-supervision', 'case-prefix', 'case-experience', 'case-tool']) {
     assert.match(html, new RegExp(`<details id="${id}"[^>]*>[\\s\\S]*?<summary>`));
   }
-  for (const asset of ['synthetic-task-case-study.svg', 'table-26-prefix-potential.svg', 'exp-principle-case-study.svg', 'tool-invocation-case-study.svg']) {
+  for (const asset of ['synthetic-task-case-study.svg', 'table-30-prefix-potential.svg', 'exp-principle-case-study.svg', 'tool-invocation-case-study.svg']) {
     assert.ok(html.includes(`src="/assets/images/results/${asset}"`));
   }
   assert.ok(html.includes('reward 0.20'));
@@ -175,7 +175,7 @@ test('serves paper figures from the organized asset directory', () => {
   assert.match(spectrum, /href="\/assets\/images\/figures\/Spectrum-2\.svg"/);
   assert.match(spectrum, /src="\/assets\/images\/figures\/Spectrum-2\.svg"/);
   assert.match(html, /src="\/assets\/images\/figures\/spectrum-representative-works\.svg"/);
-  assert.match(html, /\/assets\/images\/figures\/architecture\.png/);
+  assert.match(html, /\/assets\/images\/figures\/architecture\.svg/);
   assert.doesNotMatch(html, /(?:src|href)="\/images\//);
 });
 
@@ -183,7 +183,7 @@ test('explains cumulative stage requirements and positions MUSE as a prototype',
   assert.match(html, /optimization scope and coordination \(SC\)/);
   assert.match(html, /Each stage builds on the requirements of\s+earlier stages/);
   assert.match(html, /data-representative-landscape/);
-  assert.match(html, /<strong>Figure 2\.<\/strong>/);
+  assert.match(html, /<strong>Figure 3\.<\/strong>/);
   assert.match(html, /MUSE is a prototype targeting Stage-4 capabilities/);
 });
 
