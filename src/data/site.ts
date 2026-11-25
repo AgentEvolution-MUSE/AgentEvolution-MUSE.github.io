@@ -89,9 +89,9 @@ export const affiliations: Affiliation[] = [
 export const authors: Author[] = [
   { name: 'Zongru Wu', href: 'https://zrw00.github.io', affiliationIds: [1, 2] },
   { name: 'Hongbo Qiu', href: 'https://scholar.google.com/citations?hl=zh-CN&user=BjryUhAAAAAJ', affiliationIds: [4] },
+  { name: 'Yi Ren', href: 'https://joshua-ren.github.io', affiliationIds: [3] },
   { name: 'Bobo Li', href: 'https://www.libobo.site', affiliationIds: [2] },
   { name: 'Tianjie Ju', href: 'https://jometeorie.github.io', affiliationIds: [2, 1] },
-  { name: 'Yi Ren', href: 'https://joshua-ren.github.io', affiliationIds: [3] },
   { name: 'Kelvin J. L. Koa', href: 'https://scholar.google.com/citations?user=0XSajFoAAAAJ&hl=en', affiliationIds: [2] },
   { name: 'Wynne Hsu', href: 'https://www.comp.nus.edu.sg/~whsu/', affiliationIds: [2] },
   { name: 'Mong Li Lee', href: 'https://www.comp.nus.edu.sg/~leeml/', affiliationIds: [2] },

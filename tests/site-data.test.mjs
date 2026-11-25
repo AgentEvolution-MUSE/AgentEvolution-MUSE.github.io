@@ -22,9 +22,9 @@ test('publishes the finalized paper metadata', () => {
     [
       ['Zongru Wu', [1, 2]],
       ['Hongbo Qiu', [4]],
+      ['Yi Ren', [3]],
       ['Bobo Li', [2]],
       ['Tianjie Ju', [2, 1]],
-      ['Yi Ren', [3]],
       ['Kelvin J. L. Koa', [2]],
       ['Wynne Hsu', [2]],
       ['Mong Li Lee', [2]],
