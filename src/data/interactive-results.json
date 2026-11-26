@@ -1,0 +1,167 @@
+{
+  "reference": 30.35,
+  "table": [
+    {
+      "id": "base",
+      "name": "Base Model",
+      "symbolic": false,
+      "parametric": false,
+      "metrics": {
+        "best": 30.35,
+        "gain": null,
+        "final": 30.35,
+        "auc": 0.0,
+        "steps": 20.66
+      }
+    },
+    {
+      "id": "symbolic",
+      "name": "MUSE (Symbolic)",
+      "symbolic": true,
+      "parametric": false,
+      "metrics": {
+        "best": 36.9,
+        "gain": 6.55,
+        "final": 33.33,
+        "auc": 1.97,
+        "steps": 19.69
+      }
+    },
+    {
+      "id": "grpo",
+      "name": "Vanilla GRPO",
+      "symbolic": false,
+      "parametric": true,
+      "metrics": {
+        "best": 44.64,
+        "gain": 14.29,
+        "final": 44.04,
+        "auc": 10.83,
+        "steps": 18.83
+      }
+    },
+    {
+      "id": "parametric",
+      "name": "MUSE (Parametric)",
+      "symbolic": false,
+      "parametric": true,
+      "metrics": {
+        "best": 48.21,
+        "gain": 17.86,
+        "final": 47.61,
+        "auc": 12.91,
+        "steps": 17.48
+      }
+    },
+    {
+      "id": "joint",
+      "name": "MUSE (Joint)",
+      "symbolic": true,
+      "parametric": true,
+      "metrics": {
+        "best": 54.76,
+        "gain": 24.41,
+        "final": 51.19,
+        "auc": 20.28,
+        "steps": 15.2
+      }
+    }
+  ],
+  "curves": {
+    "oracle": [
+      {
+        "id": "symbolic",
+        "values": [
+          29.76,
+          32.14,
+          29.16,
+          36.9,
+          26.19,
+          36.9,
+          35.71,
+          33.33
+        ]
+      },
+      {
+        "id": "grpo",
+        "values": [
+          36.9,
+          38.09,
+          44.04,
+          42.85,
+          44.04,
+          41.66,
+          44.64,
+          44.04
+        ]
+      },
+      {
+        "id": "parametric",
+        "values": [
+          38.09,
+          44.64,
+          47.61,
+          41.66,
+          48.21,
+          45.23,
+          41.66,
+          47.61
+        ]
+      },
+      {
+        "id": "joint",
+        "values": [
+          44.64,
+          51.19,
+          52.97,
+          52.97,
+          52.97,
+          54.76,
+          54.76,
+          51.19
+        ]
+      }
+    ],
+    "synthetic": [
+      {
+        "id": "parametric",
+        "values": [
+          34.52,
+          46.42,
+          47.02,
+          40.47,
+          50.59,
+          54.76,
+          46.42,
+          42.26
+        ]
+      },
+      {
+        "id": "joint",
+        "values": [
+          39.88,
+          50.59,
+          44.64,
+          44.64,
+          50.0,
+          52.38,
+          50.0,
+          51.78
+        ]
+      },
+      {
+        "id": "muse",
+        "values": [
+          38.69,
+          45.23,
+          41.66,
+          54.76,
+          54.16,
+          47.61,
+          50.0,
+          46.42
+        ]
+      }
+    ]
+  }
+}

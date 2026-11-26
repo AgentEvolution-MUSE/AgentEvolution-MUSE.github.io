@@ -1,0 +1,26 @@
+[
+  {
+    "file": "figs/experiments/synthetic_task_coverage.pdf",
+    "sha256": "12671803a2afb31e6c1face6ccef4eef963c3d0b056497404ec87036608fba52"
+  },
+  {
+    "file": "figs/experiments/synthetic_application_composition.pdf",
+    "sha256": "d51466e7c79cc9a9014430c4600bb240a316935404bff75a26bd31ec955312de"
+  },
+  {
+    "file": "figs/experiments/synthetic_task_pool_adaptation.pdf",
+    "sha256": "102dc1374e10cdf2b8040f7a1dc16790b998fc050aa02b02cec657d705f6cc87"
+  },
+  {
+    "file": "figs/experiments/synthetic_capability_matching.pdf",
+    "sha256": "5db1a0e1c91a912ed67af15d722592891988f26a21c6df58a90cb0f49e23d3c1"
+  },
+  {
+    "file": "figs/experiments/gating_rollouts_per_round.pdf",
+    "sha256": "be1e87b820f075adfaa3b05c9ac2dc0d28400913df9d8888986682df72e7019e"
+  },
+  {
+    "file": "figs/experiments/gating_best_observed_sr.pdf",
+    "sha256": "8aa972514b794432f43da24c403cc778d2357967bc18be725d5d6df4f39dfe8c"
+  }
+]

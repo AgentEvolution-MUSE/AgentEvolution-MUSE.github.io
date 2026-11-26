@@ -1,0 +1,490 @@
+{
+  "ELIZA": {
+    "bibKey": "weizenbaum1983eliza",
+    "title": "ELIZA—a computer program for the study of natural language communication between man and machine",
+    "year": 1983,
+    "href": "https://doi.org/10.1145/357980.357991",
+    "venue": "CACM",
+    "pictogram": "MessagesSquare",
+    "summary": "Pattern-matching dialogue with human-authored scripts.",
+    "organization": "MIT"
+  },
+  "PARRY": {
+    "bibKey": "colby1971artificial",
+    "title": "Artificial paranoia",
+    "year": 1971,
+    "href": "https://doi.org/10.1016/0004-3702(71)90002-6",
+    "venue": "Artificial Intelligence",
+    "pictogram": "MessageCircle",
+    "summary": "A conversational simulation of paranoid reasoning.",
+    "organization": "Stanford"
+  },
+  "SHRDLU": {
+    "bibKey": "winograd1972understanding",
+    "title": "Understanding natural language",
+    "year": 1972,
+    "href": "https://doi.org/10.1016/0010-0285(72)90002-3",
+    "venue": "Cognitive Psychology",
+    "pictogram": "Blocks",
+    "summary": "Language understanding and planning in a blocks world.",
+    "organization": "MIT"
+  },
+  "MYCIN": {
+    "bibKey": "shortliffe2012computer",
+    "title": "Computer-based medical consultations: MYCIN",
+    "year": 1976,
+    "href": "https://www.sciencedirect.com/book/monograph/9780444001795/computer-based-medical-consultations-mycin",
+    "venue": "Elsevier",
+    "pictogram": "Stethoscope",
+    "summary": "Expert rules for infectious-disease consultations.",
+    "organization": "Stanford",
+    "publicationNote": "Original edition (1976); the manuscript cites the 2012 reprint."
+  },
+  "ALICE": {
+    "bibKey": "wallace2007anatomy",
+    "title": "The anatomy of ALICE",
+    "year": 2007,
+    "href": "https://link.springer.com/chapter/10.1007/978-1-4020-6710-5_13",
+    "venue": "Springer",
+    "pictogram": "Bot",
+    "summary": "AIML-based conversational patterns and responses.",
+    "organization": "A.L.I.C.E. Foundation",
+    "publicationNote": "First published online in 2007; Springer’s book citation uses 2009."
+  },
+  "XCON": {
+    "bibKey": "barker1989expert",
+    "title": "Expert systems for configuration at Digital: XCON and beyond",
+    "year": 1989,
+    "href": "https://doi.org/10.1145/62065.62067",
+    "venue": "CACM",
+    "pictogram": "Settings",
+    "summary": "Rule-based configuration of computer systems.",
+    "organization": "Digital Equipment Corp."
+  },
+  "INTERNIST-I": {
+    "bibKey": "miller1985internist",
+    "title": "Internist-I, an experimental computer-based diagnostic consultant for general internal medicine",
+    "year": 1985,
+    "href": "https://link.springer.com/chapter/10.1007/978-1-4612-5108-8_8",
+    "venue": "Springer",
+    "pictogram": "Activity",
+    "summary": "Knowledge-based diagnosis in internal medicine.",
+    "organization": "University of Pittsburgh"
+  },
+  "MemGPT": {
+    "bibKey": "packer2023memgpt",
+    "title": "MemGPT: Towards LLMs as Operating Systems",
+    "year": 2023,
+    "href": "https://arxiv.org/abs/2310.08560",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/memgpt.png",
+    "organization": "UC Berkeley"
+  },
+  "MemoryBank": {
+    "bibKey": "zhong2024memorybank",
+    "title": "Memorybank: Enhancing large language models with long-term memory",
+    "year": 2024,
+    "href": "https://ojs.aaai.org/index.php/AAAI/article/view/29946",
+    "venue": "AAAI",
+    "icon": "/assets/images/works/memorybank.png",
+    "organization": "Sun Yat-sen University"
+  },
+  "Generative Agents": {
+    "bibKey": "park2023generative",
+    "title": "Generative Agents: Interactive Simulacra of Human Behavior",
+    "year": 2023,
+    "href": "https://doi.org/10.1145/3586183.3606763",
+    "venue": "UIST",
+    "icon": "/assets/images/works/generative-agents.png",
+    "organization": "Stanford · Google"
+  },
+  "MemPrompt": {
+    "bibKey": "madaan2022memory",
+    "title": "Memory-assisted prompt editing to improve GPT-3 after deployment",
+    "year": 2022,
+    "href": "https://aclanthology.org/2022.emnlp-main.183/",
+    "venue": "EMNLP",
+    "icon": "/assets/images/works/memprompt.png",
+    "organization": "CMU · AllenAI"
+  },
+  "ChatDB": {
+    "bibKey": "hu2023chatdb",
+    "title": "ChatDB: Augmenting LLMs with Databases as Their Symbolic Memory",
+    "year": 2023,
+    "href": "https://arxiv.org/abs/2306.03901",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/chatdb.png",
+    "organization": "Tsinghua"
+  },
+  "Mem0": {
+    "bibKey": "chhikara2025mem0",
+    "title": "Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory",
+    "year": 2025,
+    "href": "https://arxiv.org/abs/2504.19413",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/mem0.png",
+    "organization": "Mem0"
+  },
+  "MemoryOS": {
+    "bibKey": "kang2025memory",
+    "title": "Memory os of ai agent",
+    "year": 2025,
+    "href": "https://aclanthology.org/2025.emnlp-main.1318/",
+    "venue": "EMNLP",
+    "icon": "/assets/images/works/memoryos.png",
+    "organization": "BUPT · Tencent"
+  },
+  "AnnaAgent": {
+    "bibKey": "wang2025annaagent",
+    "title": "AnnaAgent: Dynamic evolution agent system with multi-session memory for realistic seeker simulation",
+    "year": 2025,
+    "href": "https://aclanthology.org/2025.findings-acl.1192/",
+    "venue": "ACL Findings",
+    "organization": "Northeastern University (China)",
+    "icon": "/assets/images/works/neu-china.svg"
+  },
+  "A-Mem": {
+    "bibKey": "xu2025amem",
+    "title": "A-Mem: Agentic Memory for LLM Agents",
+    "year": 2025,
+    "href": "https://openreview.net/forum?id=FiM0M8gcct",
+    "venue": "NeurIPS",
+    "icon": "/assets/images/works/a-mem.png",
+    "organization": "Rutgers"
+  },
+  "Evo-Memory": {
+    "bibKey": "wei2025evo",
+    "title": "Evo-Memory: Benchmarking LLM Agent Test-time Learning with Self-Evolving Memory",
+    "year": 2025,
+    "href": "https://arxiv.org/abs/2511.20857",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/evo-memory.svg",
+    "organization": "Google DeepMind · UIUC"
+  },
+  "AutoFlow": {
+    "bibKey": "li2024autoflow",
+    "title": "AutoFlow: Automated Workflow Generation for Large Language Model Agents",
+    "year": 2024,
+    "href": "https://arxiv.org/abs/2407.12821",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/autoflow.png",
+    "organization": "Rutgers"
+  },
+  "Puppeteer": {
+    "bibKey": "dang2025multiagent",
+    "title": "Multi-Agent Collaboration via Evolving Orchestration",
+    "year": 2025,
+    "href": "https://openreview.net/forum?id=L0xZPXT3le",
+    "venue": "NeurIPS",
+    "icon": "/assets/images/works/puppeteer.png",
+    "organization": "Tsinghua"
+  },
+  "Skill-SP": {
+    "bibKey": "huang2026skillsp",
+    "title": "Skill Self-Play: Pushing the Frontier of LLM Capability with Co-Evolving Skills",
+    "year": 2026,
+    "href": "https://arxiv.org/abs/2607.22529",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/skill-sp.png",
+    "organization": "Alibaba Qwen"
+  },
+  "MA-Evolve": {
+    "bibKey": "chen2025multi",
+    "title": "Multi-Agent Evolve: LLM Self-Improve through Co-evolution",
+    "year": 2025,
+    "href": "https://arxiv.org/abs/2510.23595",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/ma-evolve.png",
+    "organization": "UIUC"
+  },
+  "SPICE": {
+    "bibKey": "liu2025spice",
+    "title": "SPICE: Self-Play In Corpus Environments Improves Reasoning",
+    "year": 2025,
+    "href": "https://arxiv.org/abs/2510.24684",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/spice.png",
+    "organization": "Meta FAIR"
+  },
+  "AFLOW": {
+    "bibKey": "zhang2025aflow",
+    "title": "AFlow: Automating Agentic Workflow Generation",
+    "year": 2025,
+    "href": "https://openreview.net/forum?id=z5uVAKwmjf",
+    "venue": "ICLR",
+    "icon": "/assets/images/works/aflow.png",
+    "organization": "DeepWisdom · HKUST (Guangzhou)"
+  },
+  "SCA": {
+    "bibKey": "zhou2025selfchallenging",
+    "title": "Self-Challenging Language Model Agents",
+    "year": 2025,
+    "href": "https://openreview.net/forum?id=9yusqX9DpR",
+    "venue": "NeurIPS",
+    "icon": "/assets/images/works/sca.png",
+    "organization": "UC Berkeley · Meta FAIR"
+  },
+  "ALMA": {
+    "bibKey": "xiong2026learning",
+    "title": "Learning to Continually Learn via Meta-learning Agentic Memory Designs",
+    "year": 2026,
+    "href": "https://arxiv.org/abs/2602.07755",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/alma.png",
+    "organization": "UBC"
+  },
+  "SkillProx": {
+    "bibKey": "zheng2026skillprox",
+    "title": "SkillProx: Self-Evolving Agent Skills via Proximal Textual Gradient Descent",
+    "year": 2026,
+    "href": "https://arxiv.org/abs/2608.07449",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/skillprox.png",
+    "organization": "HKUST"
+  },
+  "SIA": {
+    "bibKey": "hebbar2026sia",
+    "title": "SIA: Self Improving AI with Harness & Weight Updates",
+    "year": 2026,
+    "href": "https://arxiv.org/abs/2605.27276",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/sia.png",
+    "organization": "Hexo Labs · Oxford"
+  },
+  "CoMAS": {
+    "bibKey": "xue2025comas",
+    "title": "CoMAS: Co-Evolving Multi-Agent Systems via Interaction Rewards",
+    "year": 2025,
+    "href": "https://arxiv.org/abs/2510.08529",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/comas.png",
+    "organization": "CUHK"
+  },
+  "SELF": {
+    "bibKey": "lu2023self",
+    "title": "SELF: Self-Evolution with Language Feedback",
+    "year": 2023,
+    "href": "https://arxiv.org/abs/2310.00533",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/self.png",
+    "organization": "HKU · Huawei"
+  },
+  "SAD": {
+    "bibKey": "liu2025structured",
+    "title": "Structured Agent Distillation for Large Language Model",
+    "year": 2025,
+    "href": "https://arxiv.org/abs/2505.13820",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/sad.png",
+    "organization": "CMU",
+    "publicationNote": "The manuscript cites the 2025 preprint; later revisions extend the title to “Large Language Model Agents”."
+  },
+  "ADA": {
+    "bibKey": "su2026learning",
+    "title": "Learning Adaptive LLM Decoding",
+    "year": 2026,
+    "href": "https://arxiv.org/abs/2603.09065",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/ada.png",
+    "organization": "Harvard · Amazon"
+  },
+  "EvoAgent": {
+    "bibKey": "yuan2025evoagent",
+    "title": "Evoagent: Towards automatic multi-agent generation via evolutionary algorithms",
+    "year": 2025,
+    "href": "https://aclanthology.org/2025.naacl-long.315/",
+    "venue": "NAACL",
+    "icon": "/assets/images/works/evoagent.png",
+    "organization": "Fudan · Microsoft"
+  },
+  "Sophia": {
+    "bibKey": "sun2025sophia",
+    "title": "Sophia: A Persistent Agent Framework of Artificial Life",
+    "year": 2025,
+    "href": "https://arxiv.org/abs/2512.18202",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/sophia.png",
+    "organization": "Westlake University"
+  },
+  "EvoTest": {
+    "bibKey": "he2025evotest",
+    "title": "EvoTest: Evolutionary Test-Time Learning for Self-Improving Agentic Systems",
+    "year": 2025,
+    "href": "https://arxiv.org/abs/2510.13220",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/evotest.png",
+    "organization": "NUS · Microsoft"
+  },
+  "SCoRe": {
+    "bibKey": "kumar2025training",
+    "title": "Training Language Models to Self-Correct via Reinforcement Learning",
+    "year": 2025,
+    "href": "https://openreview.net/forum?id=CjwERcAU7w",
+    "venue": "ICLR",
+    "icon": "/assets/images/works/score.svg",
+    "organization": "Google DeepMind"
+  },
+  "ScoreFlow": {
+    "bibKey": "wang2025scoreflow",
+    "title": "ScoreFlow: Mastering LLM Agent Workflows via Score-based Preference Optimization",
+    "year": 2025,
+    "href": "https://arxiv.org/abs/2502.04306",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/scoreflow.png",
+    "organization": "UChicago · Princeton · Oxford"
+  },
+  "COVE": {
+    "bibKey": "ji2026learning",
+    "title": "Learning What to Remember and What to Internalize in LLM Self-Evolution via Adaptive Memory-Parameter Coordination",
+    "year": 2026,
+    "href": "https://arxiv.org/abs/2608.01234",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/cove.svg",
+    "organization": "USTC"
+  },
+  "OpenSkill": {
+    "bibKey": "yan2026openskill",
+    "title": "OpenSkill: Open-World Self-Evolution for LLM Agents",
+    "year": 2026,
+    "href": "https://arxiv.org/abs/2606.06741",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/openskill.svg",
+    "organization": "Lehigh University"
+  },
+  "Agent0": {
+    "bibKey": "xia2025agent0",
+    "title": "Agent0: Unleashing Self-Evolving Agents from Zero Data via Tool-Integrated Reasoning",
+    "year": 2025,
+    "href": "https://arxiv.org/abs/2511.16043",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/agent0.png",
+    "organization": "UNC-Chapel Hill"
+  },
+  "Voyager": {
+    "bibKey": "wang2024voyager",
+    "title": "Voyager: An Open-Ended Embodied Agent with Large Language Models",
+    "year": 2024,
+    "href": "https://openreview.net/forum?id=ehfRiF0R3a",
+    "venue": "TMLR",
+    "icon": "/assets/images/works/voyager.png",
+    "organization": "NVIDIA"
+  },
+  "MemEvolve": {
+    "bibKey": "zhang2025memevolve",
+    "title": "MemEvolve: Meta-Evolution of Agent Memory Systems",
+    "year": 2025,
+    "href": "https://arxiv.org/abs/2512.18746",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/memevolve.png",
+    "organization": "OPPO · LV-NUS Lab"
+  },
+  "AgentEvolver": {
+    "bibKey": "zhai2025agentevolver",
+    "title": "AgentEvolver: Towards Efficient Self-Evolving Agent System",
+    "year": 2025,
+    "href": "https://arxiv.org/abs/2511.10395",
+    "venue": "arXiv",
+    "organization": "Alibaba Tongyi Lab",
+    "pictogram": "Bot"
+  },
+  "GiGPO": {
+    "bibKey": "feng2025groupingroup",
+    "title": "Group-in-Group Policy Optimization for LLM Agent Training",
+    "year": 2025,
+    "href": "https://openreview.net/forum?id=QXEhBMNrCW",
+    "venue": "NeurIPS",
+    "icon": "/assets/images/works/gigpo.png",
+    "organization": "NTU · Skywork AI"
+  },
+  "SIOP": {
+    "bibKey": "hu2026self",
+    "title": "Self-Induced Outcome Potential: Turn-Level Credit Assignment for Agents without Verifiers",
+    "year": 2026,
+    "href": "https://arxiv.org/abs/2605.04984",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/siop.png",
+    "organization": "CityU Hong Kong"
+  },
+  "AgentHPO": {
+    "bibKey": "liu2025agenthpo",
+    "title": "AgentHPO: Large Language Model Agent for Hyper-Parameter Optimization",
+    "year": 2025,
+    "href": "https://proceedings.mlr.press/v280/liu25c.html",
+    "venue": "CPAL",
+    "icon": "/assets/images/works/agenthpo.png",
+    "organization": "HKUST (Guangzhou) · Tsinghua"
+  },
+  "Creator": {
+    "bibKey": "qian2023creator",
+    "title": "Creator: Tool creation for disentangling abstract and concrete reasoning of large language models",
+    "year": 2023,
+    "href": "https://aclanthology.org/2023.findings-emnlp.462/",
+    "venue": "EMNLP Findings",
+    "icon": "/assets/images/works/creator.png",
+    "organization": "Tsinghua · UIUC"
+  },
+  "ToolGen": {
+    "bibKey": "wang2025toolgen",
+    "title": "ToolGen: Unified Tool Retrieval and Calling via Generation",
+    "year": 2025,
+    "href": "https://openreview.net/forum?id=XLMAMmowdY",
+    "venue": "ICLR",
+    "icon": "/assets/images/works/toolgen.png",
+    "organization": "LibrAI · MBZUAI"
+  },
+  "SkillMentor": {
+    "bibKey": "bao2026skillmentor",
+    "title": "SkillMentor: LLM Agent Self-Evolution via Learning Blind-Spot Diagnosis",
+    "year": 2026,
+    "href": "https://arxiv.org/abs/2607.27360",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/skillmentor.svg",
+    "organization": "PolyU · Tencent"
+  },
+  "HarnessBank": {
+    "bibKey": "luo2026self",
+    "title": "HarnessBank: Semantic Gene-Bank Search with Gated Verification for Agent-Harness Self-Evolution",
+    "year": 2026,
+    "href": "https://arxiv.org/abs/2607.13683",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/harnessbank.png",
+    "organization": "EverMind AI · Shanda",
+    "publicationNote": "Updated title at the same arXiv identifier cited in the manuscript."
+  },
+  "MetaSkill-Evolve": {
+    "bibKey": "wang2026metaskill",
+    "title": "MetaSkill-Evolve: Recursive Self-Improvement of LLM Agents via Two-Timescale Meta-Skill Evolution",
+    "year": 2026,
+    "href": "https://arxiv.org/abs/2607.05297",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/metaskill-evolve.png",
+    "organization": "LMU Munich"
+  },
+  "HyperAgents": {
+    "bibKey": "zhang2026hyperagents",
+    "title": "Hyperagents",
+    "year": 2026,
+    "href": "https://arxiv.org/abs/2603.19461",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/hyperagents.png",
+    "organization": "Meta · UBC"
+  },
+  "SEES": {
+    "bibKey": "li2026sees",
+    "title": "SEES: A Self-Evolving Embodied System via Failure-Guided VLA Policy Adaptation",
+    "year": 2026,
+    "href": "https://arxiv.org/abs/2609.32698",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/sees.png",
+    "organization": "MBZUAI"
+  },
+  "ScholarEvolve": {
+    "bibKey": "yang2026scholarevolve",
+    "title": "Learning from Research: Toward Lifelong Agent Harness Evolution",
+    "year": 2026,
+    "href": "https://arxiv.org/abs/2609.40169",
+    "venue": "arXiv",
+    "icon": "/assets/images/works/scholarevolve.png",
+    "organization": "UC Santa Barbara"
+  }
+}

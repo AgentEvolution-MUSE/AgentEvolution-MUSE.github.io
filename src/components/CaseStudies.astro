@@ -1,0 +1,172 @@
+---
+import { ArrowDown, Check, Mail, Music2, Wrench } from '@lucide/astro';
+import CaseFlowSteps from './CaseFlowSteps.astro';
+import { guided, free, prefix, experience, tool } from '../data/case-studies';
+import '../styles/case-studies.css';
+const caseHeadings=[
+ ['case-supervision','Outcome rewards','Complete vs. partial execution'],
+ ['case-prefix','Step-level rewards','Errors, corrections and feedback'],
+ ['case-experience','Experience reuse','From past experience to a new task'],
+ ['case-tool','Tool refinement','From repeated retrieval to a reusable tool'],
+];
+const apps=['Venmo','SimpleNote','Gmail'];
+const potential=[.361,...prefix.map(s=>s.potential!)];
+const px=(i:number)=>40+i*65,py=(v:number)=>135-v*115;
+---
+<section id="result-cases" class="rq-section rq-cases" aria-labelledby="result-cases-title">
+ <header class="rq-header"><h3 id="result-cases-title">Learning from execution</h3></header>
+ {caseHeadings.map(([id,label,title],index)=><details id={id} class="rq-case case-map-disclosure" open={index===0}>
+  <summary><span class="rq-case-category">{label}</span><strong>{title}</strong><span class="rq-expand" aria-hidden="true">+</span></summary>
+  <div class="case-map-scroll" tabindex="0" role="region" aria-label={`${title}: complete case diagram; scroll horizontally on narrow screens`}>
+   <div class:list={['case-map',{'case-map-prefix':index===1}]} data-case-map>
+    <svg class="case-map-connections" aria-hidden="true"><defs><marker id={`${id}-arrow`} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="context-stroke"/></marker></defs><g data-flow-edges></g><g data-cross-edges>
+     {index===2&&<>
+      <path data-edge-from="verified-experience" data-edge-to="retrieved-release" data-edge-link="release"/>
+      <path data-edge-from="retrieved-release" data-edge-to="experience-5" data-edge-link="release"/>
+      <path data-edge-from="retrieved-playback" data-edge-to="experience-7" data-edge-link="playback"/>
+      <path data-edge-from="experience-7" data-edge-to="experience-8" data-edge-link="playback"/>
+     </>}
+     {index===3&&<path data-edge-from="tool-implementation" data-edge-to="tool-3" data-edge-link="tool"/>}
+    </g></svg>
+    {index===0&&<>
+     <div class="case-map-task"><Mail size={20}/><p>Summarize Venmo transactions over $50, create a note, and email the same summary to the specified recipient.</p></div>
+     <div class="case-path-headings"><h4>Guided execution <span>Query + reference solution</span></h4><h4>Free execution <span>Query only</span></h4></div>
+     {apps.map((app,ai)=><section class={`case-app-band case-app-${ai}`}>
+      <h5>{app}</h5>
+      <div class="case-path-columns">
+       <CaseFlowSteps id="guided" steps={guided.filter(s=>s.app===app)} start={guided.findIndex(s=>s.app===app)+1} columns={ai===0?1:2}/>
+       <CaseFlowSteps id="free" steps={free.filter(s=>s.app===app)} start={free.findIndex(s=>s.app===app)+1} columns={ai===2?1:3}/>
+      </div>
+     </section>)}
+     <div class="case-path-columns case-final-pair">
+      <div class="case-map-outcome" data-node="guided-outcome"><Check size={20}/><div><strong>Complete execution · Reward 1.00</strong><p>58 qualifying transactions summarized; note created and email sent.</p></div></div>
+      <div class="case-map-outcome incomplete" data-node="free-outcome"><div><strong>Partial execution · Reward 0.20</strong><p>Note contains only 50 records, including exactly $50. No email sent.</p></div></div>
+     </div>
+    </>}
+    {index===1&&<>
+     <div class="case-map-task"><p>Delete all text and voice messages from the specified spam sender.</p></div>
+     <svg class="case-potential-map" viewBox="0 0 1060 175" role="group" aria-label="Prefix potential across the complete execution; select a point to highlight its recorded step">
+      <text x="40" y="15">Prefix potential</text>
+      {[0,.5,1].map(v=><g><line x1="40" x2="1015" y1={py(v)} y2={py(v)}/><text x="28" y={py(v)+4} text-anchor="end">{v}</text></g>)}
+      <polyline points={potential.map((v,i)=>`${px(i)},${py(v)}`).join(' ')} fill="none" stroke="#527fa4" stroke-width="2.5"/>
+      {potential.map((v,i)=><g data-potential-step={i||undefined} tabindex={i?0:undefined} role={i?'button':undefined} aria-pressed={i?'false':undefined} aria-label={`Step ${i}: potential ${v.toFixed(3)}`}>
+       <circle class="potential-hit" cx={px(i)} cy={py(v)} r="13" fill="transparent"/>
+       <circle class="potential-dot" cx={px(i)} cy={py(v)} r="4" fill={i&&prefix[i-1].status==='error'?'#b66f50':'#527fa4'}/>
+       <text x={px(i)} y="155" text-anchor="middle">{i}</text>
+      </g>)}
+      <text x="528" y="173" text-anchor="middle">Step · 0 = before execution (0.361)</text>
+     </svg>
+     <table class="case-prefix-table" data-case-trace="prefix"><thead><tr><th>Step</th><th>Action</th><th>Observation</th><th>Potential</th><th>Reward</th></tr></thead><tbody>
+      {prefix.map((s,i)=><tr data-node={`prefix-${i+1}`} class:list={[s.status]}><th scope="row"><button data-case-node aria-pressed="false" aria-label={`Highlight step ${i+1}`}>{i+1}</button></th><td>{s.action}</td><td>{s.observation}{s.note&&<details class="case-node-detail"><summary>Details</summary><p>{s.note}</p></details>}</td><td>{s.potential!.toFixed(3)}</td><td class:list={{'reward-negative':s.reward!<0}}>{s.reward!>0?'+':''}{s.reward!.toFixed(3)}</td></tr>)}
+     </tbody></table>
+     <div class="case-map-outcome"><Check size={20}/><strong>10 text messages + 12 voice messages deleted</strong></div>
+    </>}
+    {index===2&&<div class="case-mechanism-map">
+     <div class="case-source-column">
+      <h4>Experience and principle</h4>
+      <section class="case-map-block"><h5><Music2 size={18}/>Source task</h5><p>Remove songs released by a target year from the Spotify library and playlists.</p></section>
+      <div class="case-flow-transition"><ArrowDown size={17}/><span>Experience refinement</span></div>
+      <section class="case-map-block case-block-experience" data-node="verified-experience" data-link="release">
+       <h5><button data-case-node aria-pressed="false">Verified experience</button></h5>
+       <dl><dt>Precondition</dt><dd>Filter songs by release date across the library and playlists.</dd><dt>Guideline</dt><dd>Collect paginated song IDs, fetch song details for release dates, deduplicate, then filter by year and remove matching songs from both sources.</dd></dl>
+       <p class="case-verification-line">Mean reward <strong>0.53125 → 0.84375</strong><span>Without / with experience</span></p>
+      </section>
+      <div class="case-flow-transition"><ArrowDown size={17}/><span>Principle distillation</span></div>
+      <section class="case-map-block case-block-principle"><h5>Candidate principle</h5><dl>
+       <dt>Trigger</dt><dd>Required attributes are available only through detail endpoints across multiple sources.</dd>
+       <dt>Action</dt><dd>Collect paginated IDs, retrieve detailed records, deduplicate, then filter or remove.</dd>
+       <dt>Guard</dt><dd>Fetch and deduplicate all source identifiers before filtering or removal.</dd>
+       <dt>Directive</dt><dd>Gather complete details across sources before applying task-specific rules.</dd>
+      </dl></section>
+     </div>
+     <div class="case-execution-column">
+      <h4>Experience-guided execution</h4>
+      <section class="case-map-block"><h5>New task</h5><p>Play any song released in 2022 from the Spotify library.</p></section>
+      <div class="case-flow-transition"><ArrowDown size={17}/></div>
+      <section class="case-map-block case-block-experience"><h5>Retrieved and injected experiences</h5>
+       <div class="case-guidance" data-node="retrieved-release" data-link="release"><button data-case-node aria-pressed="false"><strong>Release date → Step 5</strong><span>Fetch song details for release dates missing from library listings; collect and deduplicate IDs before filtering.</span></button></div>
+       <div class="case-guidance playback" data-node="retrieved-playback" data-link="playback"><button data-case-node aria-pressed="false"><strong>Playback → Steps 7–8</strong><span>Use play_music with song_id and an access token, then verify success. Retrieved from another experience.</span></button></div>
+      </section>
+      <div class="case-flow-transition"><ArrowDown size={17}/></div>
+      <CaseFlowSteps id="experience" steps={experience} columns={3}/>
+      <div class="case-flow-transition"><ArrowDown size={17}/></div>
+      <div class="case-map-outcome"><Check size={20}/><strong>Song played · Environment score 1.00</strong></div>
+     </div>
+    </div>}
+    {index===3&&<div class="case-mechanism-map">
+     <div class="case-source-column">
+      <h4>Tool construction and verification</h4>
+      <section class="case-map-block"><h5><Wrench size={18}/>Recurring operation</h5><p>Retrieve downloaded-song pages and aggregate the records. Observed across 3 source tasks.</p></section>
+      <div class="case-flow-transition"><ArrowDown size={17}/></div>
+      <section class="case-map-block case-block-experience"><h5>Functional tool</h5><code class="case-tool-name">tool_list_spotify_downloaded_songs_1</code><dl><dt>Input</dt><dd>Access token and page limits.</dd><dt>Output</dt><dd>Song records with IDs, album IDs and durations.</dd></dl>
+       <div class="case-tool-implementation" data-node="tool-implementation" data-link="tool"><button data-case-node aria-pressed="false"><strong>Paginate and aggregate → Step 3</strong><span>Read a page with show_downloaded_songs</span><span>↓ Append each nonempty page</span><span>↓ Continue until an empty page or the page cap</span></button></div>
+       <p>Tool quality is estimated from supporting tasks.</p>
+      </section>
+      <div class="case-flow-transition"><ArrowDown size={17}/></div>
+      <section class="case-map-block case-block-principle"><h5>Paired verification</h5><table class="case-verification-table"><thead><tr><th>Mean</th><th>Without tool</th><th>With tool</th></tr></thead><tbody><tr><th>Outcome reward</th><td>0.750</td><td><strong>0.833</strong></td></tr><tr><th>Interaction steps</th><td>26.25</td><td><strong>22.00</strong></td></tr></tbody></table></section>
+     </div>
+     <div class="case-execution-column">
+      <h4>Tool-assisted execution</h4>
+      <section class="case-map-block"><h5>New task</h5><p>Play an album with at least 15 minutes of downloaded music for a drive without internet.</p></section>
+      <div class="case-flow-transition"><ArrowDown size={17}/></div>
+      <CaseFlowSteps id="tool" steps={tool}/>
+      <div class="case-flow-transition"><ArrowDown size={17}/></div>
+      <div class="case-map-outcome"><Check size={20}/><strong>Album 5 · 952 seconds · Score 1.00</strong></div>
+     </div>
+    </div>}
+   </div>
+  </div>
+ </details>)}
+</section>
+<script>
+ document.querySelectorAll<HTMLElement>('[data-case-map]').forEach(root=>{
+  const svg=root.querySelector<SVGSVGElement>('.case-map-connections')!;
+  const marker=svg.querySelector('marker')!.id;
+  const flows=svg.querySelector('[data-flow-edges]')!;
+  const nodes=[...root.querySelectorAll<HTMLElement>('[data-node]')];
+  let active:string|null=null;
+  const links=(node:HTMLElement)=>node.dataset.link||node.dataset.node!;
+  function select(node:HTMLElement){
+   active=active===links(node)?null:links(node);
+   nodes.forEach(n=>{const selected=active!==null&&links(n)===active;n.toggleAttribute('data-active',selected);n.querySelector('[data-case-node]')?.setAttribute('aria-pressed',String(selected));});
+   root.querySelectorAll<SVGPathElement>('[data-edge-link]').forEach(p=>p.toggleAttribute('data-active',p.dataset.edgeLink===active));
+   root.querySelectorAll('[data-potential-step]').forEach(p=>{const selected=`prefix-${p.getAttribute('data-potential-step')}`===active;p.toggleAttribute('data-active',selected);p.setAttribute('aria-pressed',String(selected));});
+  }
+  root.querySelectorAll<HTMLButtonElement>('[data-case-node]').forEach(b=>b.addEventListener('click',()=>select(b.closest<HTMLElement>('[data-node]')!)));
+  root.querySelectorAll<SVGElement>('[data-potential-step]').forEach(point=>{
+   const choose=()=>select(root.querySelector<HTMLElement>(`[data-node="prefix-${point.dataset.potentialStep}"]`)!);
+   point.addEventListener('click',choose);point.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose();}});
+  });
+  root.addEventListener('keydown',e=>{if(e.key==='Escape'&&active){const current=nodes.find(n=>links(n)===active);if(current)select(current);}});
+  function draw(){
+   if(!root.getBoundingClientRect().width)return;
+   const base=root.getBoundingClientRect();svg.setAttribute('viewBox',`0 0 ${base.width} ${base.height}`);svg.setAttribute('width',String(base.width));svg.setAttribute('height',String(base.height));
+   const box=(n:Element)=>{const r=n.getBoundingClientRect();return{x:r.x-base.x,y:r.y-base.y,w:r.width,h:r.height};};
+   const pathBetween=(a:Element,b:Element)=>{
+    const s=box(a),t=box(b);
+    if(Math.abs(s.y-t.y)<8){const right=t.x>s.x;return `M${right?s.x+s.w:s.x} ${s.y+s.h/2} H${right?t.x:t.x+t.w}`;}
+    const x=s.x+s.w/2,tx=t.x+t.w/2,y=s.y+s.h,ty=t.y,mid=(y+ty)/2;
+    return `M${x} ${y} V${mid} H${tx} V${ty}`;
+   };
+   flows.replaceChildren();
+   const add=(a:Element,b:Element)=>{const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',pathBetween(a,b));p.setAttribute('marker-end',`url(#${marker})`);flows.append(p);};
+   root.querySelectorAll('[data-flow-list]').forEach(list=>{const listNodes=[...list.querySelectorAll('[data-flow-order]')];listNodes.slice(1).forEach((n,i)=>add(listNodes[i],n));});
+   for(const trace of ['guided','free']){const outcome=root.querySelector(`[data-node="${trace}-outcome"]`);const all=root.querySelectorAll(`[data-case-trace="${trace}"] [data-node]`);if(outcome&&all.length)add(all[all.length-1],outcome);const lists=[...root.querySelectorAll(`[data-case-trace="${trace}"]`)];lists.slice(1).forEach((list,i)=>{const prev=lists[i].querySelectorAll('[data-node]');add(prev[prev.length-1],list.querySelector('[data-node]')!);});}
+   root.querySelectorAll<SVGPathElement>('[data-edge-from]').forEach(p=>{
+    const from=root.querySelector(`[data-node="${p.dataset.edgeFrom}"]`),to=root.querySelector(`[data-node="${p.dataset.edgeTo}"]`);if(!from||!to)return;
+    const s=box(from),t=box(to);let d='';
+    if(p.dataset.edgeFrom==='verified-experience'||p.dataset.edgeFrom==='tool-implementation'){
+     const x=s.x+s.w,y=s.y+s.h/2,tx=t.x,ty=t.y+t.h/2,mid=(x+tx)/2;d=`M${x} ${y} H${mid} V${ty} H${tx}`;
+    }else if(p.dataset.edgeFrom?.startsWith('retrieved-')){
+     const column=box(to.closest('.case-execution-column')!),lane=column.x+column.w+12+(p.dataset.edgeLink==='playback'?8:0);
+     d=`M${s.x+s.w} ${s.y+s.h/2} H${lane} V${t.y-10} H${t.x+t.w/2} V${t.y}`;
+    }else d=pathBetween(from,to);
+    p.setAttribute('d',d);p.setAttribute('marker-end',`url(#${marker})`);
+   });
+  }
+  let frame=0;const schedule=()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(draw);};
+  new ResizeObserver(schedule).observe(root);
+  root.closest('details')?.addEventListener('toggle',schedule);root.addEventListener('toggle',schedule,true);
+  document.fonts.ready.then(schedule);schedule();
+ });
+</script>

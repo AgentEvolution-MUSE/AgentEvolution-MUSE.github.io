@@ -1,71 +1,187 @@
-<section
-  id="spectrum"
-  class="section-band spectrum-band"
-  aria-labelledby="spectrum-title"
-  data-motion-group="spectrum"
->
+---
+import { ArrowLeft, ArrowRight, GitBranch, Layers, Target, Search } from '@lucide/astro';
+import { spectrumStages, spectrumDimensions, workScopes, scopeLabels } from '../data/spectrum';
+import SpectrumWorkCard from './SpectrumWorkCard.astro';
+import SpectrumRadar from './SpectrumRadar.astro';
+import '../styles/spectrum.css';
+const dimensionIcons = [GitBranch, Target, Layers];
+const mechanisms = [
+  ['Metacognitive gating', 'Determines when to evolve and routes optimization demands.'],
+  ['Interaction-grounded self-supervision', 'Derives supplementary tasks and rewards from interaction evidence.'],
+  ['Coordinated component evolution', 'Refines and synchronizes the parametric core and symbolic assets.'],
+];
+---
+<section id="spectrum" class="section-band spectrum-band" aria-labelledby="spectrum-title" data-motion-group="spectrum">
   <div class="container section-intro">
-    <p class="eyebrow">A Developmental View</p>
     <h2 id="spectrum-title" class="section-heading">The Five-Stage Evolutionary Spectrum</h2>
-    <p>
-      The spectrum assesses evolutionary autonomy (EA), supervision autonomy (SA), and
-      optimization scope and coordination (SC). Each stage builds on the requirements of
-      earlier stages. A system is placed at the highest stage for which it has demonstrated
-      all required capabilities under the stated deployment conditions.
-    </p>
+    <p>Each stage builds on the requirements of earlier stages across evolutionary autonomy (EA), supervision autonomy (SA), and optimization scope and coordination (SC).</p>
   </div>
-
-  <figure class="wide-figure container" data-motion-item data-motion-kind="figure">
-    <a href="/assets/images/figures/Spectrum-2.svg" target="_blank" rel="noreferrer" aria-label="Open the evolution spectrum figure at full resolution">
-      <img
-        src="/assets/images/figures/Spectrum-2.svg"
-        alt="Five stages from human-engineered maintenance to recursive meta-evolution, compared across evolutionary autonomy, supervision autonomy, and optimization scope and coordination."
-        width="1296.31"
-        height="559.38"
-        loading="lazy"
-      />
-    </a>
-    <figcaption>
-      <strong>Figure 1.</strong> How the three dimensions develop across five stages of
-      agent evolution.
-    </figcaption>
-  </figure>
-
-  <div class="representative-landscape-intro container" data-motion-item>
-    <p class="eyebrow">Research Landscape</p>
-    <h3>Representative Systems Across the Spectrum</h3>
-    <p>
-      The representative systems illustrate how adaptation changes across stages.
-      MUSE is a prototype targeting Stage-4 capabilities.
-    </p>
-  </div>
-
-  <figure
-    class="wide-figure representative-landscape-figure container"
-    data-representative-landscape
-    data-motion-item
-    data-motion-kind="figure"
-  >
-    <div class="representative-landscape-viewport">
-      <a
-        href="/assets/images/figures/spectrum-representative-works.svg"
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Open the representative agent-evolution landscape at full resolution"
-      >
-        <img
-          src="/assets/images/figures/spectrum-representative-works.svg"
-          alt="Representative systems grouped by evolutionary stage, with qualitative EA, SA, and SC profiles and MUSE marked as a Stage-4 prototype."
-          width="1125.14"
-          height="606.18"
-          loading="lazy"
-        />
-      </a>
+  <div class="container spectrum-explorer" data-spectrum-explorer>
+    <div class="spectrum-toolbar">
+      <span class="spectrum-guide">Five stages. One evolving landscape.</span>
+      <div class="spectrum-views" role="group" aria-label="Spectrum view">
+        <button type="button" data-spectrum-view="explore" aria-pressed="true">Explore stages</button>
+        <button type="button" data-spectrum-view="compare" aria-pressed="false">Compare all</button>
+      </div>
     </div>
-    <figcaption>
-      <strong>Figure 3.</strong> The radar plots illustrate EA, SA, and SC qualitatively.
-      Font color marks each method's primary optimization scope, and underlining marks
-      secondary scopes.
-    </figcaption>
-  </figure>
+    <div data-spectrum-explore>
+      <div class="spectrum-tabs" role="tablist" aria-label="Evolutionary stages">
+        {spectrumStages.map(stage => <button type="button" role="tab" id={`stage-tab-${stage.id}`} aria-controls={`stage-panel-${stage.id}`}
+          aria-selected={stage.id === 4 ? 'true' : 'false'} tabindex={stage.id === 4 ? 0 : -1}
+          style={`--stage-color:${stage.color};--stage-tint:${stage.tint}`} data-stage-tab={stage.id}>
+          <span class="spectrum-art"><img src={`/assets/images/stages/stage${stage.id}.svg`} width="120" height="120" alt="" loading="lazy" /></span>
+          <span class="spectrum-step"><span>{String(stage.id).padStart(2, '0')}</span></span>
+          <strong>{stage.title}</strong>
+          <span class="spectrum-tab-caption">{stage.id === 4 ? 'Our prototype' : stage.id === 5 ? 'Research frontier' : `${stage.works.length} representative works`}</span>
+        </button>)}
+      </div>
+      {spectrumStages.map(stage => <div class="spectrum-panel" role="tabpanel" id={`stage-panel-${stage.id}`} aria-labelledby={`stage-tab-${stage.id}`}
+        tabindex="0" data-stage-panel={stage.id} data-active={stage.id === 4 || undefined}
+        style={`--stage-color:${stage.color};--stage-tint:${stage.tint}`}>
+        <header class="spectrum-panel-heading">
+          <div><p class="eyebrow">Evolution {stage.id}.0</p><h3>{stage.title}</h3></div>
+          <div class="spectrum-pagination"><span>{String(stage.id).padStart(2, '0')} / 05</span>
+            <button type="button" data-stage-prev disabled={stage.id === 1} aria-label="Previous evolution stage"><ArrowLeft size={18} /></button>
+            <button type="button" data-stage-next disabled={stage.id === 5} aria-label="Next evolution stage"><ArrowRight size={18} /></button>
+          </div>
+        </header>
+        <div class="spectrum-panel-content">
+          <div class="spectrum-capabilities">
+            <p class="spectrum-subheading">Capability profile</p>
+            <SpectrumRadar stage={stage.id} title={stage.title} />
+            <dl>{spectrumDimensions.map(([code, title], index) => { const Icon = dimensionIcons[index]; return <div class="spectrum-capability" data-capability-dimension={code} id={`stage-${stage.id}-dimension-${code}`}>
+              <span class="spectrum-dimension-icon"><Icon size={19} aria-hidden="true" /></span>
+              <div><dt><span>{code}</span> {title}</dt><dd>{stage.dimensions[index]}</dd></div>
+            </div>; })}</dl>
+          </div>
+          <div class="spectrum-works" data-representative-landscape>
+            {stage.id < 4 ? <>
+              <div class="spectrum-works-heading"><h4>Representative Works</h4><span data-work-count aria-live="polite">{stage.works.length} works</span></div>
+              <div class="spectrum-work-controls">
+                <label class="spectrum-search"><Search size={16} aria-hidden="true" /><input type="search" placeholder="Find a work…" aria-label={`Search Stage ${stage.id} works`} data-work-search /></label>
+                {stage.id === 3 && <div class="spectrum-filters" role="group" aria-label="Filter by primary optimization scope">
+                  {['All', ...scopeLabels].map(scope => <button type="button" data-work-filter={scope} aria-pressed={scope === 'All' ? 'true' : 'false'}>{scope}</button>)}
+                </div>}
+              </div>
+              {(stage.id === 1 ? ['Historical systems'] : scopeLabels).map(scope => {
+                const works = stage.works.filter(work => stage.id === 1 || workScopes[work] === scope);
+                return works.length > 0 && <div class="spectrum-work-group" data-work-group={scope}>
+                  <h5><span class:list={['scope-dot', `scope-${scope.toLowerCase()}`]}></span>{scope}<span>{works.length}</span></h5>
+                  <ul class="spectrum-work-grid">{works.map(work => <SpectrumWorkCard name={work} scope={scope} />)}</ul>
+                </div>;
+              })}
+              <p class="spectrum-empty" data-work-empty hidden>No matching works. Try another name or scope.</p>
+              {stage.id === 3 && <button class="spectrum-expand-works" type="button" data-work-expand aria-expanded="false" hidden>Show all 37 works <ArrowRight size={16} aria-hidden="true" /></button>}
+            </> : stage.id === 4 ? <div class="spectrum-muse-feature">
+              <div class="spectrum-feature-top"><img src="/assets/images/branding/muse-favicon-transparent.png" width="72" height="72" alt="MUSE" /></div>
+              <div class="spectrum-mechanism-flow">{mechanisms.map(([name, description], index) => <div><span>0{index + 1}</span><div><strong>{name}</strong><p>{description}</p></div></div>)}</div>
+              <a class="spectrum-method-link" href="#architecture">Explore the architecture <ArrowRight size={17} /></a>
+            </div> : <div class="spectrum-frontier">
+              <span class="spectrum-infinity" aria-hidden="true">∞</span>
+              <p class="spectrum-subheading">An open research frontier</p>
+              <h4>Evolving how agents evolve</h4>
+              <div class="spectrum-meta-loop"><span>Agent</span><span aria-hidden="true">↔</span><span>Evolutionary strategy</span></div>
+              <p>{stage.note}</p>
+            </div>}
+          </div>
+        </div>
+      </div>)}
+    </div>
+    <div class="spectrum-comparison" data-spectrum-compare hidden>
+      <div class="spectrum-comparison-scroll" tabindex="0" role="region" aria-label="Compare the five stages; scroll horizontally on small screens">
+        <table><caption>Capabilities across the five stages</caption><thead><tr><th scope="col">Dimension</th>{spectrumStages.map(stage => <th scope="col" style={`--stage-color:${stage.color};--stage-tint:${stage.tint}`}><span>Evolution {stage.id}.0</span><strong>{stage.title}</strong><button type="button" data-compare-stage={stage.id}>Explore <ArrowRight size={14} /></button></th>)}</tr></thead>
+          <tbody>{spectrumDimensions.map(([code, name], index) => <tr><th scope="row"><span>{code}</span>{name}</th>{spectrumStages.map(stage => <td style={`--stage-tint:${stage.tint}`}>{stage.dimensions[index]}</td>)}</tr>)}</tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </section>
+<script>
+  const explorer = document.querySelector<HTMLElement>('[data-spectrum-explorer]');
+  if (explorer) {
+    const tabs = [...explorer.querySelectorAll<HTMLButtonElement>('[data-stage-tab]')];
+    const panels = [...explorer.querySelectorAll<HTMLElement>('[data-stage-panel]')];
+    const views = [...explorer.querySelectorAll<HTMLButtonElement>('[data-spectrum-view]')];
+    let selected = 3;
+    const setView = (mode: string) => {
+      explorer.querySelector<HTMLElement>('[data-spectrum-explore]')!.hidden = mode !== 'explore';
+      explorer.querySelector<HTMLElement>('[data-spectrum-compare]')!.hidden = mode !== 'compare';
+      views.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.spectrumView === mode)));
+    };
+    const select = (index: number, focus = false) => {
+      selected = Math.max(0, Math.min(tabs.length - 1, index));
+      tabs.forEach((tab, i) => { tab.setAttribute('aria-selected', String(i === selected)); tab.tabIndex = i === selected ? 0 : -1; });
+      panels.forEach((panel, i) => { panel.hidden = i !== selected; panel.toggleAttribute('data-active', i === selected); });
+      const tab = tabs[selected], strip = tab.parentElement!;
+      if (strip.scrollWidth > strip.clientWidth) {
+        const left = strip.scrollLeft + tab.getBoundingClientRect().left - strip.getBoundingClientRect().left;
+        strip.scrollLeft = left - (strip.clientWidth - tab.offsetWidth) / 2;
+      }
+      if (focus) tab.focus({ preventScroll: true });
+    };
+    views.forEach(button => button.addEventListener('click', () => { setView(button.dataset.spectrumView!); if(button.dataset.spectrumView === 'explore') select(selected); }));
+    explorer.querySelectorAll<HTMLButtonElement>('[data-compare-stage]').forEach(button => button.addEventListener('click', () => { setView('explore'); select(Number(button.dataset.compareStage) - 1, true); }));
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => select(index));
+      tab.addEventListener('keydown', event => {
+        const next = event.key === 'ArrowRight' ? (index + 1) % tabs.length : event.key === 'ArrowLeft' ? (index + tabs.length - 1) % tabs.length : event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : null;
+        if(next !== null) { event.preventDefault(); select(next, true); }
+      });
+    });
+    panels.forEach(panel => {
+      const profile = panel.querySelector<HTMLElement>('.spectrum-capabilities')!;
+      const highlightDimension = (code?: string) => {
+        profile.querySelectorAll<HTMLElement | SVGElement>('[data-radar-dimension], [data-capability-dimension], [data-radar-axis]').forEach(item => {
+          item.toggleAttribute('data-highlight', !!code && (item.dataset.radarDimension ?? item.dataset.capabilityDimension ?? item.dataset.radarAxis) === code);
+        });
+      };
+      profile.querySelectorAll<HTMLElement>('[data-radar-dimension], [data-capability-dimension]').forEach(item => {
+        const code = item.dataset.radarDimension ?? item.dataset.capabilityDimension;
+        item.addEventListener('pointerenter', () => highlightDimension(code));
+        item.addEventListener('pointerleave', () => highlightDimension(profile.querySelector<HTMLElement>('[data-radar-dimension]:focus')?.dataset.radarDimension));
+        item.addEventListener('focus', () => highlightDimension(code));
+        item.addEventListener('blur', () => highlightDimension());
+        item.addEventListener('click', () => highlightDimension(code));
+      });
+      panel.querySelector('[data-stage-prev]')?.addEventListener('click', () => select(selected - 1, true));
+      panel.querySelector('[data-stage-next]')?.addEventListener('click', () => select(selected + 1, true));
+      const search = panel.querySelector<HTMLInputElement>('[data-work-search]');
+      const filters = [...panel.querySelectorAll<HTMLButtonElement>('[data-work-filter]')];
+      const expand = panel.querySelector<HTMLButtonElement>('[data-work-expand]');
+      let scope = 'All';
+      let expanded = false;
+      const updateWorks = () => {
+        const query = search?.value.trim().toLowerCase() ?? '';
+        let count = 0, shown = 0;
+        panel.querySelectorAll<HTMLElement>('[data-work-group]').forEach(group => {
+          let matching = 0;
+          group.querySelectorAll<HTMLElement>('[data-work-name]').forEach(work => {
+            const matches = work.dataset.workSearchText!.toLowerCase().includes(query) && (scope === 'All' || work.dataset.workScope === scope);
+            if(matches) { matching++; count++; }
+            work.hidden = !matches || (!!expand && !expanded && !query && matching > (scope === 'All' ? 4 : 6));
+            if(!work.hidden) shown++;
+          });
+          group.hidden = matching === 0;
+          group.querySelector('h5 > span:last-child')!.textContent = String(matching);
+        });
+        const total = panel.querySelector('[data-work-count]');
+        if(total) total.textContent = `${shown < count ? `${shown} of ` : ''}${count} ${count === 1 ? 'work' : 'works'}`;
+        if(expand) {
+          expand.hidden = !!query || (shown === count && !expanded);
+          expand.setAttribute('aria-expanded', String(expanded));
+          expand.textContent = expanded ? 'Show fewer works ↑' : `Show all ${count} works ↓`;
+        }
+        const empty = panel.querySelector<HTMLElement>('[data-work-empty]');
+        if(empty) empty.hidden = count !== 0;
+      };
+      search?.addEventListener('input', updateWorks);
+      filters.forEach(button => button.addEventListener('click', () => { scope = button.dataset.workFilter!; expanded = false; filters.forEach(item => item.setAttribute('aria-pressed', String(item === button))); updateWorks(); }));
+      expand?.addEventListener('click', () => {
+        expanded = !expanded; updateWorks();
+        if(!expanded) panel.querySelector('.spectrum-works-heading')?.scrollIntoView({ block: 'nearest' });
+      });
+      updateWorks();
+    });
+    select(selected);
+  }
+</script>

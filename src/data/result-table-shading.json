@@ -1,0 +1,1076 @@
+{
+  "overall": [
+    [
+      {
+        "color": "overallSRHeat",
+        "level": 8,
+        "background": "#f7f9fc",
+        "bold": false
+      },
+      null,
+      {
+        "color": "overallStepHeat",
+        "level": 12,
+        "background": "#fbf7f3",
+        "bold": false
+      },
+      null
+    ],
+    [
+      {
+        "color": "overallSRHeat",
+        "level": 12,
+        "background": "#f3f6fa",
+        "bold": false
+      },
+      {
+        "color": "overallSRHeat",
+        "level": 12,
+        "background": "#f3f6fa",
+        "bold": false
+      },
+      {
+        "color": "overallStepHeat",
+        "level": 6,
+        "background": "#fdfbf9",
+        "bold": false
+      },
+      {
+        "color": "overallStepHeat",
+        "level": 6,
+        "background": "#fdfbf9",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "overallSRHeat",
+        "level": 18,
+        "background": "#edf2f7",
+        "bold": false
+      },
+      {
+        "color": "overallSRHeat",
+        "level": 18,
+        "background": "#edf2f7",
+        "bold": false
+      },
+      {
+        "color": "overallStepHeat",
+        "level": 20,
+        "background": "#f9f2eb",
+        "bold": false
+      },
+      {
+        "color": "overallStepHeat",
+        "level": 20,
+        "background": "#f9f2eb",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "overallSRHeat",
+        "level": 24,
+        "background": "#e7eef5",
+        "bold": false
+      },
+      {
+        "color": "overallSRHeat",
+        "level": 24,
+        "background": "#e7eef5",
+        "bold": false
+      },
+      {
+        "color": "overallStepHeat",
+        "level": 20,
+        "background": "#f9f2eb",
+        "bold": false
+      },
+      {
+        "color": "overallStepHeat",
+        "level": 20,
+        "background": "#f9f2eb",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "overallSRHeat",
+        "level": 35,
+        "background": "#dce6f0",
+        "bold": false
+      },
+      {
+        "color": "overallSRHeat",
+        "level": 35,
+        "background": "#dce6f0",
+        "bold": false
+      },
+      {
+        "color": "overallStepHeat",
+        "level": 45,
+        "background": "#f2e3d3",
+        "bold": false
+      },
+      {
+        "color": "overallStepHeat",
+        "level": 45,
+        "background": "#f2e3d3",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "overallSRHeat",
+        "level": 45,
+        "background": "#d2dfec",
+        "bold": false
+      },
+      {
+        "color": "overallSRHeat",
+        "level": 45,
+        "background": "#d2dfec",
+        "bold": false
+      },
+      {
+        "color": "overallStepHeat",
+        "level": 35,
+        "background": "#f5e9dd",
+        "bold": false
+      },
+      {
+        "color": "overallStepHeat",
+        "level": 35,
+        "background": "#f5e9dd",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "overallSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "overallSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "overallStepHeat",
+        "level": 60,
+        "background": "#edd9c4",
+        "bold": true
+      },
+      {
+        "color": "overallStepHeat",
+        "level": 60,
+        "background": "#edd9c4",
+        "bold": true
+      }
+    ]
+  ],
+  "supervision": [
+    [
+      {
+        "color": "supervisionSRHeat",
+        "level": 8,
+        "background": "#f7f9fc",
+        "bold": false
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 8,
+        "background": "#f7f9fc",
+        "bold": false
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 18,
+        "background": "#edf2f7",
+        "bold": false
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 8,
+        "background": "#f7f9fc",
+        "bold": false
+      },
+      {
+        "color": "supervisionStepHeat",
+        "level": 8,
+        "background": "#fdfaf7",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "supervisionSRHeat",
+        "level": 26,
+        "background": "#e5edf4",
+        "bold": false
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 26,
+        "background": "#e5edf4",
+        "bold": false
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 37,
+        "background": "#dae5ef",
+        "bold": true
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 19,
+        "background": "#ecf2f7",
+        "bold": false
+      },
+      {
+        "color": "supervisionStepHeat",
+        "level": 27,
+        "background": "#f7eee5",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "supervisionSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 8,
+        "background": "#f7f9fc",
+        "bold": false
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 27,
+        "background": "#e4ecf3",
+        "bold": true
+      },
+      {
+        "color": "supervisionStepHeat",
+        "level": 39,
+        "background": "#f3e6d9",
+        "bold": true
+      }
+    ],
+    [
+      {
+        "color": "supervisionSRHeat",
+        "level": 14,
+        "background": "#f1f5f9",
+        "bold": false
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 14,
+        "background": "#f1f5f9",
+        "bold": false
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 8,
+        "background": "#f7f9fc",
+        "bold": false
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 9,
+        "background": "#f6f9fb",
+        "bold": false
+      },
+      {
+        "color": "supervisionStepHeat",
+        "level": 8,
+        "background": "#fdfaf7",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "supervisionSRHeat",
+        "level": 23,
+        "background": "#e8eff5",
+        "bold": true
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 23,
+        "background": "#e8eff5",
+        "bold": true
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 37,
+        "background": "#dae5ef",
+        "bold": true
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 15,
+        "background": "#f0f4f9",
+        "bold": true
+      },
+      {
+        "color": "supervisionStepHeat",
+        "level": 28,
+        "background": "#f7ede4",
+        "bold": true
+      }
+    ],
+    [
+      {
+        "color": "supervisionSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 57,
+        "background": "#c6d7e6",
+        "bold": false
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "supervisionStepHeat",
+        "level": 60,
+        "background": "#edd9c4",
+        "bold": true
+      }
+    ],
+    [
+      {
+        "color": "supervisionSRHeat",
+        "level": 48,
+        "background": "#cfddea",
+        "bold": false
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 48,
+        "background": "#cfddea",
+        "bold": false
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 38,
+        "background": "#d9e4ef",
+        "bold": false
+      },
+      {
+        "color": "supervisionStepHeat",
+        "level": 27,
+        "background": "#f7eee5",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "supervisionSRHeat",
+        "level": 14,
+        "background": "#f1f5f9",
+        "bold": false
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 14,
+        "background": "#f1f5f9",
+        "bold": false
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 24,
+        "background": "#e7eef5",
+        "bold": true
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 13,
+        "background": "#f2f6f9",
+        "bold": true
+      },
+      {
+        "color": "supervisionStepHeat",
+        "level": 8,
+        "background": "#fdfaf7",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "supervisionSRHeat",
+        "level": 32,
+        "background": "#dfe8f1",
+        "bold": true
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 32,
+        "background": "#dfe8f1",
+        "bold": true
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 24,
+        "background": "#e7eef5",
+        "bold": true
+      },
+      {
+        "color": "supervisionSRHeat",
+        "level": 12,
+        "background": "#f3f6fa",
+        "bold": false
+      },
+      {
+        "color": "supervisionStepHeat",
+        "level": 15,
+        "background": "#fbf6f0",
+        "bold": true
+      }
+    ]
+  ],
+  "quality": [
+    [
+      {
+        "color": "taskAuditBlue",
+        "level": 36,
+        "background": "#dbe5f0",
+        "bold": false
+      },
+      {
+        "color": "taskAuditBlue",
+        "level": 40,
+        "background": "#d7e3ee",
+        "bold": false
+      },
+      {
+        "color": "taskAuditBlue",
+        "level": 15,
+        "background": "#f0f4f9",
+        "bold": false
+      },
+      {
+        "color": "taskAuditBlue",
+        "level": 15,
+        "background": "#f0f4f9",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "taskAuditBlue",
+        "level": 40,
+        "background": "#d7e3ee",
+        "bold": false
+      },
+      {
+        "color": "taskAuditBlue",
+        "level": 40,
+        "background": "#d7e3ee",
+        "bold": false
+      },
+      {
+        "color": "taskAuditBlue",
+        "level": 40,
+        "background": "#d7e3ee",
+        "bold": false
+      },
+      {
+        "color": "taskAuditBlue",
+        "level": 40,
+        "background": "#d7e3ee",
+        "bold": true
+      }
+    ]
+  ],
+  "reliability": [
+    [
+      {
+        "color": "rewardAuditBlue",
+        "level": 36,
+        "background": "#dbe5f0",
+        "bold": false
+      },
+      {
+        "color": "rewardAuditBlue",
+        "level": 40,
+        "background": "#d7e3ee",
+        "bold": false
+      },
+      {
+        "color": "rewardAuditBlue",
+        "level": 36,
+        "background": "#dbe5f0",
+        "bold": false
+      },
+      null
+    ],
+    [
+      {
+        "color": "rewardAuditBlue",
+        "level": 28,
+        "background": "#e3ebf3",
+        "bold": false
+      },
+      {
+        "color": "rewardAuditBlue",
+        "level": 20,
+        "background": "#ebf1f6",
+        "bold": false
+      },
+      {
+        "color": "rewardAuditBlue",
+        "level": 10,
+        "background": "#f5f8fb",
+        "bold": false
+      },
+      {
+        "color": "rewardAuditOrange",
+        "level": 30,
+        "background": "#f6ece2",
+        "bold": false
+      }
+    ]
+  ],
+  "gating": [
+    [
+      {
+        "color": "gatingSRHeat",
+        "level": 21,
+        "background": "#e6eef6",
+        "bold": false
+      },
+      {
+        "color": "gatingSRHeat",
+        "level": 55,
+        "background": "#bed4e7",
+        "bold": true
+      },
+      {
+        "color": "gatingSRHeat",
+        "level": 19,
+        "background": "#e9f0f7",
+        "bold": false
+      },
+      {
+        "color": "gatingCostHeat",
+        "level": 12,
+        "background": "#fbf6f1",
+        "bold": false
+      },
+      {
+        "color": "gatingCostHeat",
+        "level": 12,
+        "background": "#fbf6f1",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "gatingSRHeat",
+        "level": 12,
+        "background": "#f1f6fa",
+        "bold": false
+      },
+      {
+        "color": "gatingSRHeat",
+        "level": 50,
+        "background": "#c4d8e9",
+        "bold": false
+      },
+      {
+        "color": "gatingSRHeat",
+        "level": 55,
+        "background": "#bed4e7",
+        "bold": true
+      },
+      {
+        "color": "gatingCostHeat",
+        "level": 55,
+        "background": "#efd6be",
+        "bold": true
+      },
+      {
+        "color": "gatingCostHeat",
+        "level": 55,
+        "background": "#efd6be",
+        "bold": true
+      }
+    ],
+    [
+      {
+        "color": "gatingSRHeat",
+        "level": 55,
+        "background": "#bed4e7",
+        "bold": true
+      },
+      {
+        "color": "gatingSRHeat",
+        "level": 12,
+        "background": "#f1f6fa",
+        "bold": false
+      },
+      {
+        "color": "gatingSRHeat",
+        "level": 12,
+        "background": "#f1f6fa",
+        "bold": false
+      },
+      {
+        "color": "gatingCostHeat",
+        "level": 54,
+        "background": "#efd7bf",
+        "bold": false
+      },
+      {
+        "color": "gatingCostHeat",
+        "level": 54,
+        "background": "#efd7bf",
+        "bold": false
+      }
+    ]
+  ],
+  "joint": [
+    [
+      {
+        "color": "componentSRHeat",
+        "level": 8,
+        "background": "#f7f9fc",
+        "bold": false
+      },
+      null,
+      {
+        "color": "componentSRHeat",
+        "level": 8,
+        "background": "#f7f9fc",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 8,
+        "background": "#f7f9fc",
+        "bold": false
+      },
+      {
+        "color": "componentStepHeat",
+        "level": 8,
+        "background": "#fdfaf7",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "componentSRHeat",
+        "level": 22,
+        "background": "#e9eff6",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 22,
+        "background": "#e9eff6",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 15,
+        "background": "#f0f4f9",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 13,
+        "background": "#f2f6f9",
+        "bold": false
+      },
+      {
+        "color": "componentStepHeat",
+        "level": 17,
+        "background": "#faf4ee",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "componentSRHeat",
+        "level": 38,
+        "background": "#d9e4ef",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 38,
+        "background": "#d9e4ef",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 42,
+        "background": "#d5e1ed",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 36,
+        "background": "#dbe5f0",
+        "bold": false
+      },
+      {
+        "color": "componentStepHeat",
+        "level": 25,
+        "background": "#f8efe7",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "componentSRHeat",
+        "level": 46,
+        "background": "#d1deeb",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 46,
+        "background": "#d1deeb",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 51,
+        "background": "#ccdbe9",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 41,
+        "background": "#d6e2ed",
+        "bold": false
+      },
+      {
+        "color": "componentStepHeat",
+        "level": 38,
+        "background": "#f4e7da",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "componentSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "componentStepHeat",
+        "level": 60,
+        "background": "#edd9c4",
+        "bold": true
+      }
+    ]
+  ],
+  "symbolic": [
+    [
+      {
+        "color": "componentSRHeat",
+        "level": 8,
+        "background": "#f7f9fc",
+        "bold": false
+      },
+      null,
+      {
+        "color": "componentSRHeat",
+        "level": 37,
+        "background": "#dae5ef",
+        "bold": false
+      },
+      {
+        "color": "componentStepHeat",
+        "level": 28,
+        "background": "#f7ede4",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "componentSRHeat",
+        "level": 8,
+        "background": "#f7f9fc",
+        "bold": false
+      },
+      null,
+      {
+        "color": "componentSRHeat",
+        "level": 8,
+        "background": "#f7f9fc",
+        "bold": false
+      },
+      {
+        "color": "componentStepHeat",
+        "level": 8,
+        "background": "#fdfaf7",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "componentSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "componentStepHeat",
+        "level": 29,
+        "background": "#f6ede3",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "componentSRHeat",
+        "level": 51,
+        "background": "#ccdbe9",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 51,
+        "background": "#ccdbe9",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 36,
+        "background": "#dbe5f0",
+        "bold": false
+      },
+      {
+        "color": "componentStepHeat",
+        "level": 18,
+        "background": "#faf4ed",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "componentSRHeat",
+        "level": 46,
+        "background": "#d1deeb",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 46,
+        "background": "#d1deeb",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 8,
+        "background": "#f7f9fc",
+        "bold": false
+      },
+      {
+        "color": "componentStepHeat",
+        "level": 60,
+        "background": "#edd9c4",
+        "bold": true
+      }
+    ],
+    [
+      {
+        "color": "componentSRHeat",
+        "level": 25,
+        "background": "#e6edf4",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 25,
+        "background": "#e6edf4",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 11,
+        "background": "#f4f7fa",
+        "bold": false
+      },
+      {
+        "color": "componentStepHeat",
+        "level": 58,
+        "background": "#eedac6",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "componentSRHeat",
+        "level": 55,
+        "background": "#c8d8e7",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 55,
+        "background": "#c8d8e7",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 43,
+        "background": "#d4e0ed",
+        "bold": false
+      },
+      {
+        "color": "componentStepHeat",
+        "level": 8,
+        "background": "#fdfaf7",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "componentSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": false
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 45,
+        "background": "#d2dfec",
+        "bold": false
+      },
+      {
+        "color": "componentStepHeat",
+        "level": 40,
+        "background": "#f3e6d8",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "componentSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 58,
+        "background": "#c5d6e6",
+        "bold": false
+      },
+      {
+        "color": "componentStepHeat",
+        "level": 58,
+        "background": "#eedac6",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "color": "componentSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "componentSRHeat",
+        "level": 60,
+        "background": "#c3d4e5",
+        "bold": true
+      },
+      {
+        "color": "componentStepHeat",
+        "level": 60,
+        "background": "#edd9c4",
+        "bold": true
+      }
+    ]
+  ]
+}

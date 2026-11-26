@@ -1,0 +1,26 @@
+---
+import { ArrowUpRight, MessagesSquare, MessageCircle, Blocks, Stethoscope, Bot, Settings, Activity, GraduationCap } from '@lucide/astro';
+import works from '../data/spectrum-works.json';
+
+interface Props { name: string; scope: string }
+const { name, scope } = Astro.props;
+const work = works[name as keyof typeof works];
+const pictograms = { MessagesSquare, MessageCircle, Blocks, Stethoscope, Bot, Settings, Activity, GraduationCap };
+const Pictogram = 'pictogram' in work ? pictograms[work.pictogram as keyof typeof pictograms] : null;
+const publicationNote = 'publicationNote' in work ? work.publicationNote : '';
+---
+<li class="spectrum-work-item" data-work-name={name} data-work-scope={scope} data-work-search-text={`${name} ${work.title} ${'organization' in work ? work.organization : ''} ${work.venue} ${work.year}`}>
+  <a class="spectrum-work-card" href={work.href} target="_blank" rel="noopener noreferrer"
+    title={`${work.title} (${work.year})${publicationNote ? ` — ${publicationNote}` : ''} — Opens in a new tab`} aria-label={`${name}: ${work.title}. ${publicationNote} Opens in a new tab.`}>
+    <span class:list={['spectrum-work-mark', { 'spectrum-work-pictogram': Pictogram }]} aria-hidden="true">
+      {'icon' in work ? <img src={work.icon} alt="" width="32" height="32" loading="lazy" decoding="async" /> : Pictogram && <Pictogram size={24} stroke-width={1.5} />}
+    </span>
+    <span class="spectrum-work-info">
+      <strong>{name}</strong>
+      <span class="spectrum-work-meta">{work.organization}<span aria-hidden="true"> · </span><time>{work.year}</time></span>
+    </span>
+    <ArrowUpRight class="spectrum-work-arrow" size={16} aria-hidden="true" />
+    {'summary' in work && <span class="spectrum-work-summary">{work.summary}</span>}
+    <span class="spectrum-work-paper-title" aria-hidden="true">{work.title}<small>{work.venue} · {work.year}</small>{publicationNote && <small>{publicationNote}</small>}</span>
+  </a>
+</li>

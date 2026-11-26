@@ -5,11 +5,9 @@ import {
   affiliations,
   authors,
   evolutionStrategy,
-  mechanisms,
   navigation,
   resources,
   site,
-  stageComparisons,
 } from '../src/data/site.ts';
 
 test('publishes the finalized paper metadata', () => {
@@ -45,10 +43,9 @@ test('covers the theoretical foundation in primary navigation', () => {
   assert.deepEqual(
     navigation.map(({ label, href }) => [label, href]),
     [
-      ['MUSE', '#overview'],
+      ['Overview', '#overview'],
       ['Foundation', '#why-evolve'],
       ['Spectrum', '#spectrum'],
-      ['Method', '#method'],
       ['Architecture', '#architecture'],
       ['Results', '#results'],
       ['Resources', '#resources'],
@@ -70,15 +67,13 @@ test('defines institution logos in publication order', () => {
 
 test('keeps unpublished resources non-navigable', () => {
   assert.equal(resources.length, 4);
-  for (const resource of resources) {
+  const code = resources.find(resource => resource.label === 'Code');
+  assert.equal(code.status, 'available');
+  assert.equal(code.href, 'https://github.com/AgentEvolution-MUSE/MUSE');
+  for (const resource of resources.filter(resource => resource.label !== 'Code')) {
     assert.equal(resource.status, 'coming-soon');
     assert.equal(resource.href, undefined);
   }
-});
-
-test('defines the complete method narrative', () => {
-  assert.equal(stageComparisons.length, 3);
-  assert.equal(mechanisms.length, 3);
 });
 
 test('defines paper-aligned math and one coherent example across the six-tuple', () => {

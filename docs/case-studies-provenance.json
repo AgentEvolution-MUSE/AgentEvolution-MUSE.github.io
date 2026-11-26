@@ -1,0 +1,18 @@
+[
+  {
+    "file": "main.tex",
+    "sha256": "04fc6f929a44fe4edd967708505e21e5b2b1eea66f5971605f40d0e819ee13fd"
+  },
+  {
+    "file": "figs/appendix/synthetic_task_case_study.pdf",
+    "sha256": "fa610a21f72aa7b69e79af1d3d7d000e397d728cd35c21bbf7c82124ecc5cee4"
+  },
+  {
+    "file": "figs/appendix/exp_principle_case_study.pdf",
+    "sha256": "9579ff53db5eefe109e5b508c4063e1747c39684348822e4186e70542e6a9cee"
+  },
+  {
+    "file": "figs/appendix/tool_invocation_case_study.pdf",
+    "sha256": "606e993d2b507b3dece5cfa01f71d6b8e2c91697428c7aacabb174e68dc7ac1d"
+  }
+]

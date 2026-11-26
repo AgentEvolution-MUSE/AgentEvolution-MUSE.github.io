@@ -1,0 +1,50 @@
+---
+import { jointMetrics, jointChartRows, baseRow, jointBenefit } from '../data/joint-comparison';
+const metric = jointMetrics[0];
+---
+<figure class="joint-chart" data-joint-chart aria-label="Symbolic, parametric and joint adaptation compared with the base model">
+  <div class="joint-chart-toolbar">
+    <div class="joint-metrics" role="group" aria-label="Comparison metric">
+      {jointMetrics.map((item,i) => <button type="button" data-joint-metric={item.key} aria-pressed={i === 0} disabled>{item.label}</button>)}
+    </div>
+    <span class="joint-chart-direction" data-joint-direction>Higher is better ↑</span>
+  </div>
+  <figcaption class="joint-chart-caption" aria-live="polite" aria-atomic="true">
+    <strong data-joint-benefit>{jointBenefit(metric)}</strong>
+  </figcaption>
+  <div class="joint-chart-legend"><i aria-hidden="true"></i><span data-joint-base>Base Model · {baseRow.metrics.best.toFixed(2)}%</span></div>
+  <div class="joint-bars" style={`--base-position:${baseRow.metrics.best / metric.max * 100}%`}>
+    <div class="joint-plot-grid" aria-hidden="true"><i class="joint-base-line"></i></div>
+    {jointChartRows.map(row => <div class:list={['joint-bar-row', `joint-bar-${row.id}`]} tabindex="0" data-joint-bar={row.id} aria-label={`${row.name}: ${row.metrics.best.toFixed(2)}% Best SR`}>
+      <span class="joint-bar-name">{row.name}</span>
+      <div class="joint-bar-track"><span class="joint-bar-fill" style={`width:${row.metrics.best / metric.max * 100}%`}></span></div>
+      <strong data-joint-bar-value>{row.metrics.best.toFixed(2)}%</strong>
+    </div>)}
+    <div class="joint-chart-axis" aria-hidden="true">{Array.from({length:6},(_,i)=><span data-joint-tick style={`left:${i * 20}%`}>{i * metric.max / 5}</span>)}</div>
+  </div>
+</figure>
+<script>
+  import { jointMetrics, jointChartRows, baseRow, jointBenefit } from '../data/joint-comparison';
+  document.querySelectorAll<HTMLElement>('[data-joint-chart]').forEach(root => {
+    const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-joint-metric]')];
+    buttons.forEach(button => {
+      button.disabled = false;
+      button.addEventListener('click', () => {
+        const metric = jointMetrics.find(item => item.key === button.dataset.jointMetric)!;
+        buttons.forEach(control => control.setAttribute('aria-pressed', String(control === button)));
+        root.querySelector('[data-joint-direction]')!.textContent = metric.lower ? 'Lower is better ↓' : 'Higher is better ↑';
+        root.querySelector('[data-joint-benefit]')!.textContent = jointBenefit(metric);
+        root.querySelector('[data-joint-base]')!.textContent = `Base Model · ${baseRow.metrics[metric.key].toFixed(2)}${metric.unit}`;
+        root.querySelector<HTMLElement>('.joint-bars')!.style.setProperty('--base-position', `${baseRow.metrics[metric.key] / metric.max * 100}%`);
+        jointChartRows.forEach(row => {
+          const element = root.querySelector<HTMLElement>(`[data-joint-bar="${row.id}"]`)!;
+          const value = row.metrics[metric.key];
+          element.querySelector<HTMLElement>('.joint-bar-fill')!.style.width = `${value / metric.max * 100}%`;
+          element.querySelector('[data-joint-bar-value]')!.textContent = `${value.toFixed(2)}${metric.unit}`;
+          element.setAttribute('aria-label', `${row.name}: ${value.toFixed(2)}${metric.unit} ${metric.label}`);
+        });
+        root.querySelectorAll('[data-joint-tick]').forEach((tick,i) => tick.textContent = String(i * metric.max / 5));
+      });
+    });
+  });
+</script>

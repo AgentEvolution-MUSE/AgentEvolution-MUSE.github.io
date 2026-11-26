@@ -1,0 +1,20 @@
+[
+  {
+    "file": "main.tex",
+    "sha256": "04fc6f929a44fe4edd967708505e21e5b2b1eea66f5971605f40d0e819ee13fd",
+    "label": "tab:unison_contribution",
+    "method": "Table 5 row values extracted from LaTeX; no recomputation of reported metrics."
+  },
+  {
+    "file": "figs/experiments/continuous_evolution_oracle.pdf",
+    "sha256": "39a7e740df564597cc1da125810c18189b5054db94cc17f9dd1504c7befde773",
+    "method": "Inverse affine mapping of vector polyline vertices using labelled 25\u201355% axis grid; rounded to manuscript precision (2 decimals).",
+    "maxRoundingResidual": 2.23968120494078e-06
+  },
+  {
+    "file": "figs/experiments/continuous_evolution_synthetic.pdf",
+    "sha256": "4810ffd052f69ebbef91fe910669d6c9193c658cf3bff912bad5cfc74eccdaa6",
+    "method": "Inverse affine mapping of vector polyline vertices using labelled 25\u201355% axis grid; rounded to manuscript precision (2 decimals).",
+    "maxRoundingResidual": 2.227068364391016e-06
+  }
+]

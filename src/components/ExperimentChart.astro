@@ -1,0 +1,140 @@
+---
+import { RotateCcw, SlidersHorizontal } from '@lucide/astro';
+import { experimentCharts } from '../data/experiment-chart-config';
+import data from '../data/experiment-charts.json';
+import '../styles/experiment-charts.css';
+interface Props { chart: string; }
+const { chart } = Astro.props;
+const c = experimentCharts[chart];
+const horizontal = c.kind === 'horizontal';
+const paired = c.kind === 'paired';
+const initial = c.sync || c.kind === 'stacked' ? c.labels.length-1 : 0;
+const height = horizontal ? 366 : 300;
+const left = horizontal ? 116 : 56, right = 502, top = 28, bottom = horizontal ? 330 : 248;
+const y = (v:number) => bottom-(v-(c.min||0))/(c.max-(c.min||0))*(bottom-top);
+const group = (right-left)/c.labels.length;
+const x = (i:number) => left+group*(i+.5);
+const costX = (v:number) => left+v/33000*(right-left);
+const pairX = (i:number,j:number) => 166+j*226+(i%7-3)*3;
+const fmt = (v:number) => paired ? `≈ ${v.toFixed(3)}` : c.unit.includes('%') ? `${v.toFixed(c.kind==='steps'?2:1)}%` : v.toLocaleString('en-US');
+const stepPath = (s: typeof c.series[number]) => s.values.map((_,i)=>`${i?'H':'M'}${costX(s.x![i])}${i?' V':' '}${y(Math.max(...s.values.slice(0,i+1)))}`).join(' ');
+---
+<article class="native-chart" data-native-chart={chart} data-chart-sync={c.sync} aria-labelledby={`${chart}-heading`}>
+  <header class="native-chart-heading"><h4 id={`${chart}-heading`}>{c.title}</h4><span>{c.unit}</span></header>
+  {paired ? <div class="native-pair-summary"><span>31 paired tasks</span><span>Mean <b style={`color:${c.series[0].color}`}>0.978</b><i>→</i><b style={`color:${c.series[1].color}`}>0.334</b></span></div> : <div class="native-legend" role="group" aria-label={`${c.title}: visible series`}>{c.series.map((s,j)=><button type="button" data-native-toggle={j} aria-pressed="true" disabled style={`--series-color:${s.color}`}><i aria-hidden="true"></i>{s.name}</button>)}</div>}
+  <div class="native-chart-canvas">
+    <svg viewBox={`0 0 530 ${height}`} class="native-plot" role="img" aria-label={`${c.title}. Select ${c.picker.toLowerCase()} below to inspect values.`}>
+      <title>{c.title}</title>
+      {c.ticks.map(t=>horizontal ? <g class="native-grid"><line x1={left+t/c.max*(right-left)} x2={left+t/c.max*(right-left)} y1={top} y2={bottom}/><text x={left+t/c.max*(right-left)} y={bottom+20} text-anchor="middle">{t}</text></g> : <g class="native-grid"><line x1={left} x2={right} y1={y(t)} y2={y(t)} /><text x={left-10} y={y(t)+4} text-anchor="end">{c.max>1000 ? `${t/1000}k` : t}</text></g>)}
+      {horizontal && c.labels.map((label,i)=> <g data-native-hit={i} class="native-hit"><rect class="native-selection" data-native-band={i} data-active={i===initial} x="6" y={top+i*33.5} width="508" height="32" rx="5"/><text class="native-axis" x={left-12} y={top+i*33.5+19} text-anchor="end">{label}</text>{c.series.map((s,j)=><g data-native-series={j}><rect class="native-bar" fill={s.color} x={left} y={top+i*33.5+5+j*10} width={s.values[i]/c.max*(right-left)} height="8" rx="2"><title>{s.name}: {fmt(s.values[i])}</title></rect></g>)}<rect x="6" y={top+i*33.5} width="508" height="32" fill="transparent"/></g>)}
+      {(c.kind==='bars'||c.kind==='stacked') && c.labels.map((label,i)=><g class="native-hit" data-native-hit={i}>
+        <rect class="native-selection" data-native-band={i} data-active={i===initial} x={x(i)-group*.45} y={top} width={group*.9} height={bottom-top+29} rx="5"/>
+        {c.series.map((s,j)=>{
+          const stacked=c.kind==='stacked';
+          const offset=stacked?c.series.slice(0,j).reduce((a,v)=>a+v.values[i],0):0;
+          const width=group*.72/(stacked?1:c.series.length);
+          return <g data-native-series={j}><rect class="native-bar" fill={s.color} x={x(i)-group*.36+(stacked?0:j*width)} y={y(s.values[i]+offset)} width={width-2} height={y(offset)-y(s.values[i]+offset)} rx="2"><title>{s.name}, {label}: {fmt(s.values[i])}</title></rect></g>;
+        })}
+        <text class="native-axis" x={x(i)} y={bottom+22} text-anchor="middle">{label}</text><rect x={x(i)-group*.45} y={top} width={group*.9} height={bottom-top+28} fill="transparent"/>
+      </g>)}
+      {paired && <>
+        {data.pairs.map((p,i)=><g data-native-pair={i} data-active={i===initial}>
+          <line x1={pairX(i,0)} x2={pairX(i,1)} y1={y(p[0])} y2={y(p[1])} class="native-pair-line"/>
+          {p.map((v,j)=><circle cx={pairX(i,j)} cy={y(v)} r="3" fill={c.series[j].color}/>)}
+        </g>)}
+        {data.pairs.map((p,i)=><line class="native-pair-target" data-native-hit={i} x1={pairX(i,0)} x2={pairX(i,1)} y1={y(p[0])} y2={y(p[1])} stroke="transparent" stroke-width="9"><title>Pair {i+1}: guided ≈ {p[0].toFixed(3)}, free ≈ {p[1].toFixed(3)}</title></line>)}
+        <g data-native-pair-focus><line x1={pairX(0,0)} x2={pairX(0,1)} y1={y(data.pairs[0][0])} y2={y(data.pairs[0][1])} class="native-pair-focus"/>{data.pairs[0].map((v,j)=><circle data-pair-dot={j} cx={pairX(0,j)} cy={y(v)} r="6" fill={c.series[j].color} stroke="white" stroke-width="2"/>)}</g>
+        {data.means.map((v,j)=><g><path d={`M${166+j*226} ${y(v)-6} l6 6 -6 6 -6 -6Z`} fill="white" stroke="#344d64" stroke-width="1.5"/><text class="native-axis" x={166+j*226} y={bottom+23} text-anchor="middle">{c.series[j].name}</text></g>)}
+        <text class="native-axis native-note" x={right} y="16" text-anchor="end">◇ Mean</text>
+      </>}
+      {c.kind==='steps' && <>
+        <line x1={left} x2={right} y1={y(30.35)} y2={y(30.35)} class="native-baseline"/>
+        <text class="native-axis native-note" x={right} y="16" text-anchor="end">Dashed baseline: 30.35%</text>
+        {c.series.map((s,j)=><g data-native-series={j}>
+          <path d={stepPath(s)} fill="none" stroke={s.color} stroke-width="2.7" stroke-dasharray={j===0?'6 4':j===1?'8 3 2 3':undefined}/>
+          {s.values.map((v,i)=><g class="native-hit" data-native-hit={i}><circle class="native-observed" cx={costX(s.x![i])} cy={y(v)} r="3.5" fill={s.color}/><circle cx={costX(s.x![i])} cy={y(v)} r="14" fill="transparent"><title>{s.name}, round {i+1}: {v}% · {s.x![i].toLocaleString('en-US')} rollouts</title></circle></g>)}
+          <circle data-native-focus={j} cx={costX(s.x![initial])} cy={y(s.values[initial])} r="6" fill="white" stroke={s.color} stroke-width="2.5"/>
+        </g>)}
+        {[0,5000,10000,15000,20000,25000,30000].map(v=><text class="native-axis" x={costX(v)} y={bottom+22} text-anchor="middle">{v/1000}k</text>)}
+      </>}
+      {!horizontal && !paired && <text class="native-axis native-axis-title" x={(left+right)/2} y="293" text-anchor="middle">{c.kind==='steps'?'Cumulative exploration rollouts':c.kind==='stacked'?'Task-pool update':c.kind==='bars'&&chart==='composition'?'Applications per task':'Evolution round'}</text>}
+    </svg>
+  </div>
+  <div class="native-controls"><label for={`${chart}-selection`}><SlidersHorizontal size={14} aria-hidden="true"/>{c.picker}<output data-native-label>{c.labels[initial]}</output></label><input id={`${chart}-selection`} data-native-slider type="range" min="0" max={c.labels.length-1} value={initial} step="1" aria-label={`${c.title}: ${c.picker}`} disabled/><button class="native-reset" type="button" data-native-reset aria-label={`Reset ${c.title}`} title="Reset chart" disabled><RotateCcw size={15} aria-hidden="true"/></button></div>
+  <div class="native-readout" aria-live="polite" aria-atomic="true">
+    {c.series.map((s,j)=><div data-native-readout={j} style={`--series-color:${s.color}`}><span>{s.name}</span><strong data-native-value>{fmt(s.values[initial])}</strong><small data-native-context>{s.counts?`${s.counts[initial]} / ${s.size} tasks`:s.x?`${s.x[initial].toLocaleString('en-US')} rollouts · best ${Math.max(...s.values.slice(0,initial+1)).toFixed(2)}%`:c.kind==='stacked'?`${c.series.reduce((a,v)=>a+v.values[initial],0)} admitted`:paired?'Per-task mean reward':''}</small></div>)}
+  </div>
+  <details class="native-data"><summary>View values</summary><div tabindex="0" role="region" aria-label={`${c.title} values`}><table><thead><tr><th>{c.picker}</th>{c.series.map(s=><th>{s.name}</th>)}</tr></thead><tbody>{c.labels.map((l,i)=><tr><th scope="row">{l}</th>{c.series.map(s=><td>{fmt(s.values[i])}{s.x&&` / ${s.x[i].toLocaleString('en-US')} rollouts`}</td>)}</tr>)}</tbody></table></div></details>
+  {c.kind==='steps'&&<p class="native-chart-key">Lines: best so far · Points: observed performance</p>}
+</article>
+<script>
+  import { experimentCharts } from '../data/experiment-chart-config';
+  const roots=[...document.querySelectorAll<HTMLElement>('[data-native-chart]')];
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.setAttribute('data-chart-entered','');observer.unobserve(entry.target);}
+  }),{threshold:.1});
+  roots.forEach(root=>observer.observe(root));
+  const setters=new Map<HTMLElement,(index:number)=>void>();
+  roots.forEach(root=>{
+    const c=experimentCharts[root.dataset.nativeChart!];
+    const slider=root.querySelector<HTMLInputElement>('[data-native-slider]')!;
+    const output=root.querySelector<HTMLOutputElement>('[data-native-label]')!;
+    const reset=root.querySelector<HTMLButtonElement>('[data-native-reset]')!;
+    const buttons=[...root.querySelectorAll<HTMLButtonElement>('[data-native-toggle]')];
+    const initial=Number(slider.value);
+    const y=(v:number)=>248-(v-(c.min||0))/(c.max-(c.min||0))*220;
+    const fmt=(v:number)=>c.kind==='paired'?`≈ ${v.toFixed(3)}`:c.unit.includes('%')?`${v.toFixed(c.kind==='steps'?2:1)}%`:v.toLocaleString('en-US');
+    slider.disabled=reset.disabled=false;
+    buttons.forEach(b=>b.disabled=false);
+    function setIndex(index:number){
+      slider.value=String(index); output.value=c.labels[index];
+      root.querySelectorAll<SVGElement>('[data-native-band]').forEach(el=>el.dataset.active=String(Number(el.dataset.nativeBand)===index));
+      c.series.forEach((s,j)=>{
+        const row=root.querySelector(`[data-native-readout="${j}"]`)!;
+        row.querySelector('[data-native-value]')!.textContent=fmt(s.values[index]);
+        row.querySelector('[data-native-context]')!.textContent=s.counts?`${s.counts[index]} / ${s.size} tasks`:s.x?`${s.x[index].toLocaleString('en-US')} rollouts · best ${Math.max(...s.values.slice(0,index+1)).toFixed(2)}%`:c.kind==='stacked'?`${c.series.reduce((a,v)=>a+v.values[index],0)} admitted`:c.kind==='paired'?'Per-task mean reward':'';
+        const focus=root.querySelector(`[data-native-focus="${j}"]`);
+        if(focus&&s.x){focus.setAttribute('cx',String(56+s.x[index]/33000*446));focus.setAttribute('cy',String(y(s.values[index])));}
+      });
+      if(c.kind==='paired'){
+        root.querySelectorAll<SVGElement>('[data-native-pair]').forEach(el=>el.dataset.active=String(Number(el.dataset.nativePair)===index));
+        const focus=root.querySelector('[data-native-pair-focus]')!;
+        const line=focus.querySelector('line')!;
+        c.series.forEach((s,j)=>{
+          const px=166+j*226+(index%7-3)*3,py=y(s.values[index]);
+          line.setAttribute(`x${j+1}`,String(px));line.setAttribute(`y${j+1}`,String(py));
+          const dot=focus.querySelector(`[data-pair-dot="${j}"]`)!;dot.setAttribute('cx',String(px));dot.setAttribute('cy',String(py));
+        });
+      }
+    }
+    setters.set(root,setIndex);
+    function select(index:number){
+      setIndex(index);
+      if(c.sync) roots.filter(r=>r!==root&&r.dataset.chartSync===c.sync).forEach(r=>setters.get(r)?.(index));
+    }
+    slider.addEventListener('input',()=>select(Number(slider.value)));
+    root.querySelectorAll<SVGElement>('[data-native-hit]').forEach(hit=>{
+      hit.addEventListener('click',()=>select(Number(hit.dataset.nativeHit)));
+      hit.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')select(Number(hit.dataset.nativeHit));});
+    });
+    function updateLegend(target:HTMLElement){
+      const toggles=[...target.querySelectorAll<HTMLButtonElement>('[data-native-toggle]')];
+      const count=toggles.filter(b=>b.getAttribute('aria-pressed')==='true').length;
+      toggles.forEach(b=>{
+        const active=b.getAttribute('aria-pressed')==='true',key=b.dataset.nativeToggle;
+        b.disabled=active&&count===1;
+        target.querySelectorAll<SVGElement>(`[data-native-series="${key}"]`).forEach(el=>el.style.display=active?'':'none');
+        (target.querySelector(`[data-native-readout="${key}"]`) as HTMLElement).hidden=!active;
+      });
+    }
+    const related=c.sync?roots.filter(r=>r.dataset.chartSync===c.sync):[root];
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      const active=b.getAttribute('aria-pressed')!=='true';
+      related.forEach(r=>{r.querySelector(`[data-native-toggle="${b.dataset.nativeToggle}"]`)?.setAttribute('aria-pressed',String(active));updateLegend(r);});
+    }));
+    reset.addEventListener('click',()=>{
+      related.forEach(r=>{r.querySelectorAll('[data-native-toggle]').forEach(b=>b.setAttribute('aria-pressed','true'));updateLegend(r);});
+      select(initial);
+    });
+  });
+</script>

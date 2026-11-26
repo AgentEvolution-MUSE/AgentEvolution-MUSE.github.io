@@ -1,0 +1,14 @@
+{
+  "source": "main.tex",
+  "sha256": "04fc6f929a44fe4edd967708505e21e5b2b1eea66f5971605f40d0e819ee13fd",
+  "tables": [
+    "overall_adaptivity",
+    "symbolic_contribution",
+    "supplementary_supervision_effectiveness",
+    "synthetic_task_quality",
+    "synthetic_outcome_reward_reliability",
+    "gating_effectiveness"
+  ],
+  "shading": "Cell colors, white-mix percentages and bold emphasis extracted directly from LaTeX; includes unison_contribution.",
+  "method": "Direct extraction of numeric cells from LaTeX; null retains -- and N/A. Symbolic notation is expanded into component names."
+}

@@ -29,14 +29,6 @@ export type Affiliation = {
   logoHeight: number;
 };
 
-export type StageComparison = {
-  dimension: string;
-  limitation: string;
-  mechanism: string;
-  response: string;
-  accent: string;
-};
-
 export const site = {
   name: 'MUSE',
   paperTitle: 'Metacognitive Unison Self-Evolution',
@@ -46,10 +38,9 @@ export const site = {
 };
 
 export const navigation = [
-  { label: 'MUSE', href: '#overview' },
+  { label: 'Overview', href: '#overview' },
   { label: 'Foundation', href: '#why-evolve' },
   { label: 'Spectrum', href: '#spectrum' },
-  { label: 'Method', href: '#method' },
   { label: 'Architecture', href: '#architecture' },
   { label: 'Results', href: '#results' },
   { label: 'Resources', href: '#resources' },
@@ -111,7 +102,8 @@ export const resources: Resource[] = [
   {
     label: 'Code',
     description: 'Explore the MUSE implementation.',
-    status: 'coming-soon',
+    status: 'available',
+    href: 'https://github.com/AgentEvolution-MUSE/MUSE',
   },
   {
     label: 'Documentation',
@@ -179,56 +171,5 @@ export const evolutionStrategy: EvolutionStrategyComponent[] = [
     example:
       'Previously supported booking and notification tasks are replayed to reject updates that introduce regressions.',
     accent: 'blue',
-  },
-];
-
-export const stageComparisons: StageComparison[] = [
-  {
-    dimension: 'Evolutionary Autonomy',
-    limitation:
-      'Evolution remains primarily task-, failure-, schedule-, or feedback-conditioned rather than governed across the deployment lifecycle.',
-    mechanism: 'Metacognitive Gating',
-    response:
-      'Monitors longitudinal capability evidence, determines when evolution is needed, diagnoses capability gaps, and routes optimization demands.',
-    accent: 'blue',
-  },
-  {
-    dimension: 'Supervision Autonomy',
-    limitation:
-      'Evolution depends on external supervision or self-generated signals that may lack independent environmental grounding.',
-    mechanism: 'Interaction-Grounded Self-Supervision',
-    response:
-      'Derives supplementary tasks and rewards from empirically validated environmental interactions.',
-    accent: 'green',
-  },
-  {
-    dimension: 'Optimization Scope and Coordination',
-    limitation:
-      'Parametric, symbolic, and operational components are optimized selectively or with limited system-wide coordination.',
-    mechanism: 'Coordinated Component Evolution',
-    response:
-      'Combines inner-component refinement with inter-component synchronization across the parametric core and symbolic assets.',
-    accent: 'orange',
-  },
-];
-
-export const mechanisms = [
-  {
-    index: '01',
-    title: 'Metacognitive Gating',
-    text: 'MUSE monitors recent task performance and interaction accumulation to determine when to evolve, diagnoses capability gaps, and routes optimization demands.',
-    accent: 'blue',
-  },
-  {
-    index: '02',
-    title: 'Interaction-Grounded Self-Supervision',
-    text: 'MUSE constructs supplementary tasks and rewards from environmental interaction evidence to complement available oracle supervision during evolution.',
-    accent: 'green',
-  },
-  {
-    index: '03',
-    title: 'Coordinated Component Evolution',
-    text: 'MUSE combines inner-component refinement with inter-component synchronization across the parametric core and symbolic assets.',
-    accent: 'orange',
   },
 ];

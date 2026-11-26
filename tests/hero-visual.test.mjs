@@ -13,7 +13,7 @@ test('places a subdued spectrum beneath upper-left hero copy', () => {
   );
   assert.match(
     styles,
-    /\.hero-content\s*\{[^}]*padding:\s*clamp\(44px,\s*6vh,\s*70px\) 0 54px;[^}]*justify-content:\s*flex-start;/s,
+    /\.hero-content\s*\{[^}]*padding:\s*clamp\(28px,\s*4vh,\s*44px\) 0 36px;[^}]*justify-content:\s*flex-start;/s,
   );
   assert.match(styles, /\.hero-visual img\s*\{[^}]*width:\s*92%;[^}]*height:\s*92%;[^}]*max-height:\s*none;[^}]*object-fit:\s*cover;[^}]*opacity:\s*0\.18;/s);
 });

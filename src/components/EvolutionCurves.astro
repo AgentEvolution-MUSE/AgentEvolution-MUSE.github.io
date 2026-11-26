@@ -1,0 +1,98 @@
+---
+import { RotateCcw } from '@lucide/astro';
+import results from '../data/interactive-results.json';
+import { seriesStyle } from '../data/result-series';
+import '../styles/interactive-results.css';
+const x = (i: number) => 48 + i * 62;
+const y = (value: number) => 245 - (value - 25) * 6.2;
+const conditions = [{id:'oracle', label:'Oracle tasks', curves:results.curves.oracle}, {id:'synthetic', label:'Oracle + synthetic tasks', curves:results.curves.synthetic}];
+---
+<div class="evolution-curves" data-evolution-curves>
+  <div class="evidence-toolbar curve-toolbar">
+    <div class="round-picker"><label for="evolution-round">Round <output data-round-label for="evolution-round">8</output><span>/ 8</span></label><input id="evolution-round" type="range" min="1" max="8" step="1" value="8" aria-label="Evolution round for both charts" disabled /></div>
+    <button type="button" class="curve-reset" data-reset-curves disabled><RotateCcw size={15} aria-hidden="true" />Reset</button>
+  </div>
+  <div class="evolution-chart-grid">
+    {conditions.map(condition => <div class="interactive-evidence evolution-chart" data-condition={condition.id}>
+      <div class="evolution-chart-heading"><h4>{condition.label}</h4><span>Success rate (%)</span></div>
+      <div class="curve-legend" role="group" aria-label={`${condition.label}: visible methods`}>
+        {condition.curves.map(curve => <button type="button" data-toggle-series={curve.id} aria-pressed="true" style={`--series-color:${seriesStyle[curve.id].color}`} disabled><svg viewBox="0 0 24 12" width="24" height="12" aria-hidden="true"><path d="M1 6 H23" stroke="currentColor" stroke-width="2.5" stroke-dasharray={seriesStyle[curve.id].dash || undefined} /></svg>{seriesStyle[curve.id].name}</button>)}
+      </div>
+      <svg class="evolution-plot" viewBox="0 0 526 290" role="img" aria-label={`${condition.label}: success rates over eight rounds. Use the round slider for exact values.`}>
+        <title>{condition.label}: continuous evolution</title>
+        {[25,30,35,40,45,50,55].map(tick => <g class="plot-grid"><line x1="48" x2="482" y1={y(tick)} y2={y(tick)} /><text x="36" y={y(tick)+4} text-anchor="end">{tick}</text></g>)}
+        <line class="plot-reference" x1="48" x2="482" y1={y(results.reference)} y2={y(results.reference)} />
+        <rect class="plot-round-band" data-round-band x={x(7)-15} y="30" width="30" height="215" rx="4" />
+        <line class="plot-crosshair" data-round-crosshair x1={x(7)} x2={x(7)} y1="30" y2="245" />
+        <line class="plot-reference" x1="374" x2="394" y1="17" y2="17" />
+        <text class="plot-reference-label" x="482" y="21" text-anchor="end">Base 30.35</text>
+        {condition.curves.map(curve => <g data-plot-series={curve.id} style={`--series-color:${seriesStyle[curve.id].color}`}>
+          <polyline class="plot-series-line" points={curve.values.map((value,i)=>`${x(i)},${y(value)}`).join(' ')} stroke-dasharray={seriesStyle[curve.id].dash || undefined} stroke-width={curve.id === 'muse' || curve.id === 'joint' ? 3 : 2.2} />
+          {curve.values.map((value,i) => <circle class="plot-point" cx={x(i)} cy={y(value)} r="3.2"><title>{seriesStyle[curve.id].name}, round {i+1}: {value.toFixed(2)}%</title></circle>)}
+          <circle class="plot-selected-point" data-selected-point cx={x(7)} cy={y(curve.values[7])} r="5" />
+        </g>)}
+        {Array.from({length:8},(_,i)=><g class="plot-round" data-hit-round={i+1}><text class="plot-round-label" x={x(i)} y="267" text-anchor="middle" data-round-tick={i+1} data-current={i===7 ? '' : undefined}>{i+1}</text><rect x={x(i)-24} y="28" width="48" height="245" fill="transparent" /></g>)}
+        <text class="plot-axis-label" x="265" y="287" text-anchor="middle">Evolution round</text>
+      </svg>
+      <div class="curve-readout">
+        {condition.curves.map(curve=><div data-series-value={curve.id} style={`--series-color:${seriesStyle[curve.id].color}`}><span><i aria-hidden="true"></i>{seriesStyle[curve.id].name}</span><strong>{curve.values[7].toFixed(2)}<small>%</small></strong></div>)}
+      </div>
+    </div>)}
+  </div>
+  <details class="curve-data-table"><summary>Round-by-round values</summary><div class="evidence-table-scroll" tabindex="0" role="region" aria-label="All continuous evolution values"><table><thead><tr><th scope="col">Condition / method</th>{Array.from({length:8},(_,i)=><th scope="col">R{i+1}</th>)}</tr></thead><tbody>{conditions.map(condition=><><tr class="curve-table-group"><th colspan="9" scope="rowgroup">{condition.label}</th></tr>{condition.curves.map(curve=><tr><th scope="row">{seriesStyle[curve.id].name}</th>{curve.values.map(value=><td>{value.toFixed(2)}</td>)}</tr>)}</>)}</tbody></table></div></details>
+  <span class="visually-hidden-result" aria-live="polite" data-curve-announcement></span>
+</div>
+<script>
+  import results from '../data/interactive-results.json';
+  const root = document.querySelector<HTMLElement>('[data-evolution-curves]');
+  if (root) {
+    const slider = root.querySelector<HTMLInputElement>('#evolution-round')!;
+    const label = root.querySelector<HTMLOutputElement>('[data-round-label]')!;
+    const charts = [...root.querySelectorAll<HTMLElement>('[data-condition]')];
+    const reset = root.querySelector<HTMLButtonElement>('[data-reset-curves]')!;
+    slider.disabled = reset.disabled = false;
+    const setRound = (round: number) => {
+      slider.value = String(round); label.value = String(round);
+      charts.forEach(chart => {
+        const data = results.curves[chart.dataset.condition as keyof typeof results.curves];
+        const x = 48 + (round - 1) * 62;
+        const line = chart.querySelector('[data-round-crosshair]')!;
+        line.setAttribute('x1', String(x)); line.setAttribute('x2', String(x));
+        chart.querySelector('[data-round-band]')!.setAttribute('x', String(x - 15));
+        chart.querySelectorAll<SVGElement>('[data-round-tick]').forEach(tick => tick.toggleAttribute('data-current', Number(tick.dataset.roundTick) === round));
+        data.forEach(curve => {
+          const value = curve.values[round - 1];
+          const point = chart.querySelector(`[data-plot-series="${curve.id}"] [data-selected-point]`)!;
+          point.setAttribute('cx', String(x)); point.setAttribute('cy', String(245 - (value - 25) * 6.2));
+          const strong = chart.querySelector(`[data-series-value="${curve.id}"] strong`)!;
+          strong.firstChild!.textContent = value.toFixed(2);
+        });
+      });
+    };
+    slider.addEventListener('input', () => setRound(Number(slider.value)));
+    charts.forEach(chart => {
+      const buttons = [...chart.querySelectorAll<HTMLButtonElement>('[data-toggle-series]')];
+      buttons.forEach(button => button.disabled = false);
+      const updateToggles = () => {
+        const count = buttons.filter(button => button.getAttribute('aria-pressed') === 'true').length;
+        buttons.forEach(button => {
+          const active = button.getAttribute('aria-pressed') === 'true';
+          button.disabled = active && count === 1;
+          const key = button.dataset.toggleSeries!;
+          chart.querySelector(`[data-plot-series="${key}"]`)!.toggleAttribute('data-series-hidden', !active);
+          (chart.querySelector(`[data-series-value="${key}"]`) as HTMLElement).hidden = !active;
+        });
+      };
+      buttons.forEach(button => button.addEventListener('click', () => {
+        button.setAttribute('aria-pressed', String(button.getAttribute('aria-pressed') !== 'true'));
+        updateToggles();
+      }));
+      chart.querySelectorAll<SVGElement>('[data-hit-round]').forEach(hit => {
+        hit.addEventListener('pointerenter', event => { if(event.pointerType === 'mouse') setRound(Number(hit.dataset.hitRound)); });
+        hit.addEventListener('click', () => setRound(Number(hit.dataset.hitRound)));
+      });
+      reset.addEventListener('click', () => { buttons.forEach(button => button.setAttribute('aria-pressed', 'true')); updateToggles(); });
+    });
+    reset.addEventListener('click', () => { setRound(8); root.querySelector('[data-curve-announcement]')!.textContent = 'All methods shown. Round 8 selected.'; });
+  }
+</script>

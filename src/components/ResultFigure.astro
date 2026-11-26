@@ -1,14 +1,16 @@
 ---
 import { Expand } from '@lucide/astro';
 import assets from '../data/result-assets.json';
-interface Props { asset: keyof typeof assets; alt: string; caption: string; dense?: boolean; enlarge?: boolean; }
-const { asset, alt, caption, dense = false, enlarge = false } = Astro.props;
+interface Props { asset: keyof typeof assets; alt: string; caption?: string; detailTitle?: string; dense?: boolean; enlarge?: boolean; }
+const { asset, alt, caption = '', detailTitle = caption || alt, dense = false, enlarge = false } = Astro.props;
 const src = `/assets/images/results/${asset}`;
 const [width, height] = assets[asset];
+const showCaption = Boolean(caption) && !asset.startsWith('table-');
 ---
 <figure class:list={['rq-figure', { 'rq-figure-dense': dense }]}>
   <div class="rq-figure-scroll" tabindex={dense ? 0 : undefined} role={dense ? 'region' : undefined} aria-label={dense ? alt : undefined}>
     <img {src} {width} {height} {alt} loading="lazy" />
   </div>
-  <figcaption><span>{caption}</span>{enlarge && <button type="button" class="rq-enlarge" data-enlarge-figure data-figure-src={src} data-figure-alt={alt} data-figure-caption={caption} aria-label={`Enlarge figure: ${caption}`} title="Enlarge figure"><Expand size={17} aria-hidden="true" /></button>}</figcaption>
+  {showCaption && <figcaption><span>{caption}</span>{enlarge && <button type="button" class="rq-enlarge" data-enlarge-figure data-figure-src={src} data-figure-alt={alt} data-figure-caption={detailTitle} aria-label={`Enlarge figure: ${detailTitle}`} title="Enlarge figure"><Expand size={17} aria-hidden="true" /></button>}</figcaption>}
+  {!showCaption && enlarge && <div class="rq-figure-actions"><button type="button" class="rq-enlarge" data-enlarge-figure data-figure-src={src} data-figure-alt={alt} data-figure-caption={detailTitle} aria-label={`Enlarge figure: ${detailTitle}`} title="Enlarge figure"><Expand size={17} aria-hidden="true" /></button></div>}
 </figure>

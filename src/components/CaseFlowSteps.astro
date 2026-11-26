@@ -1,0 +1,19 @@
+---
+import type { TraceStep } from '../data/case-studies';
+interface Props { id:string; steps:TraceStep[]; start?:number; columns?:number; }
+const {id,steps,start=1,columns=1}=Astro.props;
+const links=(step:number)=>id==='experience'?(step===5?'release':step===7||step===8?'playback':''):id==='tool'&&step===3?'tool':'';
+---
+<ol class="case-flow-steps" style={`--flow-columns:${columns}`} data-case-trace={id} data-flow-list>
+ {steps.map((step,i)=>{
+  const number=start+i,row=Math.floor(i/columns),col=row%2?columns-i%columns:i%columns+1;
+  return <li style={`grid-row:${row+1};grid-column:${columns>1&&i===steps.length-1&&i%columns===0?'1 / -1':col}`}>
+   <article class:list={['case-flow-step',step.status]} id={`flow-${id}-${number}`} data-node={`${id}-${number}`} data-flow-order={i} data-link={links(number)}>
+    <button type="button" data-case-node aria-pressed="false" aria-label={`Step ${number}: ${step.action}`}>
+     <span class="case-step-number">{number}</span><strong>{step.action}</strong><span class="case-step-observation">{step.observation}</span>
+    </button>
+    {step.note&&<details class="case-node-detail"><summary>Details</summary><p>{step.note}</p></details>}
+   </article>
+  </li>;
+ })}
+</ol>

@@ -1,0 +1,33 @@
+---
+import PaperConfigMark from './PaperConfigMark.astro';
+import JointAdaptationChart from './JointAdaptationChart.astro';
+import shading from '../data/result-table-shading.json';
+import results from '../data/interactive-results.json';
+import '../styles/interactive-results.css';
+const columns = [
+  { key: 'best', label: 'Best SR', unit: '%', direction: '↑' },
+  { key: 'gain', label: 'EvoGain', unit: 'pp', direction: '↑' },
+  { key: 'final', label: 'Final SR', unit: '%', direction: '↑' },
+  { key: 'auc', label: 'Evo-AUC', unit: '', direction: '↑' },
+  { key: 'steps', label: 'Avg. Steps', unit: '', direction: '↓' },
+] as const;
+const rows = results.table;
+const best = Object.fromEntries(columns.map(c => [c.key, (c.key === 'steps' ? Math.min : Math.max)(...rows.map(r => r.metrics[c.key] ?? -Infinity))]));
+---
+<div class="interactive-evidence joint-comparison" data-joint-comparison>
+  <JointAdaptationChart />
+  <details class="joint-full-data" open><summary>All configurations and metrics</summary>
+  <div class="evidence-table-scroll" tabindex="0" role="region" aria-label="Separate and joint adaptation">
+    <table class="joint-table">
+      <caption class="visually-hidden-result">Separate and joint adaptation on oracle tasks with Qwen3.5-9B. Higher is better except average steps.</caption>
+      <colgroup>{[24,8,8,12,12,12,12,12].map(width=><col style={`width:${width}%`}/>)}</colgroup>
+      <thead><tr><th scope="col">Evolution setting</th><th scope="col">Symbolic</th><th scope="col">Model weights</th>{columns.map(c => <th scope="col">{c.label}{c.unit && ` (${c.unit})`} <span>{c.direction}</span></th>)}</tr></thead>
+      <tbody>{rows.map((row,i) => <tr data-setting={row.id} class:list={{'joint-result':row.id === 'joint'}}>
+        <th scope="row">{row.name}</th>
+        {[row.symbolic, row.parametric].map(enabled => <td class="config-cell"><PaperConfigMark enabled={enabled}/></td>)}
+        {columns.map((c,j) => <td style={shading.joint[i][j] ? `background-color:${shading.joint[i][j]!.background}` : undefined} data-paper-heat={shading.joint[i][j]?.level} class:list={['metric-cell', { 'best-value': row.metrics[c.key] === best[c.key] }]}>{row.metrics[c.key] === null ? '—' : `${c.key === 'gain' ? '+' : ''}${row.metrics[c.key]!.toFixed(2)}`}</td>)}
+      </tr>)}</tbody>
+    </table>
+  </div>
+  </details>
+</div>

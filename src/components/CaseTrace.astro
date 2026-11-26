@@ -1,0 +1,57 @@
+---
+import { ArrowLeft, ArrowRight, CircleCheck, CircleAlert } from '@lucide/astro';
+import type { TraceStep } from '../data/case-studies';
+interface Props { id:string; title:string; steps:TraceStep[]; initial?:number; potential?:boolean; }
+const {id,title,steps,initial=1,potential=false}=Astro.props;
+const vals=[.361,...steps.map(s=>s.potential||0)];
+const x=(i:number)=>32+i*28.8,y=(v:number)=>146-v*132;
+---
+<div class="case-trace" data-case-trace={id}>
+  <div class="trace-heading"><h5>{title}</h5><span>{steps.length} recorded steps</span></div>
+  {potential && <svg class="trace-potential" viewBox="0 0 500 182" role="img" aria-label="Prefix potential over 15 execution steps. Select a step to inspect its reward.">
+    <title>Prefix potential: errors and recovery</title>
+    {[0,.5,1].map(t=><g><line x1="32" x2="464" y1={y(t)} y2={y(t)}/><text x="22" y={y(t)+4} text-anchor="end">{t}</text></g>)}
+    <polyline points={vals.map((v,i)=>`${x(i)},${y(v)}`).join(' ')} fill="none" stroke="#628cab" stroke-width="2.5"/>
+    {vals.map((v,i)=><g><circle cx={x(i)} cy={y(v)} r="3.5" fill={i&&steps[i-1].status==='error'?'#bc7758':'#628cab'}/><text x={x(i)} y="164" text-anchor="middle">{i}</text>{i>0&&<circle data-trace-point={i} cx={x(i)} cy={y(v)} r="13" fill="transparent"><title>Step {i}: potential {v.toFixed(3)}</title></circle>}</g>)}
+    <circle data-potential-focus cx={x(initial)} cy={y(vals[initial])} r="6" fill="white" stroke="#315d82" stroke-width="2.5"/>
+    <text x="250" y="180" text-anchor="middle">Execution step · 0 = before execution</text>
+  </svg>}
+  <div class="trace-step-buttons" role="group" aria-label={`${title}: select a recorded step`}>
+    {steps.map((s,i)=><button type="button" data-trace-select={i+1} aria-pressed={i+1===initial?'true':'false'} aria-controls={`${id}-detail`} aria-label={`Step ${i+1}: ${s.action}`} class:list={[s.status]} disabled>{i+1}</button>)}
+  </div>
+  <div class="trace-detail" id={`${id}-detail`} aria-live="polite" aria-atomic="true">
+    {steps.map((s,i)=><div data-trace-panel={i+1} data-potential={s.potential} hidden={i+1!==initial}>
+      <p class="trace-step-label">Step {i+1}{s.app&&` · ${s.app}`}{s.status==='error'?<CircleAlert size={15} aria-label="Setback"/>:s.status==='success'?<CircleCheck size={15} aria-label="Successful action"/>:null}</p>
+      <h6>{s.action}</h6><dl><dt>Observation</dt><dd>{s.observation}</dd></dl>
+      {s.note&&<p class="trace-note">{s.note}</p>}
+      {potential&&<div class="trace-reward"><div><span>Prefix potential</span><strong>{s.potential!.toFixed(3)}</strong></div><div><span>Step reward</span><strong class:list={[s.reward!<0?'negative':'positive']}>{s.reward!>0?'+':''}{s.reward!.toFixed(3)}</strong></div></div>}
+    </div>)}
+  </div>
+  <div class="trace-pagination"><button type="button" data-trace-prev aria-label={`Previous step in ${title}`} disabled><ArrowLeft size={16} aria-hidden="true"/>Previous</button><span data-trace-counter>{initial} / {steps.length}</span><button type="button" data-trace-next aria-label={`Next step in ${title}`} disabled>Next<ArrowRight size={16} aria-hidden="true"/></button></div>
+  <details class="trace-record"><summary>All recorded steps</summary><div tabindex="0" role="region" aria-label={`${title}: complete execution record`}><table><thead><tr><th>Step</th><th>Action</th><th>Observation</th>{potential&&<><th>Potential</th><th>Reward</th></>}</tr></thead><tbody>{steps.map((s,i)=><tr><td>{i+1}</td><th scope="row">{s.action}</th><td>{s.observation}</td>{potential&&<><td>{s.potential!.toFixed(3)}</td><td>{s.reward!>0?'+':''}{s.reward!.toFixed(3)}</td></>}</tr>)}</tbody></table></div></details>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-case-trace]').forEach(root=>{
+    const buttons=[...root.querySelectorAll<HTMLButtonElement>('[data-trace-select]')];
+    const panels=[...root.querySelectorAll<HTMLElement>('[data-trace-panel]')];
+    const prev=root.querySelector<HTMLButtonElement>('[data-trace-prev]')!,next=root.querySelector<HTMLButtonElement>('[data-trace-next]')!;
+    let current=Number(buttons.find(b=>b.getAttribute('aria-pressed')==='true')!.dataset.traceSelect);
+    function select(step:number){
+      current=Math.max(1,Math.min(buttons.length,step));
+      buttons.forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.traceSelect)===current)));
+      panels.forEach(p=>p.hidden=Number(p.dataset.tracePanel)!==current);
+      prev.disabled=current===1;next.disabled=current===buttons.length;
+      root.querySelector('[data-trace-counter]')!.textContent=`${current} / ${buttons.length}`;
+      const focus=root.querySelector('[data-potential-focus]');
+      if(focus){focus.setAttribute('cx',String(32+current*28.8));focus.setAttribute('cy',String(146-Number(panels[current-1].dataset.potential)*132));}
+    }
+    buttons.forEach((b,i)=>{b.disabled=false;b.addEventListener('click',()=>select(i+1));b.addEventListener('keydown',event=>{
+      let index=i;if(event.key==='ArrowRight')index=Math.min(i+1,buttons.length-1);else if(event.key==='ArrowLeft')index=Math.max(0,i-1);else if(event.key==='Home')index=0;else if(event.key==='End')index=buttons.length-1;else return;
+      event.preventDefault();select(index+1);buttons[index].focus();
+    });});
+    prev.addEventListener('click',()=>select(current-1));next.addEventListener('click',()=>select(current+1));
+    root.querySelectorAll<SVGElement>('[data-trace-point]').forEach(point=>point.addEventListener('click',()=>select(Number(point.dataset.tracePoint))));
+    root.addEventListener('case-select',event=>select((event as CustomEvent<number>).detail));
+    select(current);
+  });
+</script>

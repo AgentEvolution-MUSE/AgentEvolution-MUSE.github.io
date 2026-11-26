@@ -1,0 +1,33 @@
+---
+import PaperConfigMark from './PaperConfigMark.astro';
+import shading from '../data/result-table-shading.json';
+import { resultTables } from '../data/result-table-config';
+import '../styles/result-tables.css';
+interface Props { table:string; }
+const {table}=Astro.props,c=resultTables[table];
+const colors=shading[table as keyof typeof shading];
+const symbolic=table==='symbolic';
+const contexts=c.contextHeaders??[];
+const metrics=symbolic?[...c.metrics,...c.metrics]:c.metrics;
+const displayRows=c.rows.map((row,i)=>({row,i,values:row.values,colors:colors[i]})).filter(({i})=>!symbolic||i%2===0).map(r=>symbolic?{...r,values:[...r.values,...c.rows[r.i+1].values],colors:[...r.colors,...colors[r.i+1]]}:r);
+const fmt=(v:number|null,j:number)=>v===null?(table==='reliability'?'N/A':'—'):metrics[j].name==='Rollouts'?v.toLocaleString('en-US'):`${v>0&&['ΔSR','ΔSteps','EvoGain'].includes(metrics[j].name)?'+':''}${v.toFixed(2)}`;
+const firstTitle=table==='quality'?'Task set':table==='reliability'?'Execution set':symbolic?'Component configuration':table==='supervision'?'Task source':table==='gating'?'Gating mechanism':'Method';
+const widths:Record<string,number[]>={overall:[18,18,8,8,12,12,12,12],symbolic:[24,...Array(8).fill(9.5)],supervision:[24,11,...Array(5).fill(13)],quality:[24,12,16,16,16,16],reliability:[24,12,16,16,16,16],gating:[22,10,...Array(5).fill(13.6)]};
+const groupAt=(i:number)=>table==='overall'?({0:'Reference',1:'Baselines',6:'Ours'} as Record<number,string>)[i]:table==='supervision'&&(i===0||c.rows[i].group!==c.rows[i-1].group)?c.rows[i].group:undefined;
+---
+<div class="result-table" data-result-table={table}>
+ <div class="result-table-scroll" role="region" aria-label={c.title} tabindex="0">
+ <table><caption class="visually-hidden-result">{c.title}</caption><colgroup>{widths[table].map(width=><col style={`width:${width}%`}/>)}</colgroup><thead>
+  {symbolic?<tr><th scope="col" rowspan="2">{firstTitle}</th><th scope="colgroup" colspan="4">Qwen3.5-9B</th><th scope="colgroup" colspan="4">Qwen3.5-27B</th></tr>:table==='overall'?<tr><th scope="col" rowspan="2">Method</th><th scope="colgroup" colspan="3">Evolution configuration</th><th scope="colgroup" colspan="4">APPWorld</th></tr>:null}
+  <tr>{!symbolic&&table!=='overall'&&<th scope="col">{firstTitle}</th>}{contexts.map(label=><th scope="col" class="result-context-header">{label}</th>)}{metrics.map(m=><th scope="col" title={m.definition}>{m.name}{m.unit&&` (${m.unit})`} <span aria-label={m.lower?'Lower is better':'Higher is better'}>{m.lower?'↓':'↑'}</span></th>)}</tr>
+ </thead>
+ <tbody>{displayRows.map(({row,i,values,colors:cells})=><>
+  {groupAt(i)&&<tr class="paper-row-group" data-result-group={row.group}><th colspan={1+contexts.length+metrics.length} scope="rowgroup">{groupAt(i)}</th></tr>}
+  <tr data-result-row={i} data-result-group={row.group} class:list={[{ 'result-row-muse':row.name==='MUSE' }]}>
+   <th scope="row"><strong>{row.name}</strong></th>
+   {row.attributes?.map((value,j)=><td class="result-context-cell" data-context-column={j}>{value==='✓'||value==='×'?<PaperConfigMark enabled={value==='✓'}/>:value}</td>)}
+   {values.map((v,j)=><td data-result-cell={j} data-value={v??''} style={cells[j] ? `background-color:${cells[j]!.background}` : undefined} class:list={[{'paper-best':cells[j]?.bold}]} data-paper-heat={cells[j]?.level}><span>{fmt(v,j)}</span></td>)}
+  </tr>
+ </>)}</tbody></table></div>
+ <details class="result-metric-help"><summary>Metric definitions</summary><dl>{c.metrics.map(m=><div><dt>{m.name}</dt><dd>{m.definition}</dd></div>)}</dl>{c.note&&<p>{c.note}</p>}</details>
+</div>

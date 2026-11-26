@@ -5,10 +5,6 @@ import { ArrowRight, CircleCheckBig, CircleX, RefreshCw, Target } from '@lucide/
 
 import { evolutionStrategy } from '../data/site';
 
-const formulaSource = String.raw`\mathcal{S}=\left\langle\Delta,\mathcal{C},\mathcal{M},\Gamma,\mathcal{O},\mathcal{B}\right\rangle`;
-const roundSource = String.raw`A_{t+1}=\mathcal{S}_t\!\left(A_t,E_t,H_t\right)`;
-const trajectorySource = String.raw`A_0\xrightarrow{\mathcal{S}_0(\cdot,E_0,H_0)}A_1\xrightarrow{\mathcal{S}_1(\cdot,E_1,H_1)}\cdots\xrightarrow{\mathcal{S}_{T-1}(\cdot,E_{T-1},H_{T-1})}A_T`;
-const mobileTrajectorySource = String.raw`A_0\xrightarrow{\mathcal{S}_0}A_1\xrightarrow{\mathcal{S}_1}\cdots\xrightarrow{\mathcal{S}_{T-1}}A_T`;
 const renderMath = (source: string) =>
   katex.renderToString(source, {
     throwOnError: true,
@@ -171,10 +167,6 @@ const initialScenario = renderedScenarios[0];
 const initialDetail = initialScenario.components.find(
   (component) => component.symbol === initialComponent.symbol,
 )!;
-const formulaHtml = renderMath(formulaSource);
-const roundHtml = renderMath(roundSource);
-const trajectoryHtml = renderMath(trajectorySource);
-const mobileTrajectoryHtml = renderMath(mobileTrajectorySource);
 ---
 
 <section
@@ -186,7 +178,6 @@ const mobileTrajectoryHtml = renderMath(mobileTrajectorySource);
 >
   <div class="container formulation-intro">
     <div>
-      <p class="eyebrow">Theoretical Foundation</p>
       <h2 id="formulation-title" class="section-heading">
         A Unified Formalization of Agent Evolution
       </h2>
@@ -197,14 +188,6 @@ const mobileTrajectoryHtml = renderMath(mobileTrajectorySource);
       guided and bounded across successive evolution rounds.
     </p>
   </div>
-
-  <p
-    class="formulation-equation container"
-    data-formulation-equation
-    aria-label="Evolutionary strategy S equals Delta, C, M, Gamma, O, and B"
-  >
-    <span aria-hidden="true" set:html={formulaHtml}></span>
-  </p>
 
   <ol class="container formulation-grid">
     {renderedStrategy.map((component, index) => (
@@ -385,38 +368,6 @@ const mobileTrajectoryHtml = renderMath(mobileTrajectorySource);
     ))}
   </div>
 
-  <div class="container evolution-process" data-evolution-process>
-    <div class="evolution-process-row">
-      <div class="evolution-process-label">
-        <span>Process 01</span>
-        <strong>One Evolution Round</strong>
-      </div>
-      <div
-        class="evolution-process-equation evolution-process-round"
-        aria-label="A sub t plus 1 equals evolutionary strategy S applied to agent A sub t, environment E sub t, and history H sub t"
-      >
-        <span aria-hidden="true" set:html={roundHtml}></span>
-      </div>
-    </div>
-    <div class="evolution-process-row evolution-process-row-trajectory">
-      <div class="evolution-process-label">
-        <span>Process 02</span>
-        <strong>Continuous Evolutionary Trajectory</strong>
-      </div>
-      <div
-        class="evolution-process-equation evolution-process-trajectory"
-        aria-label="A continuous trajectory from agent A zero through successive evolutionary strategy updates to agent A sub T"
-      >
-        <span class="trajectory-desktop" aria-hidden="true" set:html={trajectoryHtml}></span>
-        <span class="trajectory-mobile" aria-hidden="true" set:html={mobileTrajectoryHtml}></span>
-      </div>
-    </div>
-  </div>
-
-  <p class="container formulation-bridge">
-    Repeated interaction and adaptation form a continuous evolutionary trajectory. The maturity
-    of the governing strategy determines where an agent lies on the spectrum below.
-  </p>
 </section>
 
 <script>

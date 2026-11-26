@@ -1,0 +1,445 @@
+{
+  "overall": [
+    {
+      "name": "Base Model",
+      "detail": "No refinement",
+      "values": [
+        30.35,
+        null,
+        20.66,
+        null
+      ],
+      "attributes": [
+        "\u2014",
+        "\u00d7",
+        "\u00d7"
+      ]
+    },
+    {
+      "name": "Reflexion",
+      "detail": "Symbolic \u00b7 executor fixed",
+      "values": [
+        31.55,
+        1.2,
+        20.8,
+        0.14
+      ],
+      "attributes": [
+        "Symbolic",
+        "\u00d7",
+        "\u00d7"
+      ]
+    },
+    {
+      "name": "MemP",
+      "detail": "Symbolic \u00b7 executor fixed",
+      "values": [
+        32.74,
+        2.39,
+        20.6,
+        -0.06
+      ],
+      "attributes": [
+        "Symbolic",
+        "\u00d7",
+        "\u00d7"
+      ]
+    },
+    {
+      "name": "ReasoningBank",
+      "detail": "Symbolic \u00b7 executor fixed",
+      "values": [
+        33.33,
+        2.98,
+        20.6,
+        -0.06
+      ],
+      "attributes": [
+        "Symbolic",
+        "\u00d7",
+        "\u00d7"
+      ]
+    },
+    {
+      "name": "SkillMentor",
+      "detail": "Symbolic \u00b7 auxiliary model updated",
+      "values": [
+        41.07,
+        10.72,
+        18.5,
+        -2.16
+      ],
+      "attributes": [
+        "Symbolic",
+        "\u00d7",
+        "\u2713"
+      ]
+    },
+    {
+      "name": "Vanilla GRPO",
+      "detail": "Parametric \u00b7 executor updated",
+      "values": [
+        44.64,
+        14.29,
+        18.83,
+        -1.83
+      ],
+      "attributes": [
+        "Parametric",
+        "\u2713",
+        "\u00d7"
+      ]
+    },
+    {
+      "name": "MUSE",
+      "detail": "Symbolic + parametric \u00b7 executor updated",
+      "values": [
+        54.76,
+        24.41,
+        16.91,
+        -3.75
+      ],
+      "attributes": [
+        "Symbolic + parametric",
+        "\u2713",
+        "\u00d7"
+      ]
+    }
+  ],
+  "symbolic": [
+    {
+      "name": "Base Model",
+      "group": "9B",
+      "values": [
+        30.35,
+        null,
+        0.0,
+        20.66
+      ]
+    },
+    {
+      "name": "Base Model",
+      "group": "27B",
+      "values": [
+        61.91,
+        null,
+        0.0,
+        17.97
+      ]
+    },
+    {
+      "name": "Experience",
+      "group": "9B",
+      "values": [
+        36.9,
+        6.55,
+        2.16,
+        20.63
+      ]
+    },
+    {
+      "name": "Experience",
+      "group": "27B",
+      "values": [
+        70.83,
+        8.92,
+        4.57,
+        17.69
+      ]
+    },
+    {
+      "name": "Tools",
+      "group": "9B",
+      "values": [
+        35.11,
+        4.76,
+        -2.64,
+        19.61
+      ]
+    },
+    {
+      "name": "Tools",
+      "group": "27B",
+      "values": [
+        65.48,
+        3.57,
+        0.55,
+        16.59
+      ]
+    },
+    {
+      "name": "Experience + principles",
+      "group": "9B",
+      "values": [
+        36.3,
+        5.95,
+        0.6,
+        21.32
+      ]
+    },
+    {
+      "name": "Experience + principles",
+      "group": "27B",
+      "values": [
+        72.61,
+        10.7,
+        5.87,
+        17.08
+      ]
+    },
+    {
+      "name": "Experience + principles + tools",
+      "group": "9B",
+      "values": [
+        36.9,
+        6.55,
+        1.97,
+        19.69
+      ]
+    },
+    {
+      "name": "Experience + principles + tools",
+      "group": "27B",
+      "values": [
+        72.62,
+        10.71,
+        8.36,
+        16.54
+      ]
+    }
+  ],
+  "supervision": [
+    {
+      "name": "Oracle",
+      "group": "Parametric \u00b7 100% oracle",
+      "detail": "Without prefix potential",
+      "values": [
+        44.64,
+        14.29,
+        44.04,
+        10.83,
+        18.83
+      ],
+      "attributes": [
+        "\u00d7"
+      ]
+    },
+    {
+      "name": "Oracle",
+      "group": "Parametric \u00b7 100% oracle",
+      "detail": "With prefix potential",
+      "values": [
+        48.21,
+        17.86,
+        47.61,
+        12.91,
+        17.48
+      ],
+      "attributes": [
+        "\u2713"
+      ]
+    },
+    {
+      "name": "Oracle + synthetic",
+      "group": "Parametric \u00b7 100% oracle",
+      "detail": "With prefix potential",
+      "values": [
+        54.76,
+        24.41,
+        42.26,
+        14.21,
+        16.7
+      ],
+      "attributes": [
+        "\u2713"
+      ]
+    },
+    {
+      "name": "Oracle",
+      "group": "Parametric \u00b7 25% oracle",
+      "detail": "With prefix potential",
+      "values": [
+        45.83,
+        15.48,
+        39.88,
+        10.94,
+        19.34
+      ],
+      "attributes": [
+        "\u2713"
+      ]
+    },
+    {
+      "name": "Oracle + synthetic",
+      "group": "Parametric \u00b7 25% oracle",
+      "detail": "With prefix potential",
+      "values": [
+        47.61,
+        17.26,
+        47.61,
+        12.17,
+        17.39
+      ],
+      "attributes": [
+        "\u2713"
+      ]
+    },
+    {
+      "name": "Oracle",
+      "group": "Joint \u00b7 100% oracle",
+      "detail": "With prefix potential",
+      "values": [
+        54.76,
+        24.41,
+        51.19,
+        20.28,
+        15.2
+      ],
+      "attributes": [
+        "\u2713"
+      ]
+    },
+    {
+      "name": "Oracle + synthetic",
+      "group": "Joint \u00b7 100% oracle",
+      "detail": "With prefix potential",
+      "values": [
+        52.38,
+        22.03,
+        51.78,
+        16.3,
+        17.52
+      ],
+      "attributes": [
+        "\u2713"
+      ]
+    },
+    {
+      "name": "Oracle",
+      "group": "Joint \u00b7 25% oracle",
+      "detail": "With prefix potential",
+      "values": [
+        45.83,
+        15.48,
+        45.23,
+        11.72,
+        18.93
+      ],
+      "attributes": [
+        "\u2713"
+      ]
+    },
+    {
+      "name": "Oracle + synthetic",
+      "group": "Joint \u00b7 25% oracle",
+      "detail": "With prefix potential",
+      "values": [
+        49.4,
+        19.05,
+        45.23,
+        11.57,
+        18.34
+      ],
+      "attributes": [
+        "\u2713"
+      ]
+    }
+  ],
+  "quality": [
+    {
+      "name": "Generated candidates",
+      "detail": "39 / 40 assessable",
+      "values": [
+        97.44,
+        100.0,
+        53.85,
+        53.85
+      ],
+      "attributes": [
+        "39 / 40"
+      ]
+    },
+    {
+      "name": "Admitted tasks",
+      "detail": "36 / 36 assessable",
+      "values": [
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "attributes": [
+        "36 / 36"
+      ]
+    }
+  ],
+  "reliability": [
+    {
+      "name": "Guided execution",
+      "detail": "31 / 31 assessable",
+      "values": [
+        93.55,
+        100.0,
+        93.55,
+        null
+      ],
+      "attributes": [
+        "31 / 31"
+      ]
+    },
+    {
+      "name": "Free execution",
+      "detail": "31 / 31 assessable",
+      "values": [
+        80.65,
+        66.67,
+        28.57,
+        4.17
+      ],
+      "attributes": [
+        "31 / 31"
+      ]
+    }
+  ],
+  "gating": [
+    {
+      "name": "Always-on",
+      "values": [
+        52.38,
+        51.78,
+        16.3,
+        31208.0,
+        null
+      ],
+      "attributes": [
+        "MUSE"
+      ]
+    },
+    {
+      "name": "Random",
+      "values": [
+        51.79,
+        51.19,
+        18.13,
+        21960.0,
+        29.63
+      ],
+      "attributes": [
+        "MUSE"
+      ]
+    },
+    {
+      "name": "Metacognitive",
+      "values": [
+        54.76,
+        46.42,
+        15.96,
+        22112.0,
+        29.15
+      ],
+      "attributes": [
+        "MUSE"
+      ]
+    }
+  ]
+}

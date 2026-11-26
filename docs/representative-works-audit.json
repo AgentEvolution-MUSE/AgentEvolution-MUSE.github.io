@@ -1,0 +1,1919 @@
+{
+  "checkedOn": "2026-11-26",
+  "manuscriptBib": "/Users/hongboqiu/Downloads/MUSE_Arxiv/main.bib",
+  "manuscriptBibSha256": "dcb936767201d64f522764b3508ee712a926237e6d4b4c3a37ec2373734d4bf4",
+  "manuscriptTexSha256": "04fc6f929a44fe4edd967708505e21e5b2b1eea66f5971605f40d0e819ee13fd",
+  "figureSha256": "368e685ec8362701232ed01f8933269f268769c0a6790fefde5f9ed50402a6b5",
+  "linkOriginCounts": {
+    "resolved_from_citation": 15,
+    "manuscript_arxiv_id": 27,
+    "manuscript_url": 11
+  },
+  "limits": [
+    "Work identity is checked separately from identical edition/version.",
+    "OpenReview forum content cannot be independently read due to a browser challenge.",
+    "Selected institution marks do not claim sole ownership, endorsement, or exhaustive affiliation coverage."
+  ],
+  "works": {
+    "ELIZA": {
+      "card": {
+        "bibKey": "weizenbaum1983eliza",
+        "title": "ELIZA—a computer program for the study of natural language communication between man and machine",
+        "year": 1983,
+        "href": "https://doi.org/10.1145/357980.357991",
+        "venue": "CACM",
+        "pictogram": "MessagesSquare",
+        "summary": "Pattern-matching dialogue with human-authored scripts.",
+        "organization": "MIT"
+      },
+      "linkOrigin": "resolved_from_citation",
+      "bibliography": {
+        "key": "weizenbaum1983eliza",
+        "line": 273,
+        "title": "ELIZA—a computer program for the study of natural language communication between man and machine",
+        "author": "Weizenbaum, Joseph",
+        "year": "1983",
+        "journal": "Communications of the ACM",
+        "pages": "23--28"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://doi.org/10.1145/357980.357991",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Generic pictogram; not an institutional logo",
+        "source": "Lucide pictogram",
+        "status": "neutral_pictogram"
+      },
+      "notes": [
+        "1983 is the cited CACM reprint date, not the original 1966 system/paper date."
+      ]
+    },
+    "PARRY": {
+      "card": {
+        "bibKey": "colby1971artificial",
+        "title": "Artificial paranoia",
+        "year": 1971,
+        "href": "https://doi.org/10.1016/0004-3702(71)90002-6",
+        "venue": "Artificial Intelligence",
+        "pictogram": "MessageCircle",
+        "summary": "A conversational simulation of paranoid reasoning.",
+        "organization": "Stanford"
+      },
+      "linkOrigin": "resolved_from_citation",
+      "bibliography": {
+        "key": "colby1971artificial",
+        "line": 422,
+        "title": "Artificial paranoia",
+        "author": "Colby, Kenneth Mark and Weber, Sylvia and Hilf, Franklin Dennis",
+        "year": "1971",
+        "journal": "Artificial intelligence",
+        "pages": "1--25"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://web.stanford.edu/class/cs124/colby_71.pdf",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Generic pictogram; not an institutional logo",
+        "source": "Lucide pictogram",
+        "status": "neutral_pictogram"
+      },
+      "notes": []
+    },
+    "SHRDLU": {
+      "card": {
+        "bibKey": "winograd1972understanding",
+        "title": "Understanding natural language",
+        "year": 1972,
+        "href": "https://doi.org/10.1016/0010-0285(72)90002-3",
+        "venue": "Cognitive Psychology",
+        "pictogram": "Blocks",
+        "summary": "Language understanding and planning in a blocks world.",
+        "organization": "MIT"
+      },
+      "linkOrigin": "resolved_from_citation",
+      "bibliography": {
+        "key": "winograd1972understanding",
+        "line": 1018,
+        "title": "Understanding natural language",
+        "author": "Winograd, Terry",
+        "year": "1972",
+        "journal": "Cognitive psychology",
+        "pages": "1--191"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://teaching.bb-ai.net/Student-Projects/Winograd-Challenge-Papers/Winograd-1972-Understanding-Natural-Language.pdf",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Generic pictogram; not an institutional logo",
+        "source": "Lucide pictogram",
+        "status": "neutral_pictogram"
+      },
+      "notes": []
+    },
+    "MYCIN": {
+      "card": {
+        "bibKey": "shortliffe2012computer",
+        "title": "Computer-based medical consultations: MYCIN",
+        "year": 1976,
+        "href": "https://www.sciencedirect.com/book/monograph/9780444001795/computer-based-medical-consultations-mycin",
+        "venue": "Elsevier",
+        "pictogram": "Stethoscope",
+        "summary": "Expert rules for infectious-disease consultations.",
+        "organization": "Stanford",
+        "publicationNote": "Original edition (1976); the manuscript cites the 2012 reprint."
+      },
+      "linkOrigin": "resolved_from_citation",
+      "bibliography": {
+        "key": "shortliffe2012computer",
+        "line": 284,
+        "title": "Computer-based medical consultations: MYCIN",
+        "author": "Shortliffe, Edward",
+        "year": "2012"
+      },
+      "status": "same_work_different_edition",
+      "affiliationEvidence": [
+        {
+          "url": "https://people.dbmi.columbia.edu/~ehs7001/Shortliffe-1976/MYCIN%20thesis%20Book.htm",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Generic pictogram; not an institutional logo",
+        "source": "Lucide pictogram",
+        "status": "neutral_pictogram"
+      },
+      "notes": [
+        "Same book, different edition: manuscript cites Elsevier 2012; card links to the 1976 original. Explicitly disclosed in the card tooltip; exact edition parity remains unresolved."
+      ]
+    },
+    "ALICE": {
+      "card": {
+        "bibKey": "wallace2007anatomy",
+        "title": "The anatomy of ALICE",
+        "year": 2007,
+        "href": "https://link.springer.com/chapter/10.1007/978-1-4020-6710-5_13",
+        "venue": "Springer",
+        "pictogram": "Bot",
+        "summary": "AIML-based conversational patterns and responses.",
+        "organization": "A.L.I.C.E. Foundation",
+        "publicationNote": "First published online in 2007; Springer’s book citation uses 2009."
+      },
+      "linkOrigin": "resolved_from_citation",
+      "bibliography": {
+        "key": "wallace2007anatomy",
+        "line": 29,
+        "title": "The anatomy of ALICE",
+        "author": "Wallace, Richard S",
+        "year": "2007",
+        "booktitle": "Parsing the Turing test: Philosophical and methodological issues in the quest for the thinking computer",
+        "pages": "181--210"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://link.springer.com/chapter/10.1007/978-1-4020-6710-5_13",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Generic pictogram; not an institutional logo",
+        "source": "Lucide pictogram",
+        "status": "neutral_pictogram"
+      },
+      "notes": [
+        "Publisher records first-online date 23 November 2007 (matching manuscript), but its generated book citation uses 2009."
+      ]
+    },
+    "XCON": {
+      "card": {
+        "bibKey": "barker1989expert",
+        "title": "Expert systems for configuration at Digital: XCON and beyond",
+        "year": 1989,
+        "href": "https://doi.org/10.1145/62065.62067",
+        "venue": "CACM",
+        "pictogram": "Settings",
+        "summary": "Rule-based configuration of computer systems.",
+        "organization": "Digital Equipment Corp."
+      },
+      "linkOrigin": "resolved_from_citation",
+      "bibliography": {
+        "key": "barker1989expert",
+        "line": 38,
+        "title": "Expert systems for configuration at Digital: XCON and beyond",
+        "author": "Barker, Virginia E and O'Connor, Dennis E and Bachant, Judith and Soloway, Elliot",
+        "year": "1989",
+        "journal": "Communications of the ACM",
+        "pages": "298--318"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://api.crossref.org/works/10.1145/62065.62067",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Generic pictogram; not an institutional logo",
+        "source": "Lucide pictogram",
+        "status": "neutral_pictogram"
+      },
+      "notes": []
+    },
+    "INTERNIST-I": {
+      "card": {
+        "bibKey": "miller1985internist",
+        "title": "Internist-I, an experimental computer-based diagnostic consultant for general internal medicine",
+        "year": 1985,
+        "href": "https://link.springer.com/chapter/10.1007/978-1-4612-5108-8_8",
+        "venue": "Springer",
+        "pictogram": "Activity",
+        "summary": "Knowledge-based diagnosis in internal medicine.",
+        "organization": "University of Pittsburgh"
+      },
+      "linkOrigin": "resolved_from_citation",
+      "bibliography": {
+        "key": "miller1985internist",
+        "line": 49,
+        "title": "Internist-I, an experimental computer-based diagnostic consultant for general internal medicine",
+        "author": "Miller, Randolph A and Pople Jr, Harry E and Myers, Jack D",
+        "year": "1985",
+        "booktitle": "Computer-assisted medical decision making",
+        "pages": "139--158"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://www.nejm.org/doi/abs/10.1056/NEJM198208193070803",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Generic pictogram; not an institutional logo",
+        "source": "Lucide pictogram",
+        "status": "neutral_pictogram"
+      },
+      "notes": []
+    },
+    "MemGPT": {
+      "card": {
+        "bibKey": "packer2023memgpt",
+        "title": "MemGPT: Towards LLMs as Operating Systems",
+        "year": 2023,
+        "href": "https://arxiv.org/abs/2310.08560",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/memgpt.png",
+        "organization": "UC Berkeley"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "packer2023memgpt",
+        "line": 292,
+        "title": "{MemGPT}: Towards LLMs as Operating Systems",
+        "author": "Packer, Charles and Wooders, Sarah and Lin, Kevin and Fang, Vivian and Patil, Shishir G. and Stoica, Ion and Gonzalez, Joseph E.",
+        "year": "2023",
+        "journal": "arXiv preprint arXiv:2310.08560"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2310.08560",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "UC Berkeley",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "MemoryBank": {
+      "card": {
+        "bibKey": "zhong2024memorybank",
+        "title": "Memorybank: Enhancing large language models with long-term memory",
+        "year": 2024,
+        "href": "https://ojs.aaai.org/index.php/AAAI/article/view/29946",
+        "venue": "AAAI",
+        "icon": "/assets/images/works/memorybank.png",
+        "organization": "Sun Yat-sen University"
+      },
+      "linkOrigin": "resolved_from_citation",
+      "bibliography": {
+        "key": "zhong2024memorybank",
+        "line": 806,
+        "title": "Memorybank: Enhancing large language models with long-term memory",
+        "author": "Zhong, Wanjun and Guo, Lianghong and Gao, Qiqi and Ye, He and Wang, Yanlin",
+        "year": "2024",
+        "booktitle": "Proceedings of the AAAI conference on artificial intelligence",
+        "pages": "19724--19731"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2305.10250",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Sun Yat-sen University",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "AAAI landing page is bot-protected; title, author set and affiliation cross-checked against the matching arXiv paper; conference metadata supported by publisher DOI 10.1609/AAAI.V38I17.29946."
+      ]
+    },
+    "Generative Agents": {
+      "card": {
+        "bibKey": "park2023generative",
+        "title": "Generative Agents: Interactive Simulacra of Human Behavior",
+        "year": 2023,
+        "href": "https://doi.org/10.1145/3586183.3606763",
+        "venue": "UIST",
+        "icon": "/assets/images/works/generative-agents.png",
+        "organization": "Stanford · Google"
+      },
+      "linkOrigin": "resolved_from_citation",
+      "bibliography": {
+        "key": "park2023generative",
+        "line": 815,
+        "title": "Generative agents: Interactive simulacra of human behavior",
+        "author": "Park, Joon Sung and O'Brien, Joseph and Cai, Carrie Jun and Morris, Meredith Ringel and Liang, Percy and Bernstein, Michael S",
+        "year": "2023",
+        "booktitle": "Proceedings of the 36th annual acm symposium on user interface software and technology",
+        "pages": "1--22"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/html/2304.03442",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Stanford University",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Changed the card from arXiv to the UIST 2023 DOI matching the manuscript."
+      ]
+    },
+    "MemPrompt": {
+      "card": {
+        "bibKey": "madaan2022memory",
+        "title": "Memory-assisted prompt editing to improve GPT-3 after deployment",
+        "year": 2022,
+        "href": "https://aclanthology.org/2022.emnlp-main.183/",
+        "venue": "EMNLP",
+        "icon": "/assets/images/works/memprompt.png",
+        "organization": "CMU · AllenAI"
+      },
+      "linkOrigin": "resolved_from_citation",
+      "bibliography": {
+        "key": "madaan2022memory",
+        "line": 823,
+        "title": "Memory-assisted prompt editing to improve GPT-3 after deployment",
+        "author": "Madaan, Aman and Tandon, Niket and Clark, Peter and Yang, Yiming",
+        "year": "2022",
+        "booktitle": "Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing",
+        "pages": "2833--2861"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://aclanthology.org/2022.emnlp-main.183.pdf",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Carnegie Mellon University",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Changed the card from arXiv to the exact EMNLP 2022 publication cited in the manuscript. The PDF heading and Anthology metadata use different title wording for the same paper."
+      ]
+    },
+    "ChatDB": {
+      "card": {
+        "bibKey": "hu2023chatdb",
+        "title": "ChatDB: Augmenting LLMs with Databases as Their Symbolic Memory",
+        "year": 2023,
+        "href": "https://arxiv.org/abs/2306.03901",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/chatdb.png",
+        "organization": "Tsinghua"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "hu2023chatdb",
+        "line": 831,
+        "title": "Chatdb: Augmenting llms with databases as their symbolic memory",
+        "author": "Hu, Chenxu and Fu, Jie and Du, Chenzhuang and Luo, Simian and Zhao, Junbo and Zhao, Hang",
+        "year": "2023",
+        "journal": "arXiv preprint arXiv:2306.03901"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2306.03901",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Tsinghua University",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "Mem0": {
+      "card": {
+        "bibKey": "chhikara2025mem0",
+        "title": "Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory",
+        "year": 2025,
+        "href": "https://arxiv.org/abs/2504.19413",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/mem0.png",
+        "organization": "Mem0"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "chhikara2025mem0",
+        "line": 1038,
+        "title": "Mem0: Building production-ready ai agents with scalable long-term memory",
+        "author": "Chhikara, Prateek and Khant, Dev and Aryan, Saket and Singh, Taranjeet and Yadav, Deshraj",
+        "year": "2025",
+        "journal": "arXiv preprint arXiv:2504.19413"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2504.19413",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Mem0",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "MemoryOS": {
+      "card": {
+        "bibKey": "kang2025memory",
+        "title": "Memory os of ai agent",
+        "year": 2025,
+        "href": "https://aclanthology.org/2025.emnlp-main.1318/",
+        "venue": "EMNLP",
+        "icon": "/assets/images/works/memoryos.png",
+        "organization": "BUPT · Tencent"
+      },
+      "linkOrigin": "resolved_from_citation",
+      "bibliography": {
+        "key": "kang2025memory",
+        "line": 1030,
+        "title": "Memory os of ai agent",
+        "author": "Kang, Jiazheng and Ji, Mingming and Zhao, Zhe and Bai, Ting",
+        "year": "2025",
+        "booktitle": "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
+        "pages": "25972--25981"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://aclanthology.org/2025.emnlp-main.1318.pdf",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Beijing University of Posts and Telecommunications",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Manuscript pages 25972–25981 differ from the linked official PDF, 25961–25970. Title and all four authors match. The manuscript bibliography needs a page-range correction; not edited here."
+      ]
+    },
+    "AnnaAgent": {
+      "card": {
+        "bibKey": "wang2025annaagent",
+        "title": "AnnaAgent: Dynamic evolution agent system with multi-session memory for realistic seeker simulation",
+        "year": 2025,
+        "href": "https://aclanthology.org/2025.findings-acl.1192/",
+        "venue": "ACL Findings",
+        "organization": "Northeastern University (China)",
+        "icon": "/assets/images/works/neu-china.svg"
+      },
+      "linkOrigin": "resolved_from_citation",
+      "bibliography": {
+        "key": "wang2025annaagent",
+        "line": 663,
+        "title": "AnnaAgent: Dynamic evolution agent system with multi-session memory for realistic seeker simulation",
+        "author": "Wang, Ming and Wang, Peidong and Wu, Lin and Yang, Xiaocui and Wang, Daling and Feng, Shi and Chen, Yuxin and Wang, Bixuan and Zhang, Yifei",
+        "year": "2025",
+        "booktitle": "Findings of the Association for Computational Linguistics: ACL 2025",
+        "pages": "23221--23235"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://aclanthology.org/2025.findings-acl.1192.pdf",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        },
+        {
+          "url": "https://www.neu.edu.cn/xygk/ddbs.htm",
+          "purpose": "Chinese NEU brand description identifies blue mountain-and-river seal, unlike the red US seal in the figure."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Northeastern University (China)",
+        "source": "https://svglogo.top/library/school/NEU.svg",
+        "verificationSource": "https://www.neu.edu.cn/xygk/ddbs.htm",
+        "status": "replacement_vector_mark_checked_against_official_identity",
+        "asset": "/assets/images/works/neu-china.svg",
+        "sha256": "32155fc3ba4c525af42939ca0cb42c635edeaae91dfd023dcc8ba763b2b56a1f",
+        "processing": "Retained original vector paths and colors; removed decorative shadow; fitted viewBox with 2-unit margin. No raster image embedded."
+      },
+      "notes": [
+        "The manuscript figure incorrectly used the US Northeastern University seal. Replaced it with the Chinese NEU blue mountain-and-river SVG seal, with 1923 and Chinese/English university names. Asset obtained from SVGLOGO and compared against official university identity; not downloaded from the university."
+      ]
+    },
+    "A-Mem": {
+      "card": {
+        "bibKey": "xu2025amem",
+        "title": "A-Mem: Agentic Memory for LLM Agents",
+        "year": 2025,
+        "href": "https://openreview.net/forum?id=FiM0M8gcct",
+        "venue": "NeurIPS",
+        "icon": "/assets/images/works/a-mem.png",
+        "organization": "Rutgers"
+      },
+      "linkOrigin": "manuscript_url",
+      "bibliography": {
+        "key": "xu2025amem",
+        "line": 671,
+        "title": "A-Mem: Agentic Memory for {LLM} Agents",
+        "author": "Wujiang Xu and Zujie Liang and Kai Mei and Hang Gao and Juntao Tan and Yongfeng Zhang",
+        "year": "2025",
+        "url": "https://openreview.net/forum?id=FiM0M8gcct",
+        "booktitle": "The Thirty-ninth Annual Conference on Neural Information Processing Systems"
+      },
+      "status": "bibliography_link_plus_matching_paper",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2502.12110",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Rutgers University",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Exact OpenReview URL copied from main.bib. Landing page returned a browser-verification challenge; forum content was not independently read. Matching official/preprint paper was checked separately."
+      ]
+    },
+    "Evo-Memory": {
+      "card": {
+        "bibKey": "wei2025evo",
+        "title": "Evo-Memory: Benchmarking LLM Agent Test-time Learning with Self-Evolving Memory",
+        "year": 2025,
+        "href": "https://arxiv.org/abs/2511.20857",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/evo-memory.svg",
+        "organization": "Google DeepMind · UIUC"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "wei2025evo",
+        "line": 257,
+        "title": "Evo-memory: Benchmarking llm agent test-time learning with self-evolving memory",
+        "author": "Wei, Tianxin and Sachdeva, Noveen and Coleman, Benjamin and He, Zhankui and Bei, Yuanchen and Ning, Xuying and Ai, Mengting and Li, Yunzhe and He, Jingrui and Chi, Ed H and others",
+        "year": "2025",
+        "journal": "arXiv preprint arXiv:2511.20857"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2511.20857",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Google",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "AutoFlow": {
+      "card": {
+        "bibKey": "li2024autoflow",
+        "title": "AutoFlow: Automated Workflow Generation for Large Language Model Agents",
+        "year": 2024,
+        "href": "https://arxiv.org/abs/2407.12821",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/autoflow.png",
+        "organization": "Rutgers"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "li2024autoflow",
+        "line": 733,
+        "title": "Autoflow: Automated workflow generation for large language model agents",
+        "author": "Li, Zelong and Xu, Shuyuan and Mei, Kai and Hua, Wenyue and Rama, Balaji and Raheja, Om and Wang, Hao and Zhu, He and Zhang, Yongfeng",
+        "year": "2024",
+        "journal": "arXiv preprint arXiv:2407.12821"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2407.12821",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Rutgers University",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Distinct from AFLOW: li2024autoflow, Rutgers, arXiv:2407.12821."
+      ]
+    },
+    "Puppeteer": {
+      "card": {
+        "bibKey": "dang2025multiagent",
+        "title": "Multi-Agent Collaboration via Evolving Orchestration",
+        "year": 2025,
+        "href": "https://openreview.net/forum?id=L0xZPXT3le",
+        "venue": "NeurIPS",
+        "icon": "/assets/images/works/puppeteer.png",
+        "organization": "Tsinghua"
+      },
+      "linkOrigin": "manuscript_url",
+      "bibliography": {
+        "key": "dang2025multiagent",
+        "line": 747,
+        "title": "Multi-Agent Collaboration via Evolving Orchestration",
+        "author": "Yufan Dang and Chen Qian and Xueheng Luo and Jingru Fan and Zihao Xie and Ruijie Shi and Weize Chen and Cheng Yang and Xiaoyin Che and Ye Tian and Xuantang Xiong and Lei Han and Zhiyuan Liu and Maosong Sun",
+        "year": "2025",
+        "url": "https://openreview.net/forum?id=L0xZPXT3le",
+        "booktitle": "The Thirty-ninth Annual Conference on Neural Information Processing Systems"
+      },
+      "status": "bibliography_link_plus_matching_paper",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2505.19591",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Tsinghua University",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Exact OpenReview URL copied from main.bib. Landing page returned a browser-verification challenge; forum content was not independently read. Matching official/preprint paper was checked separately."
+      ]
+    },
+    "Skill-SP": {
+      "card": {
+        "bibKey": "huang2026skillsp",
+        "title": "Skill Self-Play: Pushing the Frontier of LLM Capability with Co-Evolving Skills",
+        "year": 2026,
+        "href": "https://arxiv.org/abs/2607.22529",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/skill-sp.png",
+        "organization": "Alibaba Qwen"
+      },
+      "linkOrigin": "manuscript_url",
+      "bibliography": {
+        "key": "huang2026skillsp",
+        "line": 1053,
+        "title": "{Skill Self-Play}: Pushing the Frontier of {LLM} Capability with Co-Evolving Skills",
+        "author": "Huang, Siyuan and Cheng, Pengyu and Liu, Haotian and Chen, Tao and Liu, Yihao and Ni, Jingwei and Zhou, Shijie and Yang, Ziyi and Jiang, Gangwei and Zhou, Mengyu and Cheng, Yu and Jiang, Xiaoxi and Jiang, Guanjun",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2607.22529",
+        "journal": "arXiv preprint arXiv:2607.22529"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2607.22529",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Qwen / Alibaba",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "MA-Evolve": {
+      "card": {
+        "bibKey": "chen2025multi",
+        "title": "Multi-Agent Evolve: LLM Self-Improve through Co-evolution",
+        "year": 2025,
+        "href": "https://arxiv.org/abs/2510.23595",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/ma-evolve.png",
+        "organization": "UIUC"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "chen2025multi",
+        "line": 755,
+        "title": "Multi-agent evolve: Llm self-improve through co-evolution",
+        "author": "Chen, Yixing and Wang, Yiding and Zhu, Siqi and Yu, Haofei and Feng, Tao and Zhang, Muhan and Patwary, Mostofa and You, Jiaxuan",
+        "year": "2025",
+        "journal": "arXiv preprint arXiv:2510.23595"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2510.23595",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "University of Illinois Urbana-Champaign",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "SPICE": {
+      "card": {
+        "bibKey": "liu2025spice",
+        "title": "SPICE: Self-Play In Corpus Environments Improves Reasoning",
+        "year": 2025,
+        "href": "https://arxiv.org/abs/2510.24684",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/spice.png",
+        "organization": "Meta FAIR"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "liu2025spice",
+        "line": 857,
+        "title": "Spice: Self-play in corpus environments improves reasoning",
+        "author": "Liu, Bo and Jin, Chuanyang and Kim, Seungone and Yuan, Weizhe and Zhao, Wenting and Kulikov, Ilia and Li, Xian and Sukhbaatar, Sainbayar and Lanchantin, Jack and Weston, Jason",
+        "year": "2025",
+        "journal": "arXiv preprint arXiv:2510.24684"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2510.24684",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Meta",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "AFLOW": {
+      "card": {
+        "bibKey": "zhang2025aflow",
+        "title": "AFlow: Automating Agentic Workflow Generation",
+        "year": 2025,
+        "href": "https://openreview.net/forum?id=z5uVAKwmjf",
+        "venue": "ICLR",
+        "icon": "/assets/images/works/aflow.png",
+        "organization": "DeepWisdom · HKUST (Guangzhou)"
+      },
+      "linkOrigin": "manuscript_url",
+      "bibliography": {
+        "key": "zhang2025aflow",
+        "line": 865,
+        "title": "{AF}low: Automating Agentic Workflow Generation",
+        "author": "Jiayi Zhang and Jinyu Xiang and Zhaoyang Yu and Fengwei Teng and Xiong-Hui Chen and Jiaqi Chen and Mingchen Zhuge and Xin Cheng and Sirui Hong and Jinlin Wang and Bingnan Zheng and Bang Liu and Yuyu Luo and Chenglin Wu",
+        "year": "2025",
+        "url": "https://openreview.net/forum?id=z5uVAKwmjf",
+        "booktitle": "The Thirteenth International Conference on Learning Representations"
+      },
+      "status": "bibliography_link_plus_matching_paper",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2410.10762",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "DeepWisdom",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Distinct from AutoFlow: zhang2025aflow, DeepWisdom / HKUST Guangzhou, ICLR 2025.",
+        "Exact OpenReview URL copied from main.bib. Landing page returned a browser-verification challenge; forum content was not independently read. Matching official/preprint paper was checked separately."
+      ]
+    },
+    "SCA": {
+      "card": {
+        "bibKey": "zhou2025selfchallenging",
+        "title": "Self-Challenging Language Model Agents",
+        "year": 2025,
+        "href": "https://openreview.net/forum?id=9yusqX9DpR",
+        "venue": "NeurIPS",
+        "icon": "/assets/images/works/sca.png",
+        "organization": "UC Berkeley · Meta FAIR"
+      },
+      "linkOrigin": "manuscript_url",
+      "bibliography": {
+        "key": "zhou2025selfchallenging",
+        "line": 624,
+        "title": "Self-Challenging Language Model Agents",
+        "author": "Yifei Zhou and Sergey Levine and Jason E Weston and Xian Li and Sainbayar Sukhbaatar",
+        "year": "2025",
+        "url": "https://openreview.net/forum?id=9yusqX9DpR",
+        "booktitle": "The Thirty-ninth Annual Conference on Neural Information Processing Systems"
+      },
+      "status": "bibliography_link_plus_matching_paper",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2506.01716",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "UC Berkeley",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Exact OpenReview URL copied from main.bib. Landing page returned a browser-verification challenge; forum content was not independently read. Matching official/preprint paper was checked separately."
+      ]
+    },
+    "ALMA": {
+      "card": {
+        "bibKey": "xiong2026learning",
+        "title": "Learning to Continually Learn via Meta-learning Agentic Memory Designs",
+        "year": 2026,
+        "href": "https://arxiv.org/abs/2602.07755",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/alma.png",
+        "organization": "UBC"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "xiong2026learning",
+        "line": 702,
+        "title": "Learning to Continually Learn via Meta-learning Agentic Memory Designs",
+        "author": "Xiong, Yiming and Hu, Shengran and Clune, Jeff",
+        "year": "2026",
+        "journal": "arXiv preprint arXiv:2602.07755"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2602.07755",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "University of British Columbia",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "SkillProx": {
+      "card": {
+        "bibKey": "zheng2026skillprox",
+        "title": "SkillProx: Self-Evolving Agent Skills via Proximal Textual Gradient Descent",
+        "year": 2026,
+        "href": "https://arxiv.org/abs/2608.07449",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/skillprox.png",
+        "organization": "HKUST"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "zheng2026skillprox",
+        "line": 1004,
+        "title": "SkillProx: Self-Evolving Agent Skills via Proximal Textual Gradient Descent",
+        "author": "Zheng, Mingxuan and Zhou, Yujin and Cao, Chuxue and Yin, Boqin and Zhang, Yuyao and Sun, Jiapeng and Gong, Shuaishuai and Han, Sirui and Guo, Yike",
+        "year": "2026",
+        "journal": "arXiv preprint arXiv:2608.07449"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2608.07449",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "HKUST",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "SIA": {
+      "card": {
+        "bibKey": "hebbar2026sia",
+        "title": "SIA: Self Improving AI with Harness & Weight Updates",
+        "year": 2026,
+        "href": "https://arxiv.org/abs/2605.27276",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/sia.png",
+        "organization": "Hexo Labs · Oxford"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "hebbar2026sia",
+        "line": 989,
+        "title": "SIA: Self Improving AI with Harness \\& Weight Updates",
+        "author": "Hebbar, Prannay and Manawat, Yogendra and Verboomen, Samuel and Ivanova, Alesia and Palanimalai, Selvam and Bhatia, Kunal and Baskaran, Vignesh",
+        "year": "2026",
+        "journal": "arXiv preprint arXiv:2605.27276"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2605.27276",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        },
+        {
+          "url": "https://hexolabs.com/",
+          "purpose": "Team identity and visual mark verified against official favicon."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Hexo Labs",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "CoMAS": {
+      "card": {
+        "bibKey": "xue2025comas",
+        "title": "CoMAS: Co-Evolving Multi-Agent Systems via Interaction Rewards",
+        "year": 2025,
+        "href": "https://arxiv.org/abs/2510.08529",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/comas.png",
+        "organization": "CUHK"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "xue2025comas",
+        "line": 740,
+        "title": "CoMAS: Co-Evolving Multi-Agent Systems via Interaction Rewards",
+        "author": "Xue, Xiangyuan and Zhou, Yifan and Zhang, Guibin and Zhang, Zaibin and Li, Yijiang and Zhang, Chen and Yin, Zhenfei and Torr, Philip and Ouyang, Wanli and Bai, Lei",
+        "year": "2025",
+        "journal": "arXiv preprint arXiv:2510.08529"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2510.08529",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Chinese University of Hong Kong",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "SELF": {
+      "card": {
+        "bibKey": "lu2023self",
+        "title": "SELF: Self-Evolution with Language Feedback",
+        "year": 2023,
+        "href": "https://arxiv.org/abs/2310.00533",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/self.png",
+        "organization": "HKU · Huawei"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "lu2023self",
+        "line": 655,
+        "title": "Self: Self-evolution with language feedback",
+        "author": "Lu, Jianqiao and Zhong, Wanjun and Huang, Wenyong and Wang, Yufei and Zhu, Qi and Mi, Fei and Wang, Baojun and Wang, Weichao and Zeng, Xingshan and Shang, Lifeng and others",
+        "year": "2023",
+        "journal": "arXiv preprint arXiv:2310.00533"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2310.00533",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "University of Hong Kong",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "SAD": {
+      "card": {
+        "bibKey": "liu2025structured",
+        "title": "Structured Agent Distillation for Large Language Model",
+        "year": 2025,
+        "href": "https://arxiv.org/abs/2505.13820",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/sad.png",
+        "organization": "CMU",
+        "publicationNote": "The manuscript cites the 2025 preprint; later revisions extend the title to “Large Language Model Agents”."
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "liu2025structured",
+        "line": 206,
+        "title": "Structured agent distillation for large language model",
+        "author": "Liu, Jun and Kong, Zhenglun and Dong, Peiyan and Yang, Changdi and Li, Tianqi and Tang, Hao and Yuan, Geng and Niu, Wei and Zhang, Wenbin and Zhao, Pu and others",
+        "year": "2025",
+        "journal": "arXiv preprint arXiv:2505.13820"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2505.13820",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Carnegie Mellon University",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Same arXiv identifier and lead author; current revision adds Agents to the title and updates the author list. Card retains the manuscript title and first-submission year, with a version note."
+      ]
+    },
+    "ADA": {
+      "card": {
+        "bibKey": "su2026learning",
+        "title": "Learning Adaptive LLM Decoding",
+        "year": 2026,
+        "href": "https://arxiv.org/abs/2603.09065",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/ada.png",
+        "organization": "Harvard · Amazon"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "su2026learning",
+        "line": 710,
+        "title": "Learning Adaptive LLM Decoding",
+        "author": "Su, Chloe H and Ye, Zhe and Tenka, Samuel and Yang, Aidan and Kong, Soonho and Ghai, Udaya",
+        "year": "2026",
+        "journal": "arXiv preprint arXiv:2603.09065"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2603.09065",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Harvard University",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "EvoAgent": {
+      "card": {
+        "bibKey": "yuan2025evoagent",
+        "title": "Evoagent: Towards automatic multi-agent generation via evolutionary algorithms",
+        "year": 2025,
+        "href": "https://aclanthology.org/2025.naacl-long.315/",
+        "venue": "NAACL",
+        "icon": "/assets/images/works/evoagent.png",
+        "organization": "Fudan · Microsoft"
+      },
+      "linkOrigin": "resolved_from_citation",
+      "bibliography": {
+        "key": "yuan2025evoagent",
+        "line": 838,
+        "title": "Evoagent: Towards automatic multi-agent generation via evolutionary algorithms",
+        "author": "Yuan, Siyu and Song, Kaitao and Chen, Jiangjie and Tan, Xu and Li, Dongsheng and Yang, Deqing",
+        "year": "2025",
+        "booktitle": "Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)",
+        "pages": "6192--6217"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://aclanthology.org/2025.naacl-long.315.pdf",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Fudan University",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "Sophia": {
+      "card": {
+        "bibKey": "sun2025sophia",
+        "title": "Sophia: A Persistent Agent Framework of Artificial Life",
+        "year": 2025,
+        "href": "https://arxiv.org/abs/2512.18202",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/sophia.png",
+        "organization": "Westlake University"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "sun2025sophia",
+        "line": 185,
+        "title": "Sophia: A Persistent Agent Framework of Artificial Life",
+        "author": "Sun, Mingyang and Hong, Feng and Zhang, Weinan",
+        "year": "2025",
+        "journal": "arXiv preprint arXiv:2512.18202"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2512.18202",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Westlake University",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Paper contains both for Artificial Life and of Artificial Life headings. Retained manuscript/abstract-page wording of Artificial Life."
+      ]
+    },
+    "EvoTest": {
+      "card": {
+        "bibKey": "he2025evotest",
+        "title": "EvoTest: Evolutionary Test-Time Learning for Self-Improving Agentic Systems",
+        "year": 2025,
+        "href": "https://arxiv.org/abs/2510.13220",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/evotest.png",
+        "organization": "NUS · Microsoft"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "he2025evotest",
+        "line": 192,
+        "title": "Evotest: Evolutionary test-time learning for self-improving agentic systems",
+        "author": "He, Yufei and Liu, Juncheng and Liu, Yue and Li, Yibo and Cao, Tri and Hu, Zhiyuan and Xu, Xinxing and Hooi, Bryan",
+        "year": "2025",
+        "journal": "arXiv preprint arXiv:2510.13220"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2510.13220",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "National University of Singapore",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "SCoRe": {
+      "card": {
+        "bibKey": "kumar2025training",
+        "title": "Training Language Models to Self-Correct via Reinforcement Learning",
+        "year": 2025,
+        "href": "https://openreview.net/forum?id=CjwERcAU7w",
+        "venue": "ICLR",
+        "icon": "/assets/images/works/score.svg",
+        "organization": "Google DeepMind"
+      },
+      "linkOrigin": "manuscript_url",
+      "bibliography": {
+        "key": "kumar2025training",
+        "line": 632,
+        "title": "Training Language Models to Self-Correct via Reinforcement Learning",
+        "author": "Aviral Kumar and Vincent Zhuang and Rishabh Agarwal and Yi Su and John D Co-Reyes and Avi Singh and Kate Baumli and Shariq Iqbal and Colton Bishop and Rebecca Roelofs and Lei M Zhang and Kay McKinney and Disha Shrivastava and Cosmin Paduraru and George Tucker and Doina Precup and Feryal Behbahani and Aleksandra Faust",
+        "year": "2025",
+        "url": "https://openreview.net/forum?id=CjwERcAU7w",
+        "booktitle": "The Thirteenth International Conference on Learning Representations"
+      },
+      "status": "bibliography_link_plus_matching_paper",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2409.12917",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Google",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Exact OpenReview URL copied from main.bib. Landing page returned a browser-verification challenge; forum content was not independently read. Matching official/preprint paper was checked separately."
+      ]
+    },
+    "ScoreFlow": {
+      "card": {
+        "bibKey": "wang2025scoreflow",
+        "title": "ScoreFlow: Mastering LLM Agent Workflows via Score-based Preference Optimization",
+        "year": 2025,
+        "href": "https://arxiv.org/abs/2502.04306",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/scoreflow.png",
+        "organization": "UChicago · Princeton · Oxford"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "wang2025scoreflow",
+        "line": 726,
+        "title": "Scoreflow: Mastering llm agent workflows via score-based preference optimization",
+        "author": "Wang, Yinjie and Yang, Ling and Li, Guohao and Wang, Mengdi and Aragam, Bryon",
+        "year": "2025",
+        "journal": "arXiv preprint arXiv:2502.04306"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2502.04306",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "University of Chicago",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "COVE": {
+      "card": {
+        "bibKey": "ji2026learning",
+        "title": "Learning What to Remember and What to Internalize in LLM Self-Evolution via Adaptive Memory-Parameter Coordination",
+        "year": 2026,
+        "href": "https://arxiv.org/abs/2608.01234",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/cove.svg",
+        "organization": "USTC"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "ji2026learning",
+        "line": 1011,
+        "title": "Learning What to Remember and What to Internalize in LLM Self-Evolution via Adaptive Memory-Parameter Coordination",
+        "author": "Ji, Tianyun and Huang, Zhenya and Liu, Jiayu and Liu, Zirui and Su, Yu and Pei, Hongbin",
+        "year": "2026",
+        "journal": "arXiv preprint arXiv:2608.01234"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2608.01234",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "University of Science and Technology of China",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "OpenSkill": {
+      "card": {
+        "bibKey": "yan2026openskill",
+        "title": "OpenSkill: Open-World Self-Evolution for LLM Agents",
+        "year": 2026,
+        "href": "https://arxiv.org/abs/2606.06741",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/openskill.svg",
+        "organization": "Lehigh University"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "yan2026openskill",
+        "line": 975,
+        "title": "OpenSkill: Open-World Self-Evolution for LLM Agents",
+        "author": "Yan, Zhiling and Song, Dingjie and Zhang, Hanrong and Liang, Wei and Zhang, Yuxuan and Dai, Yutong and He, Lifang and Yu, Philip S and Xu, Ran and Li, Xiang and others",
+        "year": "2026",
+        "journal": "arXiv preprint arXiv:2606.06741"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2606.06741",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Lehigh University",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "Agent0": {
+      "card": {
+        "bibKey": "xia2025agent0",
+        "title": "Agent0: Unleashing Self-Evolving Agents from Zero Data via Tool-Integrated Reasoning",
+        "year": 2025,
+        "href": "https://arxiv.org/abs/2511.16043",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/agent0.png",
+        "organization": "UNC-Chapel Hill"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "xia2025agent0",
+        "line": 679,
+        "title": "Agent0: Unleashing self-evolving agents from zero data via tool-integrated reasoning",
+        "author": "Xia, Peng and Zeng, Kaide and Liu, Jiaqi and Qin, Can and Wu, Fang and Zhou, Yiyang and Xiong, Caiming and Yao, Huaxiu",
+        "year": "2025",
+        "journal": "arXiv preprint arXiv:2511.16043"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2511.16043",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "UNC-Chapel Hill",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "Voyager": {
+      "card": {
+        "bibKey": "wang2024voyager",
+        "title": "Voyager: An Open-Ended Embodied Agent with Large Language Models",
+        "year": 2024,
+        "href": "https://openreview.net/forum?id=ehfRiF0R3a",
+        "venue": "TMLR",
+        "icon": "/assets/images/works/voyager.png",
+        "organization": "NVIDIA"
+      },
+      "linkOrigin": "manuscript_url",
+      "bibliography": {
+        "key": "wang2024voyager",
+        "line": 331,
+        "title": "Voyager: An Open-Ended Embodied Agent with Large Language Models",
+        "author": "Guanzhi Wang and Yuqi Xie and Yunfan Jiang and Ajay Mandlekar and Chaowei Xiao and Yuke Zhu and Linxi Fan and Anima Anandkumar",
+        "year": "2024",
+        "url": "https://openreview.net/forum?id=ehfRiF0R3a",
+        "journal": "Transactions on Machine Learning Research"
+      },
+      "status": "bibliography_link_plus_matching_paper",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/html/2305.16291",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "NVIDIA",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Exact OpenReview URL copied from main.bib. Landing page returned a browser-verification challenge; forum content was not independently read. Matching official/preprint paper was checked separately."
+      ]
+    },
+    "MemEvolve": {
+      "card": {
+        "bibKey": "zhang2025memevolve",
+        "title": "MemEvolve: Meta-Evolution of Agent Memory Systems",
+        "year": 2025,
+        "href": "https://arxiv.org/abs/2512.18746",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/memevolve.png",
+        "organization": "OPPO · LV-NUS Lab"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "zhang2025memevolve",
+        "line": 178,
+        "title": "Memevolve: Meta-evolution of agent memory systems",
+        "author": "Zhang, Guibin and Ren, Haotian and Zhan, Chong and Zhou, Zhenhong and Wang, Junhao and Zhu, He and Zhou, Wangchunshu and Yan, Shuicheng",
+        "year": "2025",
+        "journal": "arXiv preprint arXiv:2512.18746"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2512.18746",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "OPPO",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Paper cover identifies OPPO AI Agent Team, LV-NUS lab. HTML and PDF versions can differ; the checked PDF is v1."
+      ]
+    },
+    "AgentEvolver": {
+      "card": {
+        "bibKey": "zhai2025agentevolver",
+        "title": "AgentEvolver: Towards Efficient Self-Evolving Agent System",
+        "year": 2025,
+        "href": "https://arxiv.org/abs/2511.10395",
+        "venue": "arXiv",
+        "organization": "Alibaba Tongyi Lab",
+        "pictogram": "Bot"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "zhai2025agentevolver",
+        "line": 22,
+        "title": "Agentevolver: Towards efficient self-evolving agent system",
+        "author": "Zhai, Yunpeng and Tao, Shuchang and Chen, Cheng and Zou, Anni and Chen, Ziqian and Fu, Qingxu and Mai, Shinji and Yu, Li and Deng, Jiaji and Cao, Zouying and others",
+        "year": "2025",
+        "journal": "arXiv preprint arXiv:2511.10395"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2511.10395",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Generic pictogram; not an institutional logo",
+        "source": "Lucide pictogram",
+        "status": "neutral_pictogram"
+      },
+      "notes": [
+        "Uses zhai2025agentevolver / 2511.10395, as cited for this work in the manuscript; not zhang2026agentevolversystem. The paper identifies Tongyi Lab, Alibaba Group. The inherited Qwen product mark was removed because it does not establish a Qwen team affiliation."
+      ]
+    },
+    "GiGPO": {
+      "card": {
+        "bibKey": "feng2025groupingroup",
+        "title": "Group-in-Group Policy Optimization for LLM Agent Training",
+        "year": 2025,
+        "href": "https://openreview.net/forum?id=QXEhBMNrCW",
+        "venue": "NeurIPS",
+        "icon": "/assets/images/works/gigpo.png",
+        "organization": "NTU · Skywork AI"
+      },
+      "linkOrigin": "manuscript_url",
+      "bibliography": {
+        "key": "feng2025groupingroup",
+        "line": 647,
+        "title": "Group-in-Group Policy Optimization for {LLM} Agent Training",
+        "author": "Lang Feng and Zhenghai Xue and Tingcong Liu and Bo An",
+        "year": "2025",
+        "url": "https://openreview.net/forum?id=QXEhBMNrCW",
+        "booktitle": "The Thirty-ninth Annual Conference on Neural Information Processing Systems"
+      },
+      "status": "bibliography_link_plus_matching_paper",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2505.10978",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Nanyang Technological University",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Exact OpenReview URL copied from main.bib. Landing page returned a browser-verification challenge; forum content was not independently read. Matching official/preprint paper was checked separately."
+      ]
+    },
+    "SIOP": {
+      "card": {
+        "bibKey": "hu2026self",
+        "title": "Self-Induced Outcome Potential: Turn-Level Credit Assignment for Agents without Verifiers",
+        "year": 2026,
+        "href": "https://arxiv.org/abs/2605.04984",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/siop.png",
+        "organization": "CityU Hong Kong"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "hu2026self",
+        "line": 961,
+        "title": "Self-Induced Outcome Potential: Turn-Level Credit Assignment for Agents without Verifiers",
+        "author": "Hu, Senkang and Dai, Yong and Han, Xudong and Fang, Zhengru and Zhao, Yuzhi and Kwong, Sam Tak Wu and Fang, Yuguang",
+        "year": "2026",
+        "journal": "arXiv preprint arXiv:2605.04984"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2605.04984",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "City University of Hong Kong",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "AgentHPO": {
+      "card": {
+        "bibKey": "liu2025agenthpo",
+        "title": "AgentHPO: Large Language Model Agent for Hyper-Parameter Optimization",
+        "year": 2025,
+        "href": "https://proceedings.mlr.press/v280/liu25c.html",
+        "venue": "CPAL",
+        "icon": "/assets/images/works/agenthpo.png",
+        "organization": "HKUST (Guangzhou) · Tsinghua"
+      },
+      "linkOrigin": "resolved_from_citation",
+      "bibliography": {
+        "key": "liu2025agenthpo",
+        "line": 717,
+        "title": "AgentHPO: Large Language Model Agent for Hyper-Parameter Optimization",
+        "author": "Liu, Siyi and Gao, Chen and Li, Yong",
+        "year": "2025",
+        "booktitle": "Conference on Parsimony and Learning",
+        "pages": "1146--1169"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/mlresearch/v280/main/assets/liu25c/liu25c.pdf",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "HKUST symbol (paper affiliation: HKUST Guangzhou)",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Affiliation is Hong Kong University of Science and Technology (Guangzhou), not an unspecified HKUST campus. Label corrected. The original figure uses the HKUST symbol."
+      ]
+    },
+    "Creator": {
+      "card": {
+        "bibKey": "qian2023creator",
+        "title": "Creator: Tool creation for disentangling abstract and concrete reasoning of large language models",
+        "year": 2023,
+        "href": "https://aclanthology.org/2023.findings-emnlp.462/",
+        "venue": "EMNLP Findings",
+        "icon": "/assets/images/works/creator.png",
+        "organization": "Tsinghua · UIUC"
+      },
+      "linkOrigin": "resolved_from_citation",
+      "bibliography": {
+        "key": "qian2023creator",
+        "line": 686,
+        "title": "Creator: Tool creation for disentangling abstract and concrete reasoning of large language models",
+        "author": "Qian, Cheng and Han, Chi and Fung, Yi and Qin, Yujia and Liu, Zhiyuan and Ji, Heng",
+        "year": "2023",
+        "booktitle": "Findings of the Association for Computational Linguistics: EMNLP 2023",
+        "pages": "6922--6939"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://aclanthology.org/2023.findings-emnlp.462.pdf",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Tsinghua University",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "ToolGen": {
+      "card": {
+        "bibKey": "wang2025toolgen",
+        "title": "ToolGen: Unified Tool Retrieval and Calling via Generation",
+        "year": 2025,
+        "href": "https://openreview.net/forum?id=XLMAMmowdY",
+        "venue": "ICLR",
+        "icon": "/assets/images/works/toolgen.png",
+        "organization": "LibrAI · MBZUAI"
+      },
+      "linkOrigin": "manuscript_url",
+      "bibliography": {
+        "key": "wang2025toolgen",
+        "line": 694,
+        "title": "ToolGen: Unified Tool Retrieval and Calling via Generation",
+        "author": "Renxi Wang and Xudong Han and Lei Ji and Shu Wang and Timothy Baldwin and Haonan Li",
+        "year": "2025",
+        "url": "https://openreview.net/forum?id=XLMAMmowdY",
+        "booktitle": "The Thirteenth International Conference on Learning Representations"
+      },
+      "status": "bibliography_link_plus_matching_paper",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2410.03439",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "LibrAI",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Exact OpenReview URL copied from main.bib. Landing page returned a browser-verification challenge; forum content was not independently read. Matching official/preprint paper was checked separately."
+      ]
+    },
+    "SkillMentor": {
+      "card": {
+        "bibKey": "bao2026skillmentor",
+        "title": "SkillMentor: LLM Agent Self-Evolution via Learning Blind-Spot Diagnosis",
+        "year": 2026,
+        "href": "https://arxiv.org/abs/2607.27360",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/skillmentor.svg",
+        "organization": "PolyU · Tencent"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "bao2026skillmentor",
+        "line": 982,
+        "title": "SkillMentor: LLM Agent Self-Evolution via Learning Blind-Spot Diagnosis",
+        "author": "Bao, Xiaoyi and Xie, Yuanzhen and Tan, Yunzhi and Gu, Jinghang and Wang, Zhongqing and Huang, Chu-Ren and Hu, Bo and Li, Zang",
+        "year": "2026",
+        "journal": "arXiv preprint arXiv:2607.27360"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2607.27360",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Hong Kong Polytechnic University",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "HarnessBank": {
+      "card": {
+        "bibKey": "luo2026self",
+        "title": "HarnessBank: Semantic Gene-Bank Search with Gated Verification for Agent-Harness Self-Evolution",
+        "year": 2026,
+        "href": "https://arxiv.org/abs/2607.13683",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/harnessbank.png",
+        "organization": "EverMind AI · Shanda",
+        "publicationNote": "Updated title at the same arXiv identifier cited in the manuscript."
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "luo2026self",
+        "line": 996,
+        "title": "Self-Evolving Agent Harnesses via Gated Semantic Quality-Diversity",
+        "author": "Luo, Xiaotian and Wang, Fengxingyu and Hu, Chuanrui and Xue, Dizhan and Deng, Yafeng",
+        "year": "2026",
+        "journal": "arXiv preprint arXiv:2607.13683"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2607.13683",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        },
+        {
+          "url": "https://evermind.ai/blogs/self-evolving-agents-have-a-measurement-problem",
+          "purpose": "Official team post links the same arXiv paper; official favicon confirms the EverMind mark."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "EverMind AI",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": [
+        "Same arXiv identifier and author set; v2 is titled HarnessBank: Semantic Gene-Bank Search with Gated Verification for Agent-Harness Self-Evolution, whereas the manuscript cites Self-Evolving Agent Harnesses via Gated Semantic Quality-Diversity."
+      ]
+    },
+    "MetaSkill-Evolve": {
+      "card": {
+        "bibKey": "wang2026metaskill",
+        "title": "MetaSkill-Evolve: Recursive Self-Improvement of LLM Agents via Two-Timescale Meta-Skill Evolution",
+        "year": 2026,
+        "href": "https://arxiv.org/abs/2607.05297",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/metaskill-evolve.png",
+        "organization": "LMU Munich"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "wang2026metaskill",
+        "line": 1046,
+        "title": "MetaSkill-Evolve: Recursive Self-Improvement of LLM Agents via Two-Timescale Meta-Skill Evolution",
+        "author": "Wang, Zefeng and Yan, Minxi and Bi, Jinhe and Yan, Sikuan and Tresp, Volker and Ma, Yunpu",
+        "year": "2026",
+        "journal": "arXiv preprint arXiv:2607.05297"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2607.05297",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "LMU Munich",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "HyperAgents": {
+      "card": {
+        "bibKey": "zhang2026hyperagents",
+        "title": "Hyperagents",
+        "year": 2026,
+        "href": "https://arxiv.org/abs/2603.19461",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/hyperagents.png",
+        "organization": "Meta · UBC"
+      },
+      "linkOrigin": "manuscript_arxiv_id",
+      "bibliography": {
+        "key": "zhang2026hyperagents",
+        "line": 924,
+        "title": "Hyperagents",
+        "author": "Zhang, Jenny and Zhao, Bingchen and Yang, Wannan and Foerster, Jakob and Clune, Jeff and Jiang, Minqi and Devlin, Sam and Shavrina, Tatiana",
+        "year": "2026",
+        "journal": "arXiv preprint arXiv:2603.19461"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2603.19461",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "Meta",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "SEES": {
+      "card": {
+        "bibKey": "li2026sees",
+        "title": "SEES: A Self-Evolving Embodied System via Failure-Guided VLA Policy Adaptation",
+        "year": 2026,
+        "href": "https://arxiv.org/abs/2609.32698",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/sees.png",
+        "organization": "MBZUAI"
+      },
+      "linkOrigin": "manuscript_url",
+      "bibliography": {
+        "key": "li2026sees",
+        "line": 1097,
+        "title": "{SEES}: A Self-Evolving Embodied System via Failure-Guided {VLA} Policy Adaptation",
+        "author": "Li, Ziwen and Zhang, Hanlue and Ren, Zhenyang and Huang, Tianyu and Lin, Runqi and Wang, Haoyu and Gao, Zhengqing and Guo, Yandong and Karray, Fakhri and Liu, Tongliang and Russell, Chris and Gong, Mingming",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2609.32698",
+        "journal": "arXiv preprint arXiv:2609.32698"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2609.32698",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "MBZUAI",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    },
+    "ScholarEvolve": {
+      "card": {
+        "bibKey": "yang2026scholarevolve",
+        "title": "Learning from Research: Toward Lifelong Agent Harness Evolution",
+        "year": 2026,
+        "href": "https://arxiv.org/abs/2609.40169",
+        "venue": "arXiv",
+        "icon": "/assets/images/works/scholarevolve.png",
+        "organization": "UC Santa Barbara"
+      },
+      "linkOrigin": "manuscript_url",
+      "bibliography": {
+        "key": "yang2026scholarevolve",
+        "line": 1062,
+        "title": "Learning from Research: Toward Lifelong Agent Harness Evolution",
+        "author": "Yang, Jingbo and Lai, Kwei-Herng and Wang, Xiaowen and Harari, Yaar and Gabrilovich, Evgeniy and Chang, Shiyu",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2609.40169",
+        "journal": "arXiv preprint arXiv:2609.40169"
+      },
+      "status": "matched_work",
+      "affiliationEvidence": [
+        {
+          "url": "https://arxiv.org/pdf/2609.40169",
+          "purpose": "Author affiliation / team evidence; title and author identity cross-check."
+        }
+      ],
+      "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
+      "mark": {
+        "entity": "UC Santa Barbara",
+        "source": "manuscript Figure 2",
+        "status": "matched_representative_mark"
+      },
+      "notes": []
+    }
+  }
+}

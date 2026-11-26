@@ -1,4 +1,5 @@
 ---
+import GitHubMark from './GitHubMark.astro';
 import { affiliations, authors, resources, site } from '../data/site';
 ---
 
@@ -15,7 +16,6 @@ import { affiliations, authors, resources, site } from '../data/site';
   </div>
 
   <div class="hero-content container">
-    <p class="eyebrow">A Stage-4 Prototype for Agent Evolution</p>
     <h1><span>{site.name}</span><small>{site.paperTitle}</small></h1>
     <p class="hero-deck">
       From Human-Engineered Maintenance to Recursive Meta-Evolution
@@ -40,10 +40,17 @@ import { affiliations, authors, resources, site } from '../data/site';
 
     <div class="hero-actions" aria-label="Project resources">
       {resources.filter((resource) => resource.label !== 'Documentation').map((resource) => (
+        resource.status === 'available' && resource.href ? (
+          <a class="resource-button resource-button-github" href={resource.href} target="_blank" rel="noopener noreferrer" aria-label="View MUSE code on GitHub (opens in a new tab)">
+            <GitHubMark />
+            <strong>GitHub</strong>
+          </a>
+        ) : (
         <button class="resource-button" type="button" disabled title={`${resource.label} is coming soon`}>
           <strong>{resource.label}</strong>
           <small>Coming Soon</small>
         </button>
+        )
       ))}
     </div>
   </div>

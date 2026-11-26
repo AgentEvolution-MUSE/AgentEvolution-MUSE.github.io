@@ -1,0 +1,21 @@
+---
+import geometry from '../data/spectrum-radar.json';
+import { spectrumDimensions } from '../data/spectrum';
+interface Props { stage: number; title: string }
+const { stage, title } = Astro.props;
+// Original vector coordinates from spectrum_representative_work.pdf, normalized
+// by each circle's center and radius. These shapes are qualitative, not scores.
+const shape = geometry[stage - 1];
+---
+<figure class="spectrum-radar" aria-label={`${title}: qualitative capability profile`}>
+  <div class="spectrum-radar-plot">
+    <svg viewBox="0 0 260 210" aria-hidden="true">
+      <circle class="spectrum-radar-halo" cx="130" cy="112" r="82" />
+      {shape.grid.map(points => <polygon class="spectrum-radar-grid" points={points} />)}
+      <polygon class="spectrum-radar-area" points={shape.polygon} />
+      {shape.axes.map(([a, b], index) => <line class="spectrum-radar-axis" data-radar-axis={spectrumDimensions[index][0]} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} />)}
+    </svg>
+    {spectrumDimensions.map(([code, label]) => <button type="button" class={`spectrum-radar-label radar-${code.toLowerCase()}`} data-radar-dimension={code} aria-label={label} aria-describedby={`stage-${stage}-dimension-${code}`}>{code}</button>)}
+  </div>
+  <figcaption>Qualitative illustration</figcaption>
+</figure>

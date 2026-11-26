@@ -1,20 +1,19 @@
 ---
+import GitHubMark from './GitHubMark.astro';
 import { resources } from '../data/site';
 ---
 
 <section id="resources" class="section-band resources-band" aria-labelledby="resources-title">
   <div class="container section-intro">
-    <p class="eyebrow">Release</p>
     <h2 id="resources-title" class="section-heading">Resources</h2>
-    <p>Paper, implementation, documentation, and citation materials will be released together.</p>
   </div>
 
   <div class="container resource-list">
     {resources.map((resource) => (
       resource.status === 'available' && resource.href ? (
-        <a class="resource-row" href={resource.href}>
+        <a class="resource-row" href={resource.href} target="_blank" rel="noopener noreferrer">
           <span><strong>{resource.label}</strong><small>{resource.description}</small></span>
-          <span class="resource-state">Open</span>
+          <span class="resource-state resource-github-link"><GitHubMark />GitHub ↗</span>
         </a>
       ) : (
         <div class="resource-row" aria-disabled="true">

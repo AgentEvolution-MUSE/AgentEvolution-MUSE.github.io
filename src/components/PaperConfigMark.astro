@@ -1,0 +1,12 @@
+---
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+interface Props { enabled:boolean; }
+const {enabled}=Astro.props;
+const mark=katex.renderToString(enabled?'\\checkmark':'\\times',{output:'html'});
+---
+<span class="paper-config-mark" role="img" aria-label={enabled?'Enabled':'Disabled'}><span aria-hidden="true" set:html={mark}/></span>
+<style>
+.paper-config-mark { display:inline-flex; align-items:center; justify-content:center; min-width:18px; color:#29333b; vertical-align:middle; }
+.paper-config-mark :global(.katex) { font-size:1.15em; }
+</style>
