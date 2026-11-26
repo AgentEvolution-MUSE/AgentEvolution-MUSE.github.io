@@ -385,7 +385,7 @@
     "href": "https://arxiv.org/abs/2511.10395",
     "venue": "arXiv",
     "organization": "Alibaba Tongyi Lab",
-    "pictogram": "Bot"
+    "icon": "/assets/images/works/agentevolver.png"
   },
   "GiGPO": {
     "bibKey": "feng2025groupingroup",

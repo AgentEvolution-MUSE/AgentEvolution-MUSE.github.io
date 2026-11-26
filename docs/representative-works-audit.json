@@ -1494,7 +1494,7 @@
         "href": "https://arxiv.org/abs/2511.10395",
         "venue": "arXiv",
         "organization": "Alibaba Tongyi Lab",
-        "pictogram": "Bot"
+        "icon": "/assets/images/works/agentevolver.png"
       },
       "linkOrigin": "manuscript_arxiv_id",
       "bibliography": {
@@ -1514,12 +1514,13 @@
       ],
       "affiliationScope": "Selected affiliations or named project team, not all author affiliations.",
       "mark": {
-        "entity": "Generic pictogram; not an institutional logo",
-        "source": "Lucide pictogram",
-        "status": "neutral_pictogram"
+        "entity": "AgentEvolver project logo (dolphin); not an institutional logo",
+        "source": "https://raw.githubusercontent.com/modelscope/AgentEvolver/main/docs/img/logo.png",
+        "status": "official_project_asset"
       },
       "notes": [
-        "Uses zhai2025agentevolver / 2511.10395, as cited for this work in the manuscript; not zhang2026agentevolversystem. The paper identifies Tongyi Lab, Alibaba Group. The inherited Qwen product mark was removed because it does not establish a Qwen team affiliation."
+        "Uses zhai2025agentevolver / 2511.10395, as cited for this work in the manuscript; not zhang2026agentevolversystem. The paper identifies Tongyi Lab, Alibaba Group. The inherited Qwen product mark was removed because it does not establish a Qwen team affiliation.",
+        "Official project logo obtained from modelscope/AgentEvolver docs/img/logo.png. Original bitmap is unchanged; CSS displays the dolphin portion without repeating the wordmark."
       ]
     },
     "GiGPO": {

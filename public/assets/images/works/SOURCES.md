@@ -14,7 +14,7 @@ Exact work identity is distinct from exact edition/version. MYCIN currently link
 
 39 PNGs retain native embedded pixels and alpha masks; five SVGs preserve original vector paths (Evo-Memory, SCoRe, SkillMentor, COVE, OpenSkill). They display at 32 CSS pixels without cropping.
 
-The original AnnaAgent image incorrectly used the US Northeastern University seal. The paper lists Chinese Northeastern University. That asset was replaced with `neu-china.svg` from https://svglogo.top/library/school/NEU.svg, visually checked against https://www.neu.edu.cn/xygk/ddbs.htm. The blue mountain-and-river emblem includes 1923 and the Chinese/English university names. Original vector paths and colors are preserved; only the decorative drop shadow and excess padding were removed. It contains no embedded raster image. This is a third-party vector asset, not a direct university download. AgentEvolver uses a neutral bot pictogram: the paper identifies Tongyi Lab, and the inherited Qwen product mark does not establish a Qwen team affiliation. The seven historical systems also use generic Lucide pictograms. Generic icons are not institutional logos.
+The original AnnaAgent image incorrectly used the US Northeastern University seal. The paper lists Chinese Northeastern University. That asset was replaced with `neu-china.svg` from https://svglogo.top/library/school/NEU.svg, visually checked against https://www.neu.edu.cn/xygk/ddbs.htm. The blue mountain-and-river emblem includes 1923 and the Chinese/English university names. Original vector paths and colors are preserved; only the decorative drop shadow and excess padding were removed. It contains no embedded raster image. This is a third-party vector asset, not a direct university download. AgentEvolver uses the official dolphin project mark from [modelscope/AgentEvolver](https://github.com/modelscope/AgentEvolver), downloaded from [docs/img/logo.png](https://raw.githubusercontent.com/modelscope/AgentEvolver/main/docs/img/logo.png) as `agentevolver.png`. The original bitmap is unchanged; a CSS viewport displays its dolphin symbol without the repeated wordmark. This is a project logo, not a Tongyi Lab institutional logo. The inherited Qwen product mark was removed because it does not establish a Qwen team affiliation. The seven historical systems also use generic Lucide pictograms. Generic icons are not institutional logos.
 
 ## Affiliations
 
@@ -63,7 +63,7 @@ Displayed institutions are selected author affiliations or named project teams, 
 | Agent0 | UNC-Chapel Hill | [Source](https://arxiv.org/pdf/2511.16043) |
 | Voyager | NVIDIA | [Source](https://arxiv.org/html/2305.16291) |
 | MemEvolve | OPPO | [Source](https://arxiv.org/pdf/2512.18746) |
-| AgentEvolver | Generic pictogram; not an institutional logo | [Source](https://arxiv.org/pdf/2511.10395) |
+| AgentEvolver | Official AgentEvolver project logo (dolphin) | [Source](https://arxiv.org/pdf/2511.10395) |
 | GiGPO | Nanyang Technological University | [Source](https://arxiv.org/pdf/2505.10978) |
 | SIOP | City University of Hong Kong | [Source](https://arxiv.org/pdf/2605.04984) |
 | AgentHPO | HKUST symbol (paper affiliation: HKUST Guangzhou) | [Source](https://raw.githubusercontent.com/mlresearch/v280/main/assets/liu25c/liu25c.pdf) |

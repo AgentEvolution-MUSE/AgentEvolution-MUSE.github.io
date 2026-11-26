@@ -18,7 +18,7 @@
 
 ## 核对口径与限制
 
-单位以论文署名页、作者机构信息或项目团队官方页面为依据；卡片仅展示部分署名机构/团队，不能解读为全部单位或独家归属。机构 Logo 的身份与单位文本分别核对。44 个保留图标来自 manuscript 原图；AnnaAgent 已另行使用经官网标识比对的 SVG 校徽；AgentEvolver 的 Qwen 产品标识也已移除，以免混同 Tongyi Lab 与 Qwen 团队。AgentEvolver 与 7 个历史系统使用通用图标。
+单位以论文署名页、作者机构信息或项目团队官方页面为依据；卡片仅展示部分署名机构/团队，不能解读为全部单位或独家归属。机构 Logo 的身份与单位文本分别核对。44 个保留图标来自 manuscript 原图；AnnaAgent 已另行使用经官网标识比对的 SVG 校徽；AgentEvolver 的 Qwen 产品标识也已移除，以免混同 Tongyi Lab 与 Qwen 团队。AgentEvolver 使用[官方项目仓库](https://github.com/modelscope/AgentEvolver)提供的海豚项目标志，7 个历史系统使用通用图标。
 
 8 个 OpenReview 链接与 BibTeX 完全一致，但网站返回浏览器验证，未读取到对应 forum 正文；已使用同题、同作者的官方/预印本论文交叉核对工作身份。这些条目不能标记为“落地页已逐项验证”。AAAI 也有访问验证限制。
 
@@ -69,7 +69,7 @@
 | Agent0 | `xia2025agent0` / 原 arXiv 编号 | [论文](https://arxiv.org/abs/2511.16043) | UNC-Chapel Hill | [署名/机构来源](https://arxiv.org/pdf/2511.16043) | 标题/作者身份及所展示单位对应。 |
 | Voyager | `wang2024voyager` / 原 URL | [论文](https://openreview.net/forum?id=ehfRiF0R3a) | NVIDIA | [署名/机构来源](https://arxiv.org/html/2305.16291) | Exact OpenReview URL copied from main.bib. Landing page returned a browser-verification challenge; forum content was not independently read. Matching official/preprint paper was checked separately. |
 | MemEvolve | `zhang2025memevolve` / 原 arXiv 编号 | [论文](https://arxiv.org/abs/2512.18746) | OPPO · LV-NUS Lab | [署名/机构来源](https://arxiv.org/pdf/2512.18746) | Paper cover identifies OPPO AI Agent Team, LV-NUS lab. HTML and PDF versions can differ; the checked PDF is v1. |
-| AgentEvolver | `zhai2025agentevolver` / 原 arXiv 编号 | [论文](https://arxiv.org/abs/2511.10395) | Alibaba Tongyi Lab | [署名/机构来源](https://arxiv.org/pdf/2511.10395) | Uses zhai2025agentevolver / 2511.10395, as cited for this work in the manuscript; not zhang2026agentevolversystem. The paper identifies Tongyi Lab, Alibaba Group. The inherited Qwen product mark was removed because it does not establish a Qwen team affiliation. |
+| AgentEvolver | `zhai2025agentevolver` / 原 arXiv 编号 | [论文](https://arxiv.org/abs/2511.10395) | Alibaba Tongyi Lab | [署名/机构来源](https://arxiv.org/pdf/2511.10395) | Uses zhai2025agentevolver / 2511.10395, as cited for this work in the manuscript; not zhang2026agentevolversystem. The paper identifies Tongyi Lab, Alibaba Group. The inherited Qwen product mark was removed because it does not establish a Qwen team affiliation. The card now uses the official AgentEvolver dolphin project logo from modelscope/AgentEvolver. |
 | GiGPO | `feng2025groupingroup` / 原 URL | [论文](https://openreview.net/forum?id=QXEhBMNrCW) | NTU · Skywork AI | [署名/机构来源](https://arxiv.org/pdf/2505.10978) | Exact OpenReview URL copied from main.bib. Landing page returned a browser-verification challenge; forum content was not independently read. Matching official/preprint paper was checked separately. |
 | SIOP | `hu2026self` / 原 arXiv 编号 | [论文](https://arxiv.org/abs/2605.04984) | CityU Hong Kong | [署名/机构来源](https://arxiv.org/pdf/2605.04984) | 标题/作者身份及所展示单位对应。 |
 | AgentHPO | `liu2025agenthpo` / 按引用补查 | [论文](https://proceedings.mlr.press/v280/liu25c.html) | HKUST (Guangzhou) · Tsinghua | [署名/机构来源](https://raw.githubusercontent.com/mlresearch/v280/main/assets/liu25c/liu25c.pdf) | Affiliation is Hong Kong University of Science and Technology (Guangzhou), not an unspecified HKUST campus. Label corrected. The original figure uses the HKUST symbol. |

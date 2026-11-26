@@ -75,6 +75,9 @@
 .spectrum-work-card:hover,.spectrum-work-card:focus-visible { border-color: var(--stage-color); background: #fff; box-shadow: 0 5px 16px #25394b0b; transform: translateY(-2px); z-index: 2; }
 .spectrum-work-mark { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 9px; background: white; }
 .spectrum-work-mark img { width: 32px; height: 32px; object-fit: contain; }
+/* Show the dolphin from the unchanged official AgentEvolver wordmark. */
+[data-work-name="AgentEvolver"] .spectrum-work-mark { position: relative; overflow: hidden; }
+[data-work-name="AgentEvolver"] .spectrum-work-mark img { position: absolute; top: -1px; left: -1px; width: auto; max-width: none; height: 44px; clip-path: inset(0 calc(100% - 37px) 0 0); }
 .spectrum-work-pictogram { color: var(--stage-color); background: var(--stage-tint); }
 .spectrum-work-info { min-width: 0; }
 .spectrum-work-info strong { display: block; font: 650 .88rem/1.4 'Inter Variable',sans-serif; overflow-wrap: anywhere; }
