@@ -1,0 +1,59 @@
+{
+  "paper": "MUSE_Arxiv-2.pdf",
+  "sha256": "f3bb7cfaaa281a9e3fce686840412aad1b1049e394d7f6f956eeec02e9542937",
+  "sourceTexSha256": "04fc6f929a44fe4edd967708505e21e5b2b1eea66f5971605f40d0e819ee13fd",
+  "corrections": [
+    {
+      "table": "symbolic",
+      "row": 7,
+      "column": 0,
+      "previous": 72.61,
+      "value": 72.62,
+      "bold": true,
+      "page": 29
+    },
+    {
+      "table": "symbolic",
+      "row": 7,
+      "column": 1,
+      "previous": 10.7,
+      "value": 10.71,
+      "bold": true,
+      "page": 29
+    },
+    {
+      "table": "gating",
+      "row": 1,
+      "column": 0,
+      "previous": 51.79,
+      "value": 51.78,
+      "bold": false,
+      "page": 33,
+      "resolution": "User confirmed on 2026-11-27: use Table 9 (51.78%), overriding the unchanged Figure 9 vector peak (51.79%)."
+    }
+  ],
+  "curveCorrections": [
+    {
+      "chart": "performance",
+      "series": 1,
+      "index": 3,
+      "previous": 51.79,
+      "value": 51.78
+    },
+    {
+      "chart": "performance",
+      "series": 1,
+      "index": 6,
+      "previous": 51.79,
+      "value": 51.78
+    }
+  ],
+  "verifiedEquivalentPapers": [
+    {
+      "paper": "MUSE_Arxiv-3.pdf",
+      "sha256": "251d29ca73ea6d6e98c5c84eb5eddfa4a1b469cb024ba533f5cd0f10e0848cf9",
+      "verifiedOn": "2026-11-27",
+      "evidence": "All 133 pages have identical extracted text to MUSE_Arxiv-2.pdf. Pages 27\u201335 and 88\u201393 render pixel-identically at 108 dpi; table coordinates and experimental figure geometry are unchanged."
+    }
+  ]
+}

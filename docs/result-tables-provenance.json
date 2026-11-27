@@ -1,5 +1,6 @@
 {
   "source": "main.tex",
+  "revisionCorrections": "paper-revision-corrections.json",
   "sha256": "04fc6f929a44fe4edd967708505e21e5b2b1eea66f5971605f40d0e819ee13fd",
   "tables": [
     "overall_adaptivity",

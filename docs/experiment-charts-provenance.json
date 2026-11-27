@@ -22,5 +22,9 @@
   {
     "file": "figs/experiments/gating_best_observed_sr.pdf",
     "sha256": "8aa972514b794432f43da24c403cc778d2357967bc18be725d5d6df4f39dfe8c"
+  },
+  {
+    "revisionCorrections": "paper-revision-corrections.json",
+    "paperSha256": "f3bb7cfaaa281a9e3fce686840412aad1b1049e394d7f6f956eeec02e9542937"
   }
 ]

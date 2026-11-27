@@ -34,14 +34,14 @@ const metric = jointMetrics[0];
         buttons.forEach(control => control.setAttribute('aria-pressed', String(control === button)));
         root.querySelector('[data-joint-direction]')!.textContent = metric.lower ? 'Lower is better ↓' : 'Higher is better ↑';
         root.querySelector('[data-joint-benefit]')!.textContent = jointBenefit(metric);
-        root.querySelector('[data-joint-base]')!.textContent = `Base Model · ${baseRow.metrics[metric.key].toFixed(2)}${metric.unit}`;
+        root.querySelector('[data-joint-base]')!.textContent = `Base Model · ${baseRow.metrics[metric.key].toFixed(2)}${metric.unit === 'pp' ? ' pp' : metric.unit}`;
         root.querySelector<HTMLElement>('.joint-bars')!.style.setProperty('--base-position', `${baseRow.metrics[metric.key] / metric.max * 100}%`);
         jointChartRows.forEach(row => {
           const element = root.querySelector<HTMLElement>(`[data-joint-bar="${row.id}"]`)!;
           const value = row.metrics[metric.key];
           element.querySelector<HTMLElement>('.joint-bar-fill')!.style.width = `${value / metric.max * 100}%`;
-          element.querySelector('[data-joint-bar-value]')!.textContent = `${value.toFixed(2)}${metric.unit}`;
-          element.setAttribute('aria-label', `${row.name}: ${value.toFixed(2)}${metric.unit} ${metric.label}`);
+          element.querySelector('[data-joint-bar-value]')!.textContent = `${value.toFixed(2)}${metric.unit === 'pp' ? ' pp' : metric.unit}`;
+          element.setAttribute('aria-label', `${row.name}: ${value.toFixed(2)}${metric.unit === 'pp' ? ' pp' : metric.unit} ${metric.label}`);
         });
         root.querySelectorAll('[data-joint-tick]').forEach((tick,i) => tick.textContent = String(i * metric.max / 5));
       });

@@ -45,7 +45,7 @@ test('native experiment plots preserve independent published counts and gating t
   charts.performance.forEach((s,j)=>{
     assert.deepEqual(s.x,charts.rollouts[j].values.map((_,i)=>charts.rollouts[j].values.slice(0,i+1).reduce((a,v)=>a+v,0)));
   });
-  assert.deepEqual(charts.performance.map(s=>Math.max(...s.values)),[52.38,51.79,54.76]);
+  assert.deepEqual(charts.performance.map(s=>Math.max(...s.values)),[52.38,51.78,54.76]);
   assert.deepEqual(charts.performance.map(s=>s.values.at(-1)),[51.78,51.19,46.42]);
   assert.equal(charts.pairs.length,31);
   assert.deepEqual([0,1].map(i=>+(charts.pairs.reduce((a,p)=>a+p[i],0)/31).toFixed(3)),[.978,.334]);
@@ -95,4 +95,25 @@ test('native tables retain publication configuration columns and row order', asy
  assert.deepEqual(t.quality.map(r=>r.attributes[0]),['39 / 40','36 / 36']);
  assert.deepEqual(t.reliability.map(r=>r.attributes[0]),['31 / 31','31 / 31']);
  assert.ok(t.gating.every(r=>r.attributes[0]==='MUSE'));
+});
+
+
+test('reviewed paper revision preserves tied best values and the resolved Random peak', async () => {
+ const t=JSON.parse(await readFile(new URL('../src/data/result-tables.json',import.meta.url),'utf8'));
+ const c=JSON.parse(await readFile(new URL('../src/data/experiment-charts.json',import.meta.url),'utf8'));
+ const h=JSON.parse(await readFile(new URL('../src/data/result-table-shading.json',import.meta.url),'utf8'));
+ assert.deepEqual(t.symbolic[7].values.slice(0,2),[72.62,10.71]);
+ assert.ok(h.symbolic[7].slice(0,2).every(cell=>cell.bold));
+ assert.equal(t.gating[1].values[0],51.78);
+ assert.equal(Math.max(...c.performance[1].values),t.gating[1].values[0]);
+ assert.equal(c.performance[1].values[3],51.78);
+ assert.equal(c.performance[1].values[6],51.78);
+ // Independent statistical check of the PDF-extracted box geometry.
+ c.boxplots.forEach((box,j)=>{
+  const values=c.pairs.map(pair=>pair[j]).sort((a,b)=>a-b);
+  const quantile=q=>{const at=(values.length-1)*q,lo=Math.floor(at);return values[lo]+(values[Math.ceil(at)]-values[lo])*(at-lo);};
+  const q1=quantile(.25),q3=quantile(.75),iqr=q3-q1;
+  const inside=values.filter(v=>v>=q1-1.5*iqr&&v<=q3+1.5*iqr);
+  for(const [key,value] of Object.entries({q1,q3,median:quantile(.5),low:inside[0],high:inside.at(-1)})) assert.ok(Math.abs(box[key]-value)<.000002,`${j}: ${key}`);
+ });
 });

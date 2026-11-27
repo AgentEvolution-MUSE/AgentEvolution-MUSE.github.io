@@ -17,6 +17,6 @@ Review source changes before regenerating: the extractor deliberately fails on u
 
 ## Interaction
 
-The table compares the clicked row with the selected reference. Difference colors respect metric direction (lower average steps is better). Same-row comparison yields zero.
+RQ2 switches between a metric-selectable bar chart and the complete table. The base-model reference is fixed, while the summary compares Joint with Parametric. Evo-AUC values and differences use percentage points (pp).
 
 The charts share a round slider and consistent method colors. Plot hover/click selects a round in both panels. Legends toggle each panel's series independently and retain at least one visible method. Reset restores all curves and round 8. The expandable numeric table retains all 56 values irrespective of visibility filters. All primary data remains server-rendered if JavaScript is unavailable.

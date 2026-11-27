@@ -162,7 +162,7 @@
 .joint-bar-parametric .joint-bar-fill { background:#a6bdd3; }
 .joint-bar-joint .joint-bar-fill { background:#467da5; }
 .joint-bar-joint .joint-bar-name,.joint-bar-joint strong { color:#285b80; font-weight:750; }
-.joint-bar-row > strong { font-size:.8rem; text-align:right; color:#475b6b; font-variant-numeric:tabular-nums; }
+.joint-bar-row > strong { white-space:nowrap; font-size:.8rem; text-align:right; color:#475b6b; font-variant-numeric:tabular-nums; }
 .joint-chart-axis { position:relative; margin:5px calc(var(--value-width) + var(--bar-gap)) 0 calc(var(--label-width) + var(--bar-gap)); color:#82919e; font-size:.65rem; height:21px; }
 .joint-chart-axis span { position:absolute; transform:translateX(-50%); }
 .joint-full-data { margin-top:16px; }
@@ -172,7 +172,7 @@
 @media(max-width:600px) {
  .joint-comparison .joint-view-switch { margin:12px 12px 0 auto; }
  .joint-chart { padding:16px 12px; }
- .joint-bars { --label-width:116px; --value-width:48px; --bar-gap:8px; }
+ .joint-bars { --label-width:116px; --value-width:58px; --bar-gap:8px; }
  .joint-bar-name,.joint-bar-row > strong { font-size:.69rem; }
  .joint-metrics button { padding:7px 9px; font-size:.7rem; }
  .joint-chart-caption { margin-top:16px; }

@@ -1,6 +1,6 @@
 # Native result tables
 
-Six tables and the cell shading of all seven native result tables are read directly from manuscript LaTeX via `scripts/extract-result-tables.py`. `result-tables-provenance.json` records the source hash and table labels. Published numbers, rounding, and missing entries are retained; blank metrics are never converted to zero.
+Six tables and the cell shading of all seven native result tables are read directly from manuscript LaTeX via `scripts/extract-result-tables.py`. `result-tables-provenance.json` records the source hash and table labels. Reviewed corrections from the November 26 compiled PDF are recorded in `paper-revision-corrections.json` and applied by the extractor after validating the original TeX hash. Published numbers, rounding, and missing entries are retained; blank metrics are never converted to zero.
 
 `ResultTable.astro` renders complete semantic HTML tables, then progressively enables optional supervision-group selection. All settings are visible by default. Rows retain publication order; there are no ranking controls. Symbolic comparisons show both backbones side by side as in the paper. Cell backgrounds reproduce the manuscript’s RGB colors and white-mix percentages. They remain fixed when filtering; blue encodes performance and orange encodes execution steps/cost. Bold emphasis follows the paper. Without JavaScript, all configurations and their labels remain available.
 

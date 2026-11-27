@@ -47,6 +47,11 @@ for line in d[16:47]:
 assert len(pairs)==31 and all(0<=v<=1 for p in pairs for v in p)
 means=[sum(p[i] for p in pairs)/31 for i in [0,1]]
 assert [round(v,3) for v in means]==[.978,.334]
+# Recover the published quartiles, medians and 1.5-IQR whiskers as well as points.
+boxplots=[]
+for box, median, low, high in [(47,58,50,51),(52,59,56,57)]:
+ value=lambda y: round((g[0]-y)/scale,6)
+ boxplots.append(dict(q1=value(d[box]['rect'].y1),q3=value(d[box]['rect'].y0),median=value(d[median]['rect'].y0),low=value(d[low]['rect'].y0),high=value(d[high]['rect'].y0)))
 d=drawings('gating_rollouts_per_round'); g=grid(d); scale=(g[0]-g[-1])/4000
 rollouts=[{'name':name,'values':[integer(r.height/scale) for r in rects(d,start,8)]} for start,name in [(22,'Always-on'),(30,'Random'),(38,'Metacognitive')]]
 assert [sum(s['values']) for s in rollouts]==[31208,21960,22112]
@@ -64,7 +69,15 @@ for start,name in [(27,'Always-on'),(35,'Random'),(43,'Metacognitive')]:
     performance.append({'name':name,'values':values,'x':cumulative})
 assert [max(s['values']) for s in performance]==[52.38,51.79,54.76]
 assert performance[2]['values']==json.loads((repo/'src/data/interactive-results.json').read_text())['curves']['synthetic'][2]['values']
-result=dict(coverage=coverage,composition=composition,pool=pool,pairs=pairs,means=means,rollouts=rollouts,performance=performance)
+# Resolve the published figure/table discrepancy using the reviewed paper revision.
+revision=json.loads((repo/'docs/paper-revision-corrections.json').read_text())
+for fix in revision.get('curveCorrections',[]):
+ assert fix['chart']=='performance'
+ series=performance[fix['series']]
+ assert series['values'][fix['index']]==fix['previous']
+ series['values'][fix['index']]=fix['value']
+provenance.append({'revisionCorrections':'paper-revision-corrections.json','paperSha256':revision['sha256']})
+result=dict(coverage=coverage,composition=composition,pool=pool,pairs=pairs,means=means,boxplots=boxplots,rollouts=rollouts,performance=performance)
 (repo/'src/data/experiment-charts.json').write_text(json.dumps(result,indent=2)+'\n')
 (repo/'docs/experiment-charts-provenance.json').write_text(json.dumps(provenance,indent=2)+'\n')
 print(json.dumps(result,indent=2))

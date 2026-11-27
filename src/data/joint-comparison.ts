@@ -3,7 +3,7 @@ import results from './interactive-results.json';
 export const jointMetrics = [
   { key: 'best', label: 'Best SR', unit: '%', max: 60, lower: false },
   { key: 'final', label: 'Final SR', unit: '%', max: 60, lower: false },
-  { key: 'auc', label: 'Evo-AUC', unit: '', max: 25, lower: false },
+  { key: 'auc', label: 'Evo-AUC', unit: 'pp', max: 25, lower: false },
   { key: 'steps', label: 'Avg. Steps', unit: '', max: 25, lower: true },
 ] as const;
 export type JointMetric = typeof jointMetrics[number];
@@ -15,5 +15,5 @@ export function jointBenefit(metric: JointMetric) {
   const difference = Math.abs(joint - parametric).toFixed(2);
   return metric.key === 'steps'
     ? `${difference} fewer steps · Joint vs. Parametric`
-    : `+${difference}${metric.unit === '%' ? ' pp' : ''} ${metric.label} · Joint vs. Parametric`;
+    : `+${difference}${metric.unit === '%' || metric.unit === 'pp' ? ' pp' : ''} ${metric.label} · Joint vs. Parametric`;
 }

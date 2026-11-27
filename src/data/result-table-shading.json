@@ -999,13 +999,13 @@
         "color": "componentSRHeat",
         "level": 60,
         "background": "#c3d4e5",
-        "bold": false
+        "bold": true
       },
       {
         "color": "componentSRHeat",
         "level": 60,
         "background": "#c3d4e5",
-        "bold": false
+        "bold": true
       },
       {
         "color": "componentSRHeat",

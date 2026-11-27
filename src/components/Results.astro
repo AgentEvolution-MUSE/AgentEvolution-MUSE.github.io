@@ -23,8 +23,9 @@ const questions = [
         <dl>
           <div><dt>Benchmark</dt><dd>APPWorld · Qwen3.5-9B · Up to 8 evolution rounds. Symbolic ablations also use Qwen3.5-27B.</dd></div>
           <div><dt>RQ2 · Components</dt><dd>Oracle tasks only; no synthetic tasks or metacognitive gating.</dd></div>
-          <div><dt>RQ3 · Supervision</dt><dd>Prefix-potential supervision; no metacognitive gating.</dd></div>
+          <div><dt>RQ3 · Supervision</dt><dd>Performance comparisons: no metacognitive gating. Audits and task-distribution plots: the full MUSE run, with metacognitive gating.</dd></div>
           <div><dt>RQ4 · Gating</dt><dd>Supplementary supervision and model weight adaptation in every round. Random matches Metacognitive’s symbolic-component counts.</dd></div>
+          <div><dt>RQ5 · Stability</dt><dd>Each point is an evaluated candidate before deployment selection. Metacognitive gating is enabled only for the full MUSE series.</dd></div>
         </dl>
       </details>
     </div>

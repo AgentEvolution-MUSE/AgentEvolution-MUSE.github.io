@@ -66,7 +66,15 @@ for key,label in [('quality','synthetic_task_quality'),('reliability','synthetic
  for row,cells in zip(out[key],raw_rows[label]):
   row['attributes']=[re.sub(r'\s+',' ',cells[1]).strip()]
 for row in out['gating']:row['attributes']=['MUSE']
+# Explicit corrections from the newer compiled paper; retain the original TeX provenance.
+revision=json.loads((repo/'docs/paper-revision-corrections.json').read_text())
+assert hashlib.sha256(source.read_bytes()).hexdigest()==revision['sourceTexSha256'], 'Review revision corrections before applying to a different manuscript.'
+for fix in revision['corrections']:
+ row=out[fix['table']][fix['row']]
+ assert row['values'][fix['column']]==fix['previous']
+ row['values'][fix['column']]=fix['value']
+ styles[fix['table']][fix['row']][fix['column']]['bold']=fix['bold']
 (repo/'src/data/result-table-shading.json').write_text(json.dumps(styles,indent=2)+'\n')
 (repo/'src/data/result-tables.json').write_text(json.dumps(out,indent=2)+'\n')
-(repo/'docs/result-tables-provenance.json').write_text(json.dumps({'source':'main.tex','sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'tables':['overall_adaptivity','symbolic_contribution','supplementary_supervision_effectiveness','synthetic_task_quality','synthetic_outcome_reward_reliability','gating_effectiveness'],'shading':'Cell colors, white-mix percentages and bold emphasis extracted directly from LaTeX; includes unison_contribution.', 'method':'Direct extraction of numeric cells from LaTeX; null retains -- and N/A. Symbolic notation is expanded into component names.'},indent=2)+'\n')
+(repo/'docs/result-tables-provenance.json').write_text(json.dumps({'source':'main.tex','revisionCorrections':'paper-revision-corrections.json','sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'tables':['overall_adaptivity','symbolic_contribution','supplementary_supervision_effectiveness','synthetic_task_quality','synthetic_outcome_reward_reliability','gating_effectiveness'],'shading':'Cell colors, white-mix percentages and bold emphasis extracted directly from LaTeX; includes unison_contribution.', 'method':'Direct extraction of numeric cells from LaTeX; null retains -- and N/A. Symbolic notation is expanded into component names.'},indent=2)+'\n')
 print({k:len(v) for k,v in out.items()})
