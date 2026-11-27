@@ -10,7 +10,11 @@ const ends=[[136,140],[170,48],[264,64],[286,117],[470,246],[585,154],[835,263]]
 const color=(i:number)=>i===6?'#527fa4':i===5?'#c7986b':i===4?'#7c9c91':'#9ba7b4';
 ---
 <div class="result-overview" data-result-overview="overall">
- <figure class="result-overview-figure">
+ <div class="overview-view-switch" role="group" aria-label="Results view" hidden>
+  <button type="button" data-overview-view="chart" aria-pressed="true" aria-controls="rq1-chart">Chart</button>
+  <button type="button" data-overview-view="table" aria-pressed="false" aria-controls="rq1-table">Table</button>
+ </div>
+ <figure id="rq1-chart" class="result-overview-figure" data-overview-panel="chart">
   <figcaption><span class="overview-caption-actions"><button type="button" data-overview-reset hidden>Show all</button></span></figcaption>
   <div class="result-overview-scroll" tabindex="0" role="region" aria-label="Success versus execution steps; scroll horizontally on narrow screens">
    <svg class="result-tradeoff" viewBox="0 0 1000 410" role="group" aria-labelledby="tradeoff-title tradeoff-description">
@@ -22,18 +26,23 @@ const color=(i:number)=>i===6?'#527fa4':i===5?'#c7986b':i===4?'#7c9c91':'#9ba7b4
     <text class="overview-axis" x="505" y="402" text-anchor="middle">Best success rate (%) →</text>
     <path data-tradeoff-guide class="overview-guide" d="" visibility="hidden" aria-hidden="true"/>
     {rows.map((r,i)=><g class="overview-method" data-overview-row={i} tabindex="0" role="button" aria-label={`${r.name}: ${r.values[0]} percent success, ${r.values[2]} average steps`}>
-     <path d={`M${x(r.values[0]!)} ${y(r.values[2]!)} L${ends[i][0]} ${ends[i][1]}`} fill="none" stroke={color(i)} stroke-width="1.2"/>
+     <path class="overview-method-leader" d={`M${x(r.values[0]!)} ${y(r.values[2]!)} L${ends[i][0]} ${ends[i][1]}`} fill="none" stroke={color(i)} stroke-width="1.2"/>
      <circle class="overview-hit" cx={x(r.values[0]!)} cy={y(r.values[2]!)} r="23" fill="transparent"/>
      <circle class="overview-halo" cx={x(r.values[0]!)} cy={y(r.values[2]!)} r="16" fill={color(i)}/>
      <circle cx={x(r.values[0]!)} cy={y(r.values[2]!)} r={i===6?8:6} fill={color(i)} stroke="white" stroke-width="2"/>
      <text x={labels[i][0]} y={labels[i][1]} class:list={['overview-label',{'overview-ours':i===6}]}>{r.name}</text>
     </g>)}
+    <g class="overview-point-reading" data-point-reading transform={`translate(${x(rows[6].values[0]!)-182} ${y(rows[6].values[2]!)-30})`} text-anchor="end" aria-live="polite" aria-atomic="true">
+     <rect x="0" y="0" width="174" height="65" rx="5" />
+     <text x="164" y="18" class="overview-point-name" data-overview-name>MUSE</text>
+     <text x="164" y="37"><tspan class="overview-point-value" data-overview-sr>54.76%</tspan><tspan> success</tspan></text>
+     <text x="164" y="55"><tspan class="overview-point-value" data-overview-steps>16.91</tspan><tspan> avg. steps</tspan></text>
+    </g>
    </svg>
   </div>
   <label class="overview-mobile-picker">Method<select data-overview-pick disabled>{rows.map((r,i)=><option value={i} selected={i===6}>{r.name}</option>)}</select></label>
-  <div class="overview-reading" aria-live="polite" aria-atomic="true"><strong data-overview-name>MUSE</strong><span><b data-overview-sr>54.76%</b> success</span><span><b data-overview-steps>16.91</b> avg. steps</span></div>
  </figure>
- <details class="rq-details overview-full-data" open><summary>All methods and metrics</summary><ResultTable table="overall" /></details>
+ <div id="rq1-table" data-overview-panel="table"><ResultTable table="overall" /></div>
 </div>
 <script>
  import data from '../data/result-tables.json';
@@ -47,6 +56,12 @@ const color=(i:number)=>i===6?'#527fa4':i===5?'#c7986b':i===4?'#7c9c91':'#9ba7b4
   nodes.filter(n=>n.matches('tr')).forEach(n=>{n.setAttribute('tabindex','0');n.setAttribute('aria-label',`${rows[index(n)].name}: highlight success and execution steps`);});
   function render(){
    const active=hovered??focused??pinned,r=rows[active??6];
+   const px=80+(r.values[0]!-28)/30*850,py=70+(21-r.values[2]!)/5*270;
+   const reading=root!.querySelector('[data-point-reading]')!,onLeft=px>720;
+   reading.setAttribute('transform',`translate(${onLeft?px-182:px+8} ${Math.max(8,Math.min(270,py-30))})`);
+   reading.setAttribute('text-anchor',onLeft?'end':'start');
+   reading.querySelectorAll('text').forEach(text=>text.setAttribute('x',onLeft?'164':'10'));
+   nodes.filter(n=>n.hasAttribute('data-overview-row')).forEach(n=>n.toggleAttribute('data-value-visible',index(n)===(active??6)));
    nodes.forEach(n=>{n.toggleAttribute('data-muted',active!==null&&index(n)!==active);n.toggleAttribute('data-highlight',active!==null&&index(n)===active);});
    root!.querySelector('[data-overview-name]')!.textContent=r.name;
    root!.querySelector('[data-overview-sr]')!.textContent=`${r.values[0]!.toFixed(2)}%`;
@@ -69,9 +84,18 @@ const color=(i:number)=>i===6?'#527fa4':i===5?'#c7986b':i===4?'#7c9c91':'#9ba7b4
    if(!n)return;
    if(e.key==='Enter'||e.key===' '){e.preventDefault();pinned=index(n);render();}
    const offset=e.key==='ArrowRight'||e.key==='ArrowDown'?1:e.key==='ArrowLeft'||e.key==='ArrowUp'?-1:0;
-   if(offset){e.preventDefault();const next=(index(n)+offset+rows.length)%rows.length;(root.querySelector(`[data-overview-row="${next}"]`) as SVGElement).focus();}
+   if(offset){e.preventDefault();const next=(index(n)+offset+rows.length)%rows.length;const attribute=n.matches('tr')?'data-result-row':'data-overview-row';(root.querySelector(`[${attribute}="${next}"]`) as HTMLElement|SVGElement).focus();}
   });
   pick.disabled=false;pick.addEventListener('change',()=>{pinned=Number(pick.value);hovered=focused=null;render();reveal(pinned);});
+  const switcher=root.querySelector<HTMLElement>('.overview-view-switch')!;
+  function setView(view:string){
+   root!.querySelectorAll<HTMLButtonElement>('[data-overview-view]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.overviewView===view)));
+   root!.querySelectorAll<HTMLElement>('[data-overview-panel]').forEach(panel=>{panel.hidden=panel.dataset.overviewPanel!==view;});
+   hovered=focused=null;render();
+   if(view==='chart')reveal(pinned??6);
+  }
+  switcher.querySelectorAll<HTMLButtonElement>('button').forEach(button=>button.addEventListener('click',()=>setView(button.dataset.overviewView!)));
+  setView('chart');switcher.hidden=false;
   render();
  }
 </script>

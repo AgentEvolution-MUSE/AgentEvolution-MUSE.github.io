@@ -582,14 +582,14 @@ a.resource-button:focus-visible { outline: 2px solid #315d82; outline-offset: 3p
   min-height: 390px;
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
-  grid-template-columns: minmax(0, 1.12fr) 138px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 110px minmax(0, 1fr);
   background: var(--paper);
 }
 
 .why-evolve-side {
   display: grid;
   min-width: 0;
-  padding: 42px 44px;
+  padding: 42px 32px;
   grid-template-rows: auto 1fr;
 }
 
@@ -617,15 +617,16 @@ a.resource-button:focus-visible { outline: 2px solid #315d82; outline-offset: 3p
 
 .why-evolve-side ol {
   display: grid;
-  align-self: end;
+  align-self: stretch;
   margin: 0;
   padding: 0;
-  align-content: end;
+  align-content: stretch;
   list-style: none;
 }
 
 .why-evolve-world ol {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(3, 1fr);
   border: 1px solid var(--rule);
 }
 
@@ -3373,3 +3374,32 @@ a.resource-button-github svg { flex-shrink:0; }
 a.resource-button-github strong { font-weight:600; }
 .resource-github-link { display:inline-flex; align-items:center; gap:9px; }
 .resource-github-link svg { width:20px; height:20px; flex-shrink:0; }
+
+/* Share heading and content rows across the deployment comparison. */
+@media (min-width: 641px) {
+  .why-evolve-contrast { grid-template-rows: auto 1fr; }
+  .why-evolve-side { grid-row: 1 / span 2; grid-template-rows: subgrid; }
+  .why-evolve-world { grid-column: 1; }
+  .why-evolve-agent { grid-column: 3; }
+  .why-evolve-gap { grid-column: 2; grid-row: 1 / span 2; }
+  .why-evolve-side-heading h3 { min-height: 0; }
+}
+
+@media (min-width: 901px) {
+  .why-evolve-agent ol { grid-template-rows: auto auto 1fr; column-gap: 0; row-gap: 16px; }
+  .why-evolve-agent li { grid-row: 1 / span 3; grid-template-rows: subgrid; padding: 22px 12px; }
+  .why-evolve-agent li div { display: contents; }
+  .why-evolve-agent li > span { flex-direction: column; flex-wrap: nowrap; gap: 12px; }
+  .why-evolve-agent li strong { min-height: 0; align-self: start; justify-self: center; hyphens: none; overflow-wrap: normal; }
+  .why-evolve-agent li small { min-height: 0; align-self: start; justify-self: center; }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  .why-evolve-agent ol { grid-template-columns: 1fr; grid-template-rows: repeat(3, 1fr); row-gap: 0; }
+  .why-evolve-agent li { grid-row: auto; grid-template-columns: 62px minmax(0, 1fr); grid-template-rows: auto; min-height: 94px; padding: 14px 12px; gap: 8px; text-align: left; }
+  .why-evolve-agent li + li { border-left: 0; border-top: 1px solid var(--rule); }
+  .why-evolve-agent li div { display: flex; min-height: 0; align-items: flex-start; gap: 4px; }
+  .why-evolve-agent li > span { flex-direction: row; gap: 4px; }
+  .why-evolve-agent .agent-layer-icon { width: 27px; height: 27px; flex-basis: 27px; }
+  .why-evolve-agent li strong, .why-evolve-agent li small { max-width: none; text-align: left; }
+}

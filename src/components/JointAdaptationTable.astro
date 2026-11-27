@@ -4,6 +4,7 @@ import JointAdaptationChart from './JointAdaptationChart.astro';
 import shading from '../data/result-table-shading.json';
 import results from '../data/interactive-results.json';
 import '../styles/interactive-results.css';
+import '../styles/result-overviews.css';
 const columns = [
   { key: 'best', label: 'Best SR', unit: '%', direction: '↑' },
   { key: 'gain', label: 'EvoGain', unit: 'pp', direction: '↑' },
@@ -15,8 +16,12 @@ const rows = results.table;
 const best = Object.fromEntries(columns.map(c => [c.key, (c.key === 'steps' ? Math.min : Math.max)(...rows.map(r => r.metrics[c.key] ?? -Infinity))]));
 ---
 <div class="interactive-evidence joint-comparison" data-joint-comparison>
-  <JointAdaptationChart />
-  <details class="joint-full-data" open><summary>All configurations and metrics</summary>
+  <div class="overview-view-switch joint-view-switch" role="group" aria-label="Component results view" hidden>
+    <button type="button" data-joint-view="chart" aria-pressed="true" aria-controls="rq2-chart">Chart</button>
+    <button type="button" data-joint-view="table" aria-pressed="false" aria-controls="rq2-table">Table</button>
+  </div>
+  <div id="rq2-chart" data-joint-panel="chart"><JointAdaptationChart /></div>
+  <div id="rq2-table" class="joint-full-data" data-joint-panel="table">
   <div class="evidence-table-scroll" tabindex="0" role="region" aria-label="Separate and joint adaptation">
     <table class="joint-table">
       <caption class="visually-hidden-result">Separate and joint adaptation on oracle tasks with Qwen3.5-9B. Higher is better except average steps.</caption>
@@ -29,5 +34,23 @@ const best = Object.fromEntries(columns.map(c => [c.key, (c.key === 'steps' ? Ma
       </tr>)}</tbody>
     </table>
   </div>
-  </details>
+  </div>
 </div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-joint-comparison]').forEach(root => {
+    const switcher = root.querySelector<HTMLElement>('.joint-view-switch')!;
+    function setView(view: string) {
+      root.querySelectorAll<HTMLButtonElement>('[data-joint-view]').forEach(button => {
+        button.setAttribute('aria-pressed', String(button.dataset.jointView === view));
+      });
+      root.querySelectorAll<HTMLElement>('[data-joint-panel]').forEach(panel => {
+        panel.hidden = panel.dataset.jointPanel !== view;
+      });
+    }
+    switcher.querySelectorAll<HTMLButtonElement>('button').forEach(button => {
+      button.addEventListener('click', () => setView(button.dataset.jointView!));
+    });
+    setView('chart');
+    switcher.hidden = false;
+  });
+</script>

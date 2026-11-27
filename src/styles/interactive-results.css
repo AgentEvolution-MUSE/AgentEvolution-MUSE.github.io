@@ -70,17 +70,13 @@
 .plot-series-line { stroke: var(--series-color); fill: none; stroke-linejoin: round; stroke-linecap: round; }
 .plot-point { fill: var(--series-color); stroke: #fff; stroke-width: 1.2; }
 .plot-selected-point { fill: #fff; stroke: var(--series-color); stroke-width: 2.3; }
+.plot-value-label { pointer-events: none; }
+.plot-value-label text { font: 700 11px 'Inter Variable', sans-serif; font-variant-numeric: tabular-nums; fill: var(--series-color); stroke: #fff; stroke-width: 4px; stroke-linejoin: round; paint-order: stroke fill; }
+.plot-value-leader { stroke: var(--series-color); stroke-width: 1; opacity: .7; }
 .plot-round { cursor: crosshair; }
 .plot-round-label[data-current] { fill: #244c75; font-weight: 750; }
 [data-series-hidden] { display: none; }
-.curve-readout { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px 18px; margin-top: auto; padding: 17px 22px; background: #f8fafc; border-top: 1px solid #e3e9f0; min-height: 124px; }
-.curve-readout > div { min-width: 0; }
-.curve-readout > div[hidden] { display: none; }
-.curve-readout span { display: flex; align-items: center; gap: 6px; color: #5e7083; font-size: .68rem; }
-.curve-readout i { width: 6px; height: 6px; border-radius: 50%; background: var(--series-color); flex-shrink: 0; }
-.curve-readout strong { display: block; margin-top: 2px; padding-left: 12px; font-size: 1.14rem; font-weight: 650; color: var(--series-color); font-variant-numeric: tabular-nums; }
-.curve-readout small { margin-left: 3px; font-size: .7rem; font-weight: 450; }
-.curve-data-table { margin-top: 16px; border-bottom: 1px solid #e1e7ee; }
+.curve-data-table { margin-top: 16px; }
 .curve-data-table summary { cursor: pointer; padding: 10px 0 16px; font-size: .8rem; color: #526778; }
 .curve-data-table table { width: 100%; min-width: 650px; border-collapse: collapse; font-size: .78rem; font-variant-numeric: tabular-nums; }
 .curve-data-table th, .curve-data-table td { padding: 12px 10px; border-bottom: 1px solid #e5ebf1; text-align: right; }
@@ -92,12 +88,10 @@
  .evolution-chart-heading { padding: 18px 16px 12px; }
  .curve-legend { margin-inline: 16px; }
  .curve-legend button { font-size: .62rem; }
- .curve-readout { padding-inline: 16px; }
 }
 @media(max-width:760px) {
  .evolution-chart-grid { grid-template-columns: minmax(0,1fr); gap: 20px; }
  .curve-legend button { font-size: .72rem; }
- .curve-readout span { font-size: .72rem; }
  .evidence-toolbar { padding: 15px; flex-wrap: wrap; gap: 8px; }
  .evidence-hint { font-size: .68rem; }
  .joint-table th:first-child { position: sticky; left: 0; z-index: 1; background: #fff; box-shadow: 1px 0 #e4eaf1; }
@@ -141,7 +135,9 @@
 
 .curve-data-table thead th { white-space:nowrap; }
 
-/* One metric at a time; full publication values remain directly below. */
+/* Switch between the metric chart and the complete table. */
+.joint-comparison .joint-view-switch { margin:16px 24px 0 auto; }
+[data-joint-panel][hidden] { display:none; }
 .joint-chart { margin:0; padding:22px 24px 18px; }
 .joint-chart-toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
 .joint-metrics { display:flex; flex-wrap:wrap; gap:4px; padding:4px; border-radius:8px; background:#f1f5f8; }
@@ -169,12 +165,12 @@
 .joint-bar-row > strong { font-size:.8rem; text-align:right; color:#475b6b; font-variant-numeric:tabular-nums; }
 .joint-chart-axis { position:relative; margin:5px calc(var(--value-width) + var(--bar-gap)) 0 calc(var(--label-width) + var(--bar-gap)); color:#82919e; font-size:.65rem; height:21px; }
 .joint-chart-axis span { position:absolute; transform:translateX(-50%); }
-.joint-full-data { border-top:1px solid #dce3eb; }
-.joint-full-data > summary { padding:13px 16px; cursor:pointer; color:#456985; font-weight:550; font-size:.78rem; }
+.joint-full-data { margin-top:16px; }
 .joint-full-data .joint-table tr { cursor:default; }
 .joint-full-data .joint-table tbody th { padding:10px; font-size:.85rem; font-weight:550; }
 .joint-full-data .joint-result th { color:#285b80; font-weight:750; }
 @media(max-width:600px) {
+ .joint-comparison .joint-view-switch { margin:12px 12px 0 auto; }
  .joint-chart { padding:16px 12px; }
  .joint-bars { --label-width:116px; --value-width:48px; --bar-gap:8px; }
  .joint-bar-name,.joint-bar-row > strong { font-size:.69rem; }

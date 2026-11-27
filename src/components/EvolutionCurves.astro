@@ -1,7 +1,7 @@
 ---
 import { RotateCcw } from '@lucide/astro';
 import results from '../data/interactive-results.json';
-import { seriesStyle } from '../data/result-series';
+import { seriesStyle, curvePointLabels } from '../data/result-series';
 import '../styles/interactive-results.css';
 const x = (i: number) => 48 + i * 62;
 const y = (value: number) => 245 - (value - 25) * 6.2;
@@ -31,12 +31,13 @@ const conditions = [{id:'oracle', label:'Oracle tasks', curves:results.curves.or
           {curve.values.map((value,i) => <circle class="plot-point" cx={x(i)} cy={y(value)} r="3.2"><title>{seriesStyle[curve.id].name}, round {i+1}: {value.toFixed(2)}%</title></circle>)}
           <circle class="plot-selected-point" data-selected-point cx={x(7)} cy={y(curve.values[7])} r="5" />
         </g>)}
+        {curvePointLabels(condition.curves, 8).map(label => <g class="plot-value-label" data-point-label={label.id} style={`--series-color:${seriesStyle[label.id].color}`}>
+          <line class="plot-value-leader" x1={label.pointX} y1={label.pointY} x2={label.x + 3} y2={label.y} visibility={Math.abs(label.y - label.pointY) > 1 ? 'visible' : 'hidden'} />
+          <text x={label.x} y={label.y + 4} text-anchor={label.anchor} aria-label={`${seriesStyle[label.id].name}: ${label.value.toFixed(2)}%`}>{label.value.toFixed(2)}%</text>
+        </g>)}
         {Array.from({length:8},(_,i)=><g class="plot-round" data-hit-round={i+1}><text class="plot-round-label" x={x(i)} y="267" text-anchor="middle" data-round-tick={i+1} data-current={i===7 ? '' : undefined}>{i+1}</text><rect x={x(i)-24} y="28" width="48" height="245" fill="transparent" /></g>)}
         <text class="plot-axis-label" x="265" y="287" text-anchor="middle">Evolution round</text>
       </svg>
-      <div class="curve-readout">
-        {condition.curves.map(curve=><div data-series-value={curve.id} style={`--series-color:${seriesStyle[curve.id].color}`}><span><i aria-hidden="true"></i>{seriesStyle[curve.id].name}</span><strong>{curve.values[7].toFixed(2)}<small>%</small></strong></div>)}
-      </div>
     </div>)}
   </div>
   <details class="curve-data-table"><summary>Round-by-round values</summary><div class="evidence-table-scroll" tabindex="0" role="region" aria-label="All continuous evolution values"><table><thead><tr><th scope="col">Condition / method</th>{Array.from({length:8},(_,i)=><th scope="col">R{i+1}</th>)}</tr></thead><tbody>{conditions.map(condition=><><tr class="curve-table-group"><th colspan="9" scope="rowgroup">{condition.label}</th></tr>{condition.curves.map(curve=><tr><th scope="row">{seriesStyle[curve.id].name}</th>{curve.values.map(value=><td>{value.toFixed(2)}</td>)}</tr>)}</>)}</tbody></table></div></details>
@@ -44,6 +45,7 @@ const conditions = [{id:'oracle', label:'Oracle tasks', curves:results.curves.or
 </div>
 <script>
   import results from '../data/interactive-results.json';
+  import { curvePointLabels, seriesStyle } from '../data/result-series';
   const root = document.querySelector<HTMLElement>('[data-evolution-curves]');
   if (root) {
     const slider = root.querySelector<HTMLInputElement>('#evolution-round')!;
@@ -64,8 +66,19 @@ const conditions = [{id:'oracle', label:'Oracle tasks', curves:results.curves.or
           const value = curve.values[round - 1];
           const point = chart.querySelector(`[data-plot-series="${curve.id}"] [data-selected-point]`)!;
           point.setAttribute('cx', String(x)); point.setAttribute('cy', String(245 - (value - 25) * 6.2));
-          const strong = chart.querySelector(`[data-series-value="${curve.id}"] strong`)!;
-          strong.firstChild!.textContent = value.toFixed(2);
+        });
+        const visible = data.filter(curve => chart.querySelector(`[data-toggle-series="${curve.id}"]`)!.getAttribute('aria-pressed') === 'true');
+        curvePointLabels(visible, round).forEach(value => {
+          const group = chart.querySelector(`[data-point-label="${value.id}"]`)!;
+          const text = group.querySelector('text')!;
+          text.setAttribute('x', String(value.x)); text.setAttribute('y', String(value.y + 4));
+          text.setAttribute('text-anchor', value.anchor);
+          text.textContent = `${value.value.toFixed(2)}%`;
+          text.setAttribute('aria-label', `${seriesStyle[value.id].name}, round ${round}: ${value.value.toFixed(2)}%`);
+          const leader = group.querySelector('line')!;
+          leader.setAttribute('x1', String(value.pointX)); leader.setAttribute('y1', String(value.pointY));
+          leader.setAttribute('x2', String(value.x + (value.anchor === 'end' ? 3 : -3))); leader.setAttribute('y2', String(value.y));
+          leader.setAttribute('visibility', Math.abs(value.y - value.pointY) > 1 ? 'visible' : 'hidden');
         });
       });
     };
@@ -80,8 +93,9 @@ const conditions = [{id:'oracle', label:'Oracle tasks', curves:results.curves.or
           button.disabled = active && count === 1;
           const key = button.dataset.toggleSeries!;
           chart.querySelector(`[data-plot-series="${key}"]`)!.toggleAttribute('data-series-hidden', !active);
-          (chart.querySelector(`[data-series-value="${key}"]`) as HTMLElement).hidden = !active;
+          chart.querySelector(`[data-point-label="${key}"]`)!.toggleAttribute('data-series-hidden', !active);
         });
+        setRound(Number(slider.value));
       };
       buttons.forEach(button => button.addEventListener('click', () => {
         button.setAttribute('aria-pressed', String(button.getAttribute('aria-pressed') !== 'true'));

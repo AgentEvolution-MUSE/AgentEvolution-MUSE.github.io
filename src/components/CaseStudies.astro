@@ -1,6 +1,7 @@
 ---
-import { ArrowDown, Check, Mail, Music2, Wrench } from '@lucide/astro';
+import { ArrowDown, Check, TriangleAlert, X, Mail, Music2, Wrench } from '@lucide/astro';
 import CaseFlowSteps from './CaseFlowSteps.astro';
+import CasePlayback from './CasePlayback.astro';
 import { guided, free, prefix, experience, tool } from '../data/case-studies';
 import '../styles/case-studies.css';
 const caseHeadings=[
@@ -11,12 +12,14 @@ const caseHeadings=[
 ];
 const apps=['Venmo','SimpleNote','Gmail'];
 const potential=[.361,...prefix.map(s=>s.potential!)];
-const px=(i:number)=>40+i*65,py=(v:number)=>135-v*115;
+const px=(i:number)=>40+i*36.5,py=(v:number)=>205-v*165;
+const initialPrefix = prefix[2];
 ---
 <section id="result-cases" class="rq-section rq-cases" aria-labelledby="result-cases-title">
  <header class="rq-header"><h3 id="result-cases-title">Learning from execution</h3></header>
  {caseHeadings.map(([id,label,title],index)=><details id={id} class="rq-case case-map-disclosure" open={index===0}>
   <summary><span class="rq-case-category">{label}</span><strong>{title}</strong><span class="rq-expand" aria-hidden="true">+</span></summary>
+  <CasePlayback/>
   <div class="case-map-scroll" tabindex="0" role="region" aria-label={`${title}: complete case diagram; scroll horizontally on narrow screens`}>
    <div class:list={['case-map',{'case-map-prefix':index===1}]} data-case-map>
     <svg class="case-map-connections" aria-hidden="true"><defs><marker id={`${id}-arrow`} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="context-stroke"/></marker></defs><g data-flow-edges></g><g data-cross-edges>
@@ -39,26 +42,54 @@ const px=(i:number)=>40+i*65,py=(v:number)=>135-v*115;
       </div>
      </section>)}
      <div class="case-path-columns case-final-pair">
-      <div class="case-map-outcome" data-node="guided-outcome"><Check size={20}/><div><strong>Complete execution · Reward 1.00</strong><p>58 qualifying transactions summarized; note created and email sent.</p></div></div>
-      <div class="case-map-outcome incomplete" data-node="free-outcome"><div><strong>Partial execution · Reward 0.20</strong><p>Note contains only 50 records, including exactly $50. No email sent.</p></div></div>
+      <div class="case-result complete" data-node="guided-outcome">
+       <div class="case-result-heading"><span class="case-result-status"><Check size={22} aria-hidden="true"/><strong>Complete execution</strong></span><div class="case-result-score"><span>Reward ↑</span><strong>1.00</strong></div></div>
+       <ul class="case-result-checks" aria-label="Guided execution: task requirements">
+        <li><Check size={17} aria-hidden="true"/><span>All <strong>58 qualifying transactions</strong> summarized</span></li>
+        <li><Check size={17} aria-hidden="true"/><span>Note created with the complete summary</span></li>
+        <li><Check size={17} aria-hidden="true"/><span><strong>Email sent</strong> to the requested recipient</span></li>
+       </ul>
+      </div>
+      <div class="case-result partial" data-node="free-outcome">
+       <div class="case-result-heading"><span class="case-result-status"><TriangleAlert size={21} aria-hidden="true"/><strong>Partial execution</strong></span><div class="case-result-score"><span>Reward ↑</span><strong>0.20</strong></div></div>
+       <ul class="case-result-checks" aria-label="Free execution: task requirements">
+        <li class="unmet"><X size={17} aria-hidden="true"/><span><strong>Only 50 records</strong>, including exactly $50</span></li>
+        <li><Check size={17} aria-hidden="true"/><span>Note created from the incomplete list</span></li>
+        <li class="unmet"><X size={17} aria-hidden="true"/><span><strong>No email sent</strong></span></li>
+       </ul>
+      </div>
      </div>
     </>}
     {index===1&&<>
      <div class="case-map-task"><p>Delete all text and voice messages from the specified spam sender.</p></div>
-     <svg class="case-potential-map" viewBox="0 0 1060 175" role="group" aria-label="Prefix potential across the complete execution; select a point to highlight its recorded step">
-      <text x="40" y="15">Prefix potential</text>
-      {[0,.5,1].map(v=><g><line x1="40" x2="1015" y1={py(v)} y2={py(v)}/><text x="28" y={py(v)+4} text-anchor="end">{v}</text></g>)}
+     <div class="case-prefix-explorer">
+     <svg class="case-potential-map" viewBox="0 0 620 250" role="group" aria-label="Prefix potential: hover, focus or tap a point to read its step beside the chart">
+      <text x="40" y="18">Prefix potential</text>
+      {[0,.5,1].map(v=><g><line x1="40" x2="587.5" y1={py(v)} y2={py(v)}/><text x="28" y={py(v)+4} text-anchor="end">{v}</text></g>)}
       <polyline points={potential.map((v,i)=>`${px(i)},${py(v)}`).join(' ')} fill="none" stroke="#527fa4" stroke-width="2.5"/>
-      {potential.map((v,i)=><g data-potential-step={i||undefined} tabindex={i?0:undefined} role={i?'button':undefined} aria-pressed={i?'false':undefined} aria-label={`Step ${i}: potential ${v.toFixed(3)}`}>
-       <circle class="potential-hit" cx={px(i)} cy={py(v)} r="13" fill="transparent"/>
+      {[3,7].map(i=><text class="potential-error-label" data-error-step={i} x={px(i)} y={py(potential[i])+25} text-anchor="middle">{i===3?'Login error':'Token error'}</text>)}
+      {potential.map((v,i)=><g data-potential-step={i} data-active={i===3?true:undefined} tabindex="0" role="button" aria-pressed={i===3?'true':'false'} aria-label={`Step ${i}: ${i?prefix[i-1].action:'Before execution'}, potential ${v.toFixed(3)}`}>
+       <rect x={px(i)-16} y="28" width="32" height="207" fill="transparent"/>
+       <circle class="potential-hit" cx={px(i)} cy={py(v)} r="15" fill="transparent"/>
        <circle class="potential-dot" cx={px(i)} cy={py(v)} r="4" fill={i&&prefix[i-1].status==='error'?'#b66f50':'#527fa4'}/>
-       <text x={px(i)} y="155" text-anchor="middle">{i}</text>
+       <text x={px(i)} y="230" text-anchor="middle">{i}</text>
       </g>)}
-      <text x="528" y="173" text-anchor="middle">Step · 0 = before execution (0.361)</text>
+      <text class="potential-selected-value" data-potential-value x={px(3)} y={py(potential[3])-13} text-anchor="middle">0.313</text>
+      <text x="310" y="248" text-anchor="middle">Step</text>
      </svg>
+     <aside class="case-step-preview" data-step-preview data-status="error" aria-label="Selected execution step">
+      <div class="case-step-preview-heading"><span data-preview-index>Step 3 / 15</span><span data-preview-status>Error</span></div>
+      <h5 data-preview-action>{initialPrefix.action}</h5>
+      <p data-preview-observation>{initialPrefix.observation}</p>
+      <dl><div><dt>Potential</dt><dd data-preview-potential>0.313</dd></div><div><dt>Reward</dt><dd data-preview-reward class="negative">−0.495</dd></div></dl>
+      <p class="case-step-preview-note" data-preview-note>{initialPrefix.note}</p>
+     </aside>
+     </div>
+     <div class="case-prefix-records" tabindex="0" role="region" aria-label="Complete 15-step execution record; scroll to read all steps">
      <table class="case-prefix-table" data-case-trace="prefix"><thead><tr><th>Step</th><th>Action</th><th>Observation</th><th>Potential</th><th>Reward</th></tr></thead><tbody>
-      {prefix.map((s,i)=><tr data-node={`prefix-${i+1}`} class:list={[s.status]}><th scope="row"><button data-case-node aria-pressed="false" aria-label={`Highlight step ${i+1}`}>{i+1}</button></th><td>{s.action}</td><td>{s.observation}{s.note&&<details class="case-node-detail"><summary>Details</summary><p>{s.note}</p></details>}</td><td>{s.potential!.toFixed(3)}</td><td class:list={{'reward-negative':s.reward!<0}}>{s.reward!>0?'+':''}{s.reward!.toFixed(3)}</td></tr>)}
+      {prefix.map((s,i)=><tr data-node={`prefix-${i+1}`} data-active={i===2?true:undefined} class:list={[s.status]}><th scope="row"><button data-prefix-row={i+1} aria-pressed={i===2?'true':'false'} aria-label={`Show step ${i+1} beside the chart`}>{i+1}</button></th><td>{s.action}</td><td>{s.observation}{s.note&&<p class="case-prefix-note">{s.note}</p>}</td><td>{s.potential!.toFixed(3)}</td><td class:list={{'reward-negative':s.reward!<0}}>{s.reward!>0?'+':''}{s.reward!.toFixed(3)}</td></tr>)}
      </tbody></table>
+     </div>
      <div class="case-map-outcome"><Check size={20}/><strong>10 text messages + 12 voice messages deleted</strong></div>
     </>}
     {index===2&&<div class="case-mechanism-map">
@@ -119,6 +150,7 @@ const px=(i:number)=>40+i*65,py=(v:number)=>135-v*115;
  </details>)}
 </section>
 <script>
+ import { prefix } from '../data/case-studies';
  document.querySelectorAll<HTMLElement>('[data-case-map]').forEach(root=>{
   const svg=root.querySelector<SVGSVGElement>('.case-map-connections')!;
   const marker=svg.querySelector('marker')!.id;
@@ -133,10 +165,59 @@ const px=(i:number)=>40+i*65,py=(v:number)=>135-v*115;
    root.querySelectorAll('[data-potential-step]').forEach(p=>{const selected=`prefix-${p.getAttribute('data-potential-step')}`===active;p.toggleAttribute('data-active',selected);p.setAttribute('aria-pressed',String(selected));});
   }
   root.querySelectorAll<HTMLButtonElement>('[data-case-node]').forEach(b=>b.addEventListener('click',()=>select(b.closest<HTMLElement>('[data-node]')!)));
-  root.querySelectorAll<SVGElement>('[data-potential-step]').forEach(point=>{
-   const choose=()=>select(root.querySelector<HTMLElement>(`[data-node="prefix-${point.dataset.potentialStep}"]`)!);
-   point.addEventListener('click',choose);point.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose();}});
-  });
+  if(root.classList.contains('case-map-prefix')) {
+   const preview=root.querySelector<HTMLElement>('[data-step-preview]')!;
+   const records=root.querySelector<HTMLElement>('.case-prefix-records')!;
+   const points=[...root.querySelectorAll<SVGElement>('[data-potential-step]')];
+   let selected=3;
+   const revealRow=(row:HTMLElement)=>{
+    const viewport=records.getBoundingClientRect(), box=row.getBoundingClientRect();
+    if(box.top<viewport.top+40||box.bottom>viewport.bottom) records.scrollTop+=box.top-viewport.top-(records.clientHeight-box.height)/2;
+   };
+   const showStep=(index:number,scroll=true)=>{
+    selected=index;
+    const step=index?prefix[index-1]:null;
+    const potential=step?.potential??.361;
+    const set=(key:string,value:string)=>{preview.querySelector(`[data-preview-${key}]`)!.textContent=value;};
+    preview.dataset.status=step?.status||'neutral';
+    set('index',index?`Step ${index} / 15`:'Before execution');
+    set('status',step?.status==='error'?'Error':step?.status==='success'?'Success':'');
+    set('action',step?.action||'Initial task state');
+    set('observation',step?.observation||'No actions have been executed.');
+    set('potential',potential.toFixed(3));
+    const reward=step?.reward;
+    set('reward',reward===undefined?'—':`${reward>0?'+':reward<0?'−':''}${Math.abs(reward).toFixed(3)}`);
+    const rewardElement=preview.querySelector('[data-preview-reward]')!;
+    rewardElement.classList.toggle('negative',reward!==undefined&&reward<0);
+    rewardElement.classList.toggle('positive',reward!==undefined&&reward>0);
+    set('note',step?.note||'');
+    (preview.querySelector('[data-preview-note]') as HTMLElement).hidden=!step?.note;
+    points.forEach(point=>{const active=Number(point.dataset.potentialStep)===index;point.toggleAttribute('data-active',active);point.setAttribute('aria-pressed',String(active));});
+    root.querySelectorAll<HTMLElement>('.case-prefix-table [data-node]').forEach(row=>{const active=row.dataset.node===`prefix-${index}`;row.toggleAttribute('data-active',active);row.querySelector('button')!.setAttribute('aria-pressed',String(active));if(active&&scroll)revealRow(row);});
+    const value=root.querySelector('[data-potential-value]')!;
+    value.textContent=potential.toFixed(3);value.setAttribute('x',String(40+index*36.5));value.setAttribute('y',String(205-potential*165-13));
+   };
+   root.addEventListener('case-prefix-step',event=>showStep((event as CustomEvent<number>).detail));
+   const inspect=(index:number,scroll=true)=>{
+    showStep(index,scroll);
+    root.dispatchEvent(new CustomEvent('case-prefix-inspect',{detail:index}));
+   };
+   points.forEach((point,index)=>{
+    point.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse'&&root.closest('details')?.querySelector<HTMLElement>('[data-case-playback]')?.dataset.playing!=='true')inspect(index);});
+    point.addEventListener('focus',()=>inspect(index));
+    point.addEventListener('click',()=>inspect(index));
+    point.addEventListener('keydown',event=>{
+     if(event.key==='Enter'||event.key===' '){event.preventDefault();inspect(index);}
+     if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();points[Math.max(0,Math.min(15,index+(event.key==='ArrowRight'?1:-1)))].focus();}
+    });
+   });
+   root.querySelectorAll<HTMLElement>('[data-prefix-row]').forEach(button=>{
+    button.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')inspect(Number(button.dataset.prefixRow),false);});
+    button.addEventListener('focus',()=>inspect(Number(button.dataset.prefixRow),false));
+    button.addEventListener('click',()=>inspect(Number(button.dataset.prefixRow),false));
+   });
+   root.closest('details')?.addEventListener('toggle',()=>showStep(selected));
+  }
   root.addEventListener('keydown',e=>{if(e.key==='Escape'&&active){const current=nodes.find(n=>links(n)===active);if(current)select(current);}});
   function draw(){
    if(!root.getBoundingClientRect().width)return;
@@ -149,7 +230,7 @@ const px=(i:number)=>40+i*65,py=(v:number)=>135-v*115;
     return `M${x} ${y} V${mid} H${tx} V${ty}`;
    };
    flows.replaceChildren();
-   const add=(a:Element,b:Element)=>{const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',pathBetween(a,b));p.setAttribute('marker-end',`url(#${marker})`);flows.append(p);};
+   const add=(a:Element,b:Element)=>{const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',pathBetween(a,b));p.setAttribute('marker-end',`url(#${marker})`);p.dataset.edgeFrom=a.getAttribute('data-node')!;p.dataset.edgeTo=b.getAttribute('data-node')!;flows.append(p);};
    root.querySelectorAll('[data-flow-list]').forEach(list=>{const listNodes=[...list.querySelectorAll('[data-flow-order]')];listNodes.slice(1).forEach((n,i)=>add(listNodes[i],n));});
    for(const trace of ['guided','free']){const outcome=root.querySelector(`[data-node="${trace}-outcome"]`);const all=root.querySelectorAll(`[data-case-trace="${trace}"] [data-node]`);if(outcome&&all.length)add(all[all.length-1],outcome);const lists=[...root.querySelectorAll(`[data-case-trace="${trace}"]`)];lists.slice(1).forEach((list,i)=>{const prev=lists[i].querySelectorAll('[data-node]');add(prev[prev.length-1],list.querySelector('[data-node]')!);});}
    root.querySelectorAll<SVGPathElement>('[data-edge-from]').forEach(p=>{
