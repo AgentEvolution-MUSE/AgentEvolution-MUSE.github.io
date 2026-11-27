@@ -59,21 +59,21 @@ const math = {
       <article data-architecture-context="environment">
         <span class="architecture-context-index">01</span>
         <span class="architecture-context-copy">
-          <strong aria-label="Environment E sub t belongs to script E" set:html={math.environment}></strong>
+          <strong class="architecture-state-symbol" aria-label="Environment E sub t belongs to script E" set:html={math.environment}></strong>
           <small>Environment</small>
         </span>
       </article>
       <article data-architecture-context="agent">
         <span class="architecture-context-index">02</span>
         <span class="architecture-context-copy">
-          <strong aria-label="Agent A sub t belongs to script A" set:html={math.agent}></strong>
+          <strong class="architecture-state-symbol" aria-label="Agent A sub t belongs to script A" set:html={math.agent}></strong>
           <small>Agent</small>
         </span>
       </article>
       <article data-architecture-context="history">
         <span class="architecture-context-index">03</span>
         <span class="architecture-context-copy">
-          <strong aria-label="Interaction history H sub t belongs to script H" set:html={math.history}></strong>
+          <strong class="architecture-state-symbol" aria-label="Interaction history H sub t belongs to script H" set:html={math.history}></strong>
           <small>Interaction History</small>
         </span>
       </article>
@@ -174,7 +174,7 @@ const math = {
       <article class="architecture-module architecture-evolved-agent">
         <div class="architecture-module-head">
           <span class="architecture-module-title"><Sparkles size={17} aria-hidden="true" />Evolved Agent</span>
-          <strong aria-label="Agent A sub t plus 1" set:html={math.output}></strong>
+          <strong class="architecture-state-symbol" aria-label="Agent A sub t plus 1" set:html={math.output}></strong>
         </div>
         <h3>Resume Interaction</h3>
         <p>The validated agent returns to deployment and accumulates new evidence.</p>

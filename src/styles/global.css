@@ -1879,6 +1879,17 @@ figcaption {
   line-height: 1;
 }
 
+/* Make time indices clearly descend at the diagram's large display sizes.
+   Reserve the same depth so the following label cannot collide with the subscript. */
+.architecture-state-symbol {
+  padding-bottom: 0.14em;
+}
+
+.architecture-state-symbol .msupsub {
+  position: relative;
+  top: 0.14em;
+}
+
 .architecture-context-copy small {
   margin-top: 5px;
   color: #626c77;
